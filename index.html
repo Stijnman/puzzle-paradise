@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Puzzle Hub - Free &amp; Ad-Free</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f8;
+            --card-bg: #ffffff;
+            --primary: #2563eb;
+            --text: #1e293b;
+            --border: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        main {
+            width: 100%;
+            max-width: 450px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-container {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-container.active {
+            display: flex;
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button.action-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* --- Arrow Escape Board --- */
+        #arrow-board {
+            display: grid;
+            gap: 6px;
+            background: #e2e8f0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .arrow-cell {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .arrow-cell.empty {
+            background: transparent;
+            box-shadow: none;
+            cursor: default;
+        }
+
+        /* --- Sudoku Board --- */
+        #sudoku-board {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 1px;
+            background: #334155;
+            border: 2px solid #334155;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1;
+        }
+
+        .sudoku-cell {
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .sudoku-cell.fixed {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: bold;
+        }
+
+        .sudoku-cell.selected {
+            background: #e0e7ff;
+        }
+
+        .sudoku-keypad {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 5px;
+            width: 100%;
+            max-width: 360px;
+            margin-top: 15px;
+        }
+
+        .key-btn {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 10px 0;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* --- Routing Board --- */
+        #net-board {
+            display: grid;
+            gap: 4px;
+            background: #334155;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .net-cell {
+            width: 55px;
+            height: 55px;
+            background: #1e293b;
+            color: #38bdf8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .status-msg {
+            margin-top: 12px;
+            font-weight: 600;
+            color: #059669;
+            min-height: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="tab-btn active" onclick="switchGame('arrows')">Arrow Escape</button>
+    <button class="tab-btn" onclick="switchGame('sudoku')">Sudoku</button>
+    <button class="tab-btn" onclick="switchGame('net')">Routing</button>
+</header>
+
+<main>
+    <!-- Arrow Escape Game -->
+    <section id="game-arrows" class="game-container active">
+        <h2>Arrow Escape</h2>
+        <p style="font-size: 14px; color: #64748b; margin-top:0;">Tap an arrow with a clear path to clear it off the board.</p>
+        <div id="arrow-board"></div>
+        <div id="arrow-status" class="status-msg"></div>
+        <div class="controls">
+            <button class="action-btn" onclick="initArrowGame()">New Puzzle</button>
+        </div>
+    </section>
+
+    <!-- Sudoku Game -->
+    <section id="game-sudoku" class="game-container">
+        <h2>Sudoku</h2>
+        <div id="sudoku-board"></div>
+        <div class="sudoku-keypad">
+            <button class="key-btn" onclick="inputSudokuNumber(1)">1</button>
+            <button class="key-btn" onclick="inputSudokuNumber(2)">2</button>
+            <button class="key-btn" onclick="inputSudokuNumber(3)">3</button>
+            <button class="key-btn" onclick="inputSudokuNumber(4)">4</button>
+            <button class="key-btn" onclick="inputSudokuNumber(5)">5</button>
+            <button class="key-btn" onclick="inputSudokuNumber(6)">6</button>
+            <button class="key-btn" onclick="inputSudokuNumber(7)">7</button>
+            <button class="key-btn" onclick="inputSudokuNumber(8)">8</button>
+            <button class="key-btn" onclick="inputSudokuNumber(9)">9</button>
+        </div>
+        <div id="sudoku-status" class="status-msg"></div>
+        <div class="controls">
+            <button class="action-btn" onclick="initSudoku()">New Game</button>
+        </div>
+    </section>
+
+    <!-- Routing / Net Game -->
+    <section id="game-net" class="game-container">
+        <h2>Routing (Pipe Net)</h2>
+        <p style="font-size: 14px; color: #64748b; margin-top:0;">Tap tiles to rotate them until all paths connect.</p>
+        <div id="net-board"></div>
+        <div id="net-status" class="status-msg"></div>
+        <div class="controls">
+            <button class="action-btn" onclick="initNetGame()">New Puzzle</button>
+        </div>
+    </section>
+</main>
+
+<script>
+    function switchGame(gameId) {
+        document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(`game-${gameId}`).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    /* ----------------------------------------------------
+       1. ARROW ESCAPE LOGIC
+    ---------------------------------------------------- */
+    const ARROW_SIZE = 6;
+    const DIRS = { '⬆️': [-1, 0], '⬇️': [1, 0], '⬅️': [0, -1], '➡️': [0, 1] };
+    let arrowGrid = [];
+
+    function initArrowGame() {
+        const board = document.getElementById('arrow-board');
+        board.style.gridTemplateColumns = `repeat(${ARROW_SIZE}, 1fr)`;
+        board.innerHTML = '';
+        document.getElementById('arrow-status').innerText = '';
+        arrowGrid = [];
+
+        const arrowTypes = ['⬆️', '⬇️', '⬅️', '➡️'];
+
+        for (let r = 0; r < ARROW_SIZE; r++) {
+            arrowGrid[r] = [];
+            for (let c = 0; c < ARROW_SIZE; c++) {
+                const type = arrowTypes[Math.floor(Math.random() * arrowTypes.length)];
+                arrowGrid[r][c] = type;
+                
+                const cell = document.createElement('div');
+                cell.className = 'arrow-cell';
+                cell.id = `arrow-${r}-${c}`;
+                cell.innerText = type;
+                cell.onclick = () => tryClearArrow(r, c);
+                board.appendChild(cell);
+            }
+        }
+    }
+
+    function tryClearArrow(r, c) {
+        const dir = arrowGrid[r][c];
+        if (!dir) return;
+
+        const [dr, dc] = DIRS[dir];
+        let currR = r + dr;
+        let currC = c + dc;
+        let blocked = false;
+
+        while (currR >= 0 && currR < ARROW_SIZE && currC >= 0 && currC < ARROW_SIZE) {
+            if (arrowGrid[currR][currC] !== null) {
+                blocked = true;
+                break;
+            }
+            currR += dr;
+            currC += dc;
+        }
+
+        if (!blocked) {
+            arrowGrid[r][c] = null;
+            const cell = document.getElementById(`arrow-${r}-${c}`);
+            cell.classList.add('empty');
+            cell.innerText = '';
+            checkArrowWin();
+        }
+    }
+
+    function checkArrowWin() {
+        const remaining = arrowGrid.flat().filter(x => x !== null).length;
+        if (remaining === 0) {
+            document.getElementById('arrow-status').innerText = 'Cleared! Puzzle Solved.';
+        }
+    }
+
+    /* ----------------------------------------------------
+       2. SUDOKU LOGIC
+    ---------------------------------------------------- */
+    let selectedSudokuCell = null;
+    const samplePuzzle = [
+        [5,3,0,0,7,0,0,0,0],
+        [6,0,0,1,9,5,0,0,0],
+        [0,9,8,0,0,0,0,6,0],
+        [8,0,0,0,6,0,0,0,3],
+        [4,0,0,8,0,3,0,0,1],
+        [7,0,0,0,2,0,0,0,6],
+        [0,6,0,0,0,0,2,8,0],
+        [0,0,0,4,1,9,0,0,5],
+        [0,0,0,0,8,0,0,7,9]
+    ];
+
+    function initSudoku() {
+        const board = document.getElementById('sudoku-board');
+        board.innerHTML = '';
+        selectedSudokuCell = null;
+
+        for (let r = 0; r < 9; r++) {
+            for (let c = 0; c < 9; c++) {
+                const val = samplePuzzle[r][c];
+                const cell = document.createElement('div');
+                cell.className = 'sudoku-cell';
+                if (val !== 0) {
+                    cell.innerText = val;
+                    cell.classList.add('fixed');
+                }
+                cell.dataset.row = r;
+                cell.dataset.col = c;
+                cell.onclick = () => selectSudokuCell(cell);
+                board.appendChild(cell);
+            }
+        }
+    }
+
+    function selectSudokuCell(cell) {
+        if (cell.classList.contains('fixed')) return;
+        document.querySelectorAll('.sudoku-cell').forEach(c => c.classList.remove('selected'));
+        selectedSudokuCell = cell;
+        cell.classList.add('selected');
+    }
+
+    function inputSudokuNumber(num) {
+        if (selectedSudokuCell && !selectedSudokuCell.classList.contains('fixed')) {
+            selectedSudokuCell.innerText = num;
+        }
+    }
+
+    /* ----------------------------------------------------
+       3. ROUTING / NET LOGIC
+    ---------------------------------------------------- */
+    const NET_SIZE = 4;
+    const PIPES = ['│', '─', '┌', '┐', '└', '┘'];
+    let netState = [];
+
+    function initNetGame() {
+        const board = document.getElementById('net-board');
+        board.style.gridTemplateColumns = `repeat(${NET_SIZE}, 1fr)`;
+        board.innerHTML = '';
+        netState = [];
+
+        for (let i = 0; i < NET_SIZE * NET_SIZE; i++) {
+            const pipe = PIPES[Math.floor(Math.random() * PIPES.length)];
+            const rot = Math.floor(Math.random() * 4) * 90;
+            netState.push(rot);
+
+            const cell = document.createElement('div');
+            cell.className = 'net-cell';
+            cell.innerText = pipe;
+            cell.style.transform = `rotate(${rot}deg)`;
+            cell.onclick = () => {
+                netState[i] = (netState[i] + 90) % 360;
+                cell.style.transform = `rotate(${netState[i]}deg)`;
+            };
+            board.appendChild(cell);
+        }
+    }
+
+    // Initialize all games on start
+    initArrowGame();
+    initSudoku();
+    initNetGame();
+</script>
+
+</body>
+</html>
