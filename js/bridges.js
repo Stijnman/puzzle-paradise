@@ -9,7 +9,7 @@ function initBridges() {
     board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
     board.innerHTML = '';
     document.getElementById('arrow-status').innerText = '';
-    grid = [];
+    grid = Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(0));
 
     // Initialize grid with numbers (clues)
     // Standard puzzle: place numbers 0-2 in cells
@@ -19,15 +19,7 @@ function initBridges() {
 
     for (let i = 0; i < cluePositions.length; i++) {
         const [r, c] = cluePositions[i];
-        grid[r][c] = i + 1; // 1-7
-    }
-    // Fill rest with 0
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        grid[r] = [];
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            if (!grid[r]) grid[r] = [];
-            if (grid[r][c] === undefined) grid[r][c] = 0;
-        }
+        grid[r][c] = i % 2 + 1;
     }
 
     // Create cells

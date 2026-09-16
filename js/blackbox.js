@@ -3,31 +3,32 @@
 
 const BOARD_SIZE = 6;
 let grid = [];
+let photons = [];
+let revealedPhotons = 0;
 
 function initBlackBox() {
     const board = document.getElementById('arrow-board');
     board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
     board.innerHTML = '';
     document.getElementById('arrow-status').innerText = '';
-    grid = [];
+    grid = Array.from({ length: BOARD_SIZE }, () => Array(BOARD_SIZE).fill(0));
+    revealedPhotons = 0;
 
     // Place 2 photons in random locations
-    const photons = [];
+    photons = [];
     while (photons.length < 2) {
         const pos = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
         const r = Math.floor(pos / BOARD_SIZE);
         const c = pos % BOARD_SIZE;
         if (!photons.some(p => p.r === r && p.c === c)) {
             photons.push({r, c});
+            grid[r][c] = 1;
         }
     }
 
     // Create cells
     for (let r = 0; r < BOARD_SIZE; r++) {
-        grid[r] = [];
         for (let c = 0; c < BOARD_SIZE; c++) {
-            grid[r][c] = 0; // 0=empty, 1=photon, 2=wall marker
-
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `bb-${r}-${c}`;
@@ -60,7 +61,12 @@ function initBlackBox() {
             cell.dataset.clues = clues.join(',');
 
             cell.onclick = () => {
-                if (grid[r][c] === 0) {
+                if (grid[r][c] === 1 && cell.dataset.revealed !== 'true') {
+                    cell.dataset.revealed = 'true';
+                    cell.innerText = '●';
+                    cell.style.color = 'var(--accent-success)';
+                    revealedPhotons++;
+                } else if (grid[r][c] === 0) {
                     grid[r][c] = 2; // Place wall marker
                     cell.innerText = '×';
                     cell.style.color = '#d97706';
@@ -78,15 +84,11 @@ function initBlackBox() {
 
 function checkBlackBoxWin() {
     const status = document.getElementById('arrow-status');
-    // Check if all photons are surrounded by walls
-    let photonsFound = 0;
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            if (grid[r][c] === 1) photonsFound++;
-        }
-    }
-    if (photonsFound === 0) {
-        status.innerText = 'All photons contained! Puzzle Solved.';
+    if (revealedPhotons === photons.length) {
+        status.innerText = 'Both hidden atoms found! Puzzle solved.';
         status.style.color = 'var(--accent-success)';
+    } else {
+        status.innerText = `Find the 2 hidden atoms — ${revealedPhotons} found.`;
+        status.style.color = 'var(--accent-warning)';
     }
 }
