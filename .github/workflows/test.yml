@@ -22,28 +22,34 @@ jobs:
 
       - name: Check if Node project exists
         id: node_project
-        run: echo "has_package_json=${{ hashFiles('package.json') != '' }}" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
+          if [ -f package.json ]; then
+            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Node.js
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install dependencies
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         run: npm ci
 
       - name: TypeScript type check
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         run: npx tsc --noEmit
 
       - name: Lint check
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         run: npm run lint
 
       - name: Skip JS validation
-        if: steps.node_project.outputs.has_package_json != 'true'
+        if: ${{ steps.node_project.outputs.has_package_json != 'true' }}
         run: echo "No package.json found; skipping JavaScript validation."
 
   test:
@@ -56,24 +62,30 @@ jobs:
 
       - name: Check if Node project exists
         id: node_project
-        run: echo "has_package_json=${{ hashFiles('package.json') != '' }}" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
+          if [ -f package.json ]; then
+            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Node.js
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install dependencies
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         run: npm ci
 
       - name: Run tests
-        if: steps.node_project.outputs.has_package_json == 'true'
+        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         run: npm test
 
       - name: Skip test execution
-        if: steps.node_project.outputs.has_package_json != 'true'
+        if: ${{ steps.node_project.outputs.has_package_json != 'true' }}
         run: echo "No package.json found; skipping test execution."
 
   lint:
@@ -120,7 +132,7 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog scan on push or PR
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
+        if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
         uses: trufflesecurity/trufflehog@v3.82.7
         with:
           path: ./
@@ -129,7 +141,7 @@ jobs:
           extra_args: --debug --only-verified
 
       - name: Skip secret scan for manual runs
-        if: github.event_name != 'push' && github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         run: echo "Manual workflow run; skipping TruffleHog secret scan."
 
   pre-commit:
@@ -142,35 +154,41 @@ jobs:
 
       - name: Check if pre-commit config exists
         id: precommit
-        run: echo "has_precommit=${{ hashFiles('.pre-commit-config.yaml') != '' }}" >> "$GITHUB_OUTPUT"
+        shell: bash
+        run: |
+          if [ -f .pre-commit-config.yaml ]; then
+            echo "has_precommit=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_precommit=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Set up Python
-        if: steps.precommit.outputs.has_precommit == 'true'
+        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
       - name: Set up Node.js
-        if: steps.precommit.outputs.has_precommit == 'true'
+        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Install pre-commit and Python compatibility deps
-        if: steps.precommit.outputs.has_precommit == 'true'
+        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         run: |
           python -m pip install --upgrade pip
           python -m pip install --upgrade "pre-commit>=3.8.0" "identify>=2.6.0"
           npm install -g markdownlint-cli2
 
       - name: Install pre-commit hooks
-        if: steps.precommit.outputs.has_precommit == 'true'
+        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         run: pre-commit install
 
       - name: Run pre-commit on all files
-        if: steps.precommit.outputs.has_precommit == 'true'
+        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         run: pre-commit run --all-files --show-diff-on-failure
 
       - name: Skip pre-commit
-        if: steps.precommit.outputs.has_precommit != 'true'
+        if: ${{ steps.precommit.outputs.has_precommit != 'true' }}
         run: echo "No pre-commit config found; skipping pre-commit checks."
