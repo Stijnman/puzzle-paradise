@@ -114,16 +114,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository with full history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Check for hardcoded secrets
+      - name: TruffleHog scan on push or PR
+        if: github.event_name == 'push' || github.event_name == 'pull_request'
         uses: trufflesecurity/trufflehog@v3.82.7
         with:
           path: ./
-          base: ${{ github.event.repository.default_branch }}
-          head: HEAD
+          base: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+          head: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           extra_args: --debug --only-verified --fail
+
+      - name: Skip secret scan for manual runs
+        if: github.event_name != 'push' && github.event_name != 'pull_request'
+        run: echo "Manual workflow run; skipping TruffleHog secret scan."
 
   pre-commit:
     name: Pre-commit Hooks
