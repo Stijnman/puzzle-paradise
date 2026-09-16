@@ -268,7 +268,7 @@
     function switchGame(gameId) {
         document.querySelectorAll('.game-container').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        
+
         document.getElementById(`game-${gameId}`).classList.add('active');
         event.target.classList.add('active');
     }

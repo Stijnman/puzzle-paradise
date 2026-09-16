@@ -21,7 +21,7 @@ function initMines() {
             placed++;
         }
     }
-    
+
     // Calculate numbers (how many adjacent mines)
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -49,7 +49,7 @@ function initMines() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `mines-${r}-${c}`;
-            
+
             if (grid[idx] === -1) {
                 // Mine - hide it initially, or show as clicked
                 cell.innerText = '💣';
@@ -78,7 +78,7 @@ function initMines() {
                     checkMinesWin();
                 };
             }
-            
+
             board.appendChild(cell);
         }
     }
@@ -88,13 +88,13 @@ function revealEmpty(r, c) {
     // Recursively reveal empty cells
     const stack = [[r, c]];
     const visited = new Set();
-    
+
     while (stack.length > 0) {
         const [cr, cc] = stack.pop();
         const idx = cr * BOARD_SIZE + cc;
         if (visited.has(idx) || cr < 0 || cr >= BOARD_SIZE || cc < 0 || cc >= BOARD_SIZE) continue;
         visited.add(idx);
-        
+
         const cell = document.getElementById(`mines-${cr}-${cc}`);
         if (grid[cr * BOARD_SIZE + cc] === 0) {
             cell.innerText = '';

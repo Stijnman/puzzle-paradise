@@ -13,7 +13,7 @@ function initNullGame() {
 
     // Null Game: empty game, just a placeholder
     // No rules - just displays nothing special
-    
+
     // Create empty grid
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -24,16 +24,16 @@ function initNullGame() {
             cell.innerText = '';
             cell.classList.add('empty');
             cell.style.background = 'transparent';
-            
+
             cell.onclick = () => {
                 // No-op
                 checkNullGameWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkNullGameWin();
 }
 

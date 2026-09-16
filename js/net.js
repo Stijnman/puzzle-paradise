@@ -22,14 +22,14 @@ function initNetGame() {
         const initialIdx = Math.floor(Math.random() * pipeChars.length);
         cell.innerText = pipeChars[initialIdx];
         cell.style.transform = `rotate(${rot}deg)`;
-        
+
         cell.onclick = () => {
             netState[i] = (netState[i] + 90) % 360;
             cell.style.transform = `rotate(${netState[i]}deg)`;
             // Update displayed pipe based on new rotation
             updatePipeDisplay(cell, netState[i]);
         };
-        
+
         // Set initial rotation display
         updatePipeDisplay(cell, rot);
         board.appendChild(cell);
@@ -39,12 +39,12 @@ function initNetGame() {
 function updatePipeDisplay(cell, rotation) {
     const normalized = ((rotation % 360) + 360) % 360;
     let pipeChar;
-    
+
     if (normalized === 0) pipeChar = '│';
     else if (normalized === 90) pipeChar = '─';
     else if (normalized === 180) pipeChar = '│';
     else if (normalized === 270) pipeChar = '─';
     else pipeChar = '●';
-    
+
     cell.innerText = pipeChar;
 }

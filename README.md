@@ -25,6 +25,7 @@ Visit the site at: **[https://stijnman.github.io/puzzle-paradise/](https://stijn
 This repository uses GitHub Actions to automatically deploy the site whenever changes are pushed to the `main` branch.
 
 ### Current Status
+
 - Deployment workflow: Active
 - Pages deployment: Enabled
 - Auto-deploy on push: ✅

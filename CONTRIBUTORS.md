@@ -27,7 +27,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
 
 | Emoji | Description |
-|-------|-------------|
+| ------- | ------------- |
 | 📖 | Documentation |
 | 🐛 | Bug reports |
 | 💡 | Feature requests |
@@ -63,7 +63,7 @@ To be added to this file, please:
 ## 📈 Statistics
 
 | Metric | Value |
-|--------|-------|
+| -------- | ------- |
 | Total Contributors | 2 |
 | Core Maintainers | 1 |
 | External Contributors | 1 |
@@ -78,6 +78,7 @@ To be added to this file, please:
 4. **Open** a Pull Request
 
 **Format**:
+
 ```markdown
 | Your Name | [@yourgithub](https://github.com/yourgithub) | Your contributions |
 ```

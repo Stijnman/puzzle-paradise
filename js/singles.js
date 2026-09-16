@@ -13,14 +13,14 @@ function initSingles() {
 
     // Singles: each row and column must contain numbers 1-6
     // Some cells are pre-filled as clues
-    
+
     // Initialize with Latin square
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
             numbers[r * BOARD_SIZE + c] = (r + c) % BOARD_SIZE + 1;
         }
     }
-    
+
     // Remove some for clues (keep 12)
     const clueCount = 12;
     let removed = 0;
@@ -39,7 +39,7 @@ function initSingles() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `singles-${r}-${c}`;
-            
+
             if (numbers[idx]) {
                 cell.innerText = numbers[idx];
                 cell.style.color = 'var(--primary)';
@@ -49,7 +49,7 @@ function initSingles() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Enter number 1-6
                 if (cell.classList.contains('fixed')) return;
@@ -59,11 +59,11 @@ function initSingles() {
                 numbers[idx] = current;
                 checkSinglesWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkSinglesWin();
 }
 
@@ -71,7 +71,7 @@ function checkSinglesWin() {
     const status = document.getElementById('arrow-status');
     // Check all rows and columns have 1-6
     let valid = true;
-    
+
     // Check rows
     for (let r = 0; r < BOARD_SIZE && valid; r++) {
         const rowNums = [];
@@ -84,7 +84,7 @@ function checkSinglesWin() {
             if (sorted[i] !== i + 1) valid = false;
         }
     }
-    
+
     // Check columns
     for (let c = 0; c < BOARD_SIZE && valid; c++) {
         const colNums = [];
@@ -97,7 +97,7 @@ function checkSinglesWin() {
             if (sorted[i] !== i + 1) valid = false;
         }
     }
-    
+
     if (valid) {
         status.innerText = 'Valid Latin square! Puzzle Solved.';
         status.style.color = 'var(--accent-success)';

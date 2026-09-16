@@ -13,14 +13,14 @@ function initMaps() {
 
     // Place cities with numbers indicating distance to nearest city
     // Each number tells you how far the nearest city is
-    
+
     // Create random city locations
     const numCities = 5;
     for (let i = 0; i < numCities; i++) {
         const idx = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
         cities[idx] = -1; // -1 = city
     }
-    
+
     // Calculate distances from each cell to nearest city
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -47,7 +47,7 @@ function initMaps() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `maps-${r}-${c}`;
-            
+
             if (cities[idx] === -1) {
                 cell.innerText = '★'; // Star for city
                 cell.style.color = 'var(--primary)';
@@ -62,7 +62,7 @@ function initMaps() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle city placement (simplified)
                 if (cities[idx] === -1) {
@@ -75,11 +75,11 @@ function initMaps() {
                     initMaps(); // Re-render
                 }
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkMapsWin();
 }
 

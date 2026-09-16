@@ -14,11 +14,11 @@ function initTents() {
     // Place trees (fixed) and tents
     // Each tree has exactly one adjacent tent (horizontally or vertically)
     // No two tents can touch, not even diagonally
-    
+
     // Initialize: some cells are trees ('T'), most are empty
     // We'll place 10 tents for an 8x8 grid
     grid = new Array(BOARD_SIZE * BOARD_SIZE).fill('empty');
-    
+
     // Place 10 trees randomly
     let treesPlaced = 0;
     while (treesPlaced < 10) {
@@ -28,14 +28,14 @@ function initTents() {
             treesPlaced++;
         }
     }
-    
+
     // Place tents adjacent to trees
     let tentsPlaced = 0;
     while (tentsPlaced < 10) {
         const idx = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
         const r = Math.floor(idx / BOARD_SIZE);
         const c = idx % BOARD_SIZE;
-        
+
         if (grid[idx] === 'empty') {
             // Check if adjacent to a tree
             const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
@@ -50,7 +50,7 @@ function initTents() {
                     }
                 }
             }
-            
+
             if (adjacentToTree) {
                 grid[idx] = 'tent';
                 tentsPlaced++;
@@ -65,7 +65,7 @@ function initTents() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `tents-${r}-${c}`;
-            
+
             if (grid[idx] === 'tree') {
                 cell.innerText = '🌳';
                 cell.style.color = '#1e293b';
@@ -80,7 +80,7 @@ function initTents() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle tent (simplified)
                 if (grid[idx] === 'tent') {
@@ -104,11 +104,11 @@ function initTents() {
                 }
                 initTents(); // Re-render
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkTentsWin();
 }
 

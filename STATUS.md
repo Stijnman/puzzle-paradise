@@ -15,7 +15,7 @@
 ### Documentation Status
 
 | Document | Status | Last Updated |
-|----------|--------|--------------|
+| ---------- | -------- | -------------- |
 | README.md | ✅ Complete | 2026-09-11 |
 | SKILL.md | ✅ Complete | 2026-09-11 |
 | SECURITY.md | ✅ Complete | 2026-09-11 |
@@ -41,7 +41,7 @@
 ## 🎯 Quality Metrics
 
 | Metric | Value | Target |
-|--------|-------|--------|
+| -------- | ------- | -------- |
 | Documentation Completeness | 100% | 100% |
 | Security Documentation | ✅ Complete | ✅ |
 | Testing Documentation | ✅ Complete | ✅ |

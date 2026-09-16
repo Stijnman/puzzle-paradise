@@ -1,4 +1,4 @@
-name: Test Competitor Researcher
+name: Test Puzzle Paradise
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check if Node project exists
         id: node_project
@@ -32,7 +32,7 @@ jobs:
 
       - name: Set up Node.js
         if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
 
@@ -58,7 +58,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check if Node project exists
         id: node_project
@@ -72,7 +72,7 @@ jobs:
 
       - name: Set up Node.js
         if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
 
@@ -94,7 +94,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install markdownlint
         run: npm install -g markdownlint-cli2
@@ -109,7 +109,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install codespell
         run: pip install codespell
@@ -127,7 +127,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -164,13 +164,13 @@ jobs:
 
       - name: Set up Python
         if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
       - name: Set up Node.js
         if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
 

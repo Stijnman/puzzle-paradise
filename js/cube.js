@@ -16,7 +16,7 @@ function initCube() {
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         faces.push(0); // 0 = empty
     }
-    
+
     // Place face numbers randomly
     const placed = [];
     while (placed.length < 6) {
@@ -39,13 +39,13 @@ function initCube() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `cube-${r}-${c}`;
-            
+
             if (faces[idx]) {
                 cell.innerText = faces[idx];
                 cell.style.fontWeight = 'bold';
                 cell.style.color = 'var(--primary)';
             }
-            
+
             cell.onclick = () => {
                 // Cycle through faces or clear
                 if (!faces[idx]) {
@@ -57,7 +57,7 @@ function initCube() {
                 }
                 checkCubeWin();
             };
-            
+
             board.appendChild(cell);
         }
     }

@@ -23,7 +23,7 @@ function initSameGame() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `samegame-${r}-${c}`;
-            
+
             // Color based on number
             const colors = ['#dc2626', '#dc2626', '#1e40af', '#059669', '#7c3aed'];
             cell.style.background = colors[grid[idx] - 1];
@@ -31,37 +31,37 @@ function initSameGame() {
             cell.innerText = '●';
             cell.style.fontSize = '16px';
             cell.style.fontWeight = 'bold';
-            
+
             cell.onclick = () => {
                 // Select this gem - remove matching groups
                 selectGem(r, c);
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkSameGameWin();
 }
 
 function selectGem(r, c) {
     const idx = r * BOARD_SIZE + c;
     const color = grid[idx];
-    
+
     // Find all connected gems of same color (4-directional)
     const visited = new Set();
     const queue = [idx];
     visited.add(idx);
-    
+
     while (queue.length > 0) {
         const current = queue.shift();
         const cr = Math.floor(current / BOARD_SIZE);
         const cc = current % BOARD_SIZE;
-        
+
         const neighbors = [
             [cr - 1, cc], [cr + 1, cc], [cr, cc - 1], [cr, cc + 1]
         ];
-        
+
         for (const [nr, nc] of neighbors) {
             if (nr >= 0 && nr < BOARD_SIZE && nc >= 0 && nc < BOARD_SIZE) {
                 const neighborIdx = nr * BOARD_SIZE + nc;
@@ -72,7 +72,7 @@ function selectGem(r, c) {
             }
         }
     }
-    
+
     // Remove the group if more than 1
     if (visited.size > 1) {
         for (const v of visited) {
@@ -82,7 +82,7 @@ function selectGem(r, c) {
         // Simplified: just clear the selected gem
         grid[idx] = 0;
     }
-    
+
     initSameGame(); // Re-render
 }
 

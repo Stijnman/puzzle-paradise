@@ -19,13 +19,13 @@ function initDominosa() {
             allDominoes.push([a, b]);
         }
     }
-    
+
     // Shuffle and place first 24 for a 7x7 board (24 cells = 12 dominoes, but 7x7=49... let's do a simpler approach)
     // For Dominosa, we need to fill the board with dominoes
     // Let's create a simplified version
     allDominoes = allDominoes.sort(() => Math.random() - 0.5);
     const used = allDominoes.slice(0, 12); // Use 12 dominoes for 7x7=49... this doesn't work perfectly
-    
+
     // Create a simpler grid-based approach
     dominoes = [];
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
@@ -39,20 +39,20 @@ function initDominosa() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `dominosa-${r}-${c}`;
-            
+
             // Each cell shows half a domino number
             const num = Math.ceil(Math.random() * 6) + 1; // 1-7
             dominoes[idx] = num;
-            
+
             cell.innerText = '';
             cell.style.border = '1px solid var(--border)';
-            
+
             // Mark with number
             const numSpan = document.createElement('span');
             numSpan.style.display = 'none';
             numSpan.innerText = num;
             cell.appendChild(numSpan);
-            
+
             cell.onclick = () => {
                 // Toggle selection
                 const span = cell.querySelector('span');
@@ -63,7 +63,7 @@ function initDominosa() {
                 }
                 checkDominosaWin();
             };
-            
+
             board.appendChild(cell);
         }
     }

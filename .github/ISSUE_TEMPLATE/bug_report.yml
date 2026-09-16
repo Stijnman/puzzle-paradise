@@ -1,67 +1,49 @@
-name: Bug Report
-about: Report a bug or issue with Competitor Researcher
-title: "[BUG] "
-labels: bug
-assignees: ''
-
----
-
-year: 2026
-
----
-
-## 🐛 Bug Report
-
-### Describe the Bug
-
-A clear and concise description of what the bug is.
-
-### Steps to Reproduce
-
-1. Step 1
-2. Step 2
-3. Step 3
-4. See error
-
-### Expected Behavior
-
-A clear description of what you expected to happen.
-
-### Actual Behavior
-
-A clear description of what actually happened.
-
-### Screenshots
-
-If applicable, add screenshots to help explain the problem.
-
-### Additional Context
-
-- Node.js version: [e.g., 20.x]
-- npm version: [e.g., 10.x]
-- OS: [e.g., Ubuntu, macOS, Windows]
-- Browser: [e.g., Chrome, Firefox, Safari]
-- Browser version: [e.g., 120.x]
-
-### Error Details
-
-```
-Paste any error messages or console output here:
-```
-
-### Reproduction Rate
-
-- [ ] Always (100%)
-- [ ] Sometimes (50%)
-- [ ] Rarely (<10%)
-
-### Severity
-
-- [ ] Critical: Application crashes or unusable
-- [ ] High: Major functionality broken
-- [ ] Medium: Minor issue, workaround available
-- [ ] Low: Cosmetic or minor issue
-
----
-
-**Note**: For security vulnerabilities, please do not open a public issue. Contact the maintainer privately via GitHub profile.
+name: Bug report
+description: Report a reproducible problem in Puzzle Paradise
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Puzzle Paradise.
+  - type: dropdown
+    id: puzzle
+    attributes:
+      label: Puzzle
+      description: Which puzzle is affected?
+      options:
+        - Site or puzzle selector
+        - A specific puzzle
+        - Multiple puzzles
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem
+      description: Describe what happened and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and operating system
+      placeholder: Firefox 143 on Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console output or screenshots
+      description: Paste console output or drag screenshots here. Remove sensitive information first.
+      render: shell

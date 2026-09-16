@@ -16,7 +16,7 @@ function initFifteen() {
         tiles.push(i);
     }
     tiles.push(0); // 0 = empty space
-    
+
     // Shuffle
     for (let i = tiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -30,7 +30,7 @@ function initFifteen() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `fifteen-${r}-${c}`;
-            
+
             if (tiles[idx] === 0) {
                 // Empty space
                 cell.innerText = '';
@@ -39,13 +39,13 @@ function initFifteen() {
                 cell.innerText = tiles[idx];
                 cell.dataset.value = tiles[idx];
             }
-            
+
             cell.onclick = () => {
                 // Move tile into empty space
                 const emptyIdx = tiles.indexOf(0);
                 const [er, ec] = [Math.floor(emptyIdx / BOARD_SIZE), emptyIdx % BOARD_SIZE];
                 const [rr, cc] = [r, c];
-                
+
                 // Check if adjacent
                 if ((Math.abs(rr - er) === 1 && cc === ec) || (Math.abs(cc - ec) === 1 && rr === er)) {
                     // Swap
@@ -53,11 +53,11 @@ function initFifteen() {
                     initFifteen(); // Re-render
                 }
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkFifteenWin();
 }
 

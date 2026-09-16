@@ -13,11 +13,11 @@ function initUndead() {
 
     // Create network: each computer must be connected to power
     // Some connections are pre-placed, some need to be opened
-    
+
     // Initialize: some links are open, some closed
     const numOpen = 15;
     let openPlaced = 0;
-    
+
     // Create a grid of cells
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -25,7 +25,7 @@ function initUndead() {
             network[idx] = 'closed';
         }
     }
-    
+
     // Open some random links
     while (openPlaced < numOpen) {
         const idx = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
@@ -42,7 +42,7 @@ function initUndead() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `undead-${r}-${c}`;
-            
+
             if (network[idx] === 'open') {
                 cell.innerText = '●';
                 cell.style.color = '#10b981';
@@ -60,7 +60,7 @@ function initUndead() {
                 cell.style.fontWeight = 'bold';
                 cell.style.fontSize = '12px';
             }
-            
+
             cell.onclick = () => {
                 // Toggle connection state
                 if (network[idx] === 'closed') {
@@ -74,11 +74,11 @@ function initUndead() {
                 }
                 checkUndeadWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkUndeadWin();
 }
 

@@ -13,12 +13,12 @@ function initLoopy() {
 
     // Create a single loop through some cells
     // Numbers indicate how many loop segments surround that cell
-    
+
     // Create a simplified loop
     // Start at (0,0), go right, down, left, forming a C shape
     let pos = 0;
     loop[pos] = 1;
-    
+
     // Go right 3
     for (let i = 0; i < 3; i++) {
         pos += 1;
@@ -47,7 +47,7 @@ function initLoopy() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `loopy-${r}-${c}`;
-            
+
             if (loop[idx]) {
                 cell.innerText = loop[idx] % 10 || 10;
                 cell.style.color = 'var(--primary)';
@@ -57,7 +57,7 @@ function initLoopy() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle loop segment
                 if (loop[idx]) {
@@ -71,11 +71,11 @@ function initLoopy() {
                 }
                 checkLoopyWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkLoopyWin();
 }
 

@@ -38,7 +38,7 @@ function initPegs() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `pegs-${r}-${c}`;
-            
+
             if (board[idx] === 'peg') {
                 cell.innerText = '●';
                 cell.style.color = 'var(--primary)';
@@ -48,11 +48,11 @@ function initPegs() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             gridBoard.appendChild(cell);
         }
     }
-    
+
     checkPegsWin();
 }
 
@@ -60,28 +60,28 @@ function makeMove(r, c) {
     // Make a peg move: jump over adjacent peg into empty space
     const idx = r * BOARD_SIZE + c;
     if (board[idx] !== 'peg') return;
-    
+
     // Try four directions: up, down, left, right
     const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-    
+
     for (const [dr, dc] of directions) {
         const mr = r + dr; // midpoint
         const mc = c + dc;
         const er = r + 2 * dr; // endpoint
         const ec = c + 2 * dc;
-        
+
         const midIdx = mr * BOARD_SIZE + mc;
         const endIdx = er * BOARD_SIZE + ec;
-        
-        if (midIdx >= 0 && midIdx < BOARD_SIZE * BOARD_SIZE && 
+
+        if (midIdx >= 0 && midIdx < BOARD_SIZE * BOARD_SIZE &&
             endIdx >= 0 && endIdx < BOARD_SIZE * BOARD_SIZE &&
             board[midIdx] === 'peg' && board[endIdx] === 'empty') {
-            
+
             // Make the move
             board[idx] = 'removed';
             board[midIdx] = 'empty';
             board[endIdx] = 'peg';
-            
+
             // Re-render
             initPegs();
             return;

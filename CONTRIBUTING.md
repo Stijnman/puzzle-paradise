@@ -67,7 +67,7 @@ For feature requests or improvements:
 
 Every prompt should follow this structure:
 
-```markdown
+````markdown
 ## Prompt Name
 
 **Purpose**: Clear description of what this prompt does
@@ -77,19 +77,23 @@ Every prompt should follow this structure:
 **Don't Use When**: When NOT to use this prompt
 
 **Prompt**:
-```
+```text
+
 [The actual prompt text goes here]
+
 ```
 
 **Example Usage**:
-```
+```text
+
 User: [example input]
 AI: [example output]
+
 ```
 
 **Notes**:
 - Any additional notes or warnings
-```
+````
 
 ### Prompt Requirements
 
@@ -143,12 +147,14 @@ Every new prompt **MUST** include:
 All contributions **MUST** be tested. At minimum:
 
 ### Manual Testing
+
 - [ ] Prompt works with valid inputs
 - [ ] Prompt handles edge cases
 - [ ] Prompt produces quality output
 - [ ] Prompt is safe and appropriate
 
 ### Documentation
+
 - [ ] Prompt is properly documented
 - [ ] Examples are clear
 - [ ] Usage guidelines are provided
@@ -175,7 +181,7 @@ git checkout -b feature/your-prompt-name
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/) format:
 
-```
+```text
 feat: add new reasoning prompt for complex problems
 fix: correct typo in coding prompt
 docs: update README with new prompts
@@ -196,7 +202,7 @@ git push origin feature/your-prompt-name
 
 ### 5. Open Pull Request
 
-1. Go to https://github.com/Stijnman/hermes-prompts
+1. Go to <https://github.com/Stijnman/hermes-prompts>
 2. Click "New Pull Request"
 3. Select your fork and feature branch
 4. Fill in PR template
@@ -257,10 +263,12 @@ git push origin feature/your-prompt-name
 ## 🛠️ Maintenance
 
 ### Versioning
+
 - **MINOR**: New prompts or significant improvements
 - **PATCH**: Bug fixes and documentation updates
 
 ### Organization
+
 - Keep prompts well-organized by category
 - Maintain consistent formatting
 - Update cross-references

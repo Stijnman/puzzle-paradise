@@ -7,7 +7,7 @@ This document outlines the testing requirements and best practices for the **her
 ## 📋 Table of Contents
 
 - [Testing Philosophy](#-testing-philosophy)
-- [Testing Levels](#-testing-levels)
+- [Testing Levels](#testing-levels)
 - [Manual Testing](#-manual-testing)
 - [Automated Testing](#-automated-testing)
 - [Test Checklists](#-test-checklists)
@@ -36,13 +36,14 @@ Every prompt **MUST** be tested for:
 
 ---
 
-## 🏗️ Testing Levels
+## Testing Levels
 
 ### Level 1: Unit Testing (Prompt Validation)
 
 Test individual prompts for correctness and quality.
 
 **Example**: Testing a reasoning prompt
+
 ```python
 # tests/test_prompts.py
 import pytest
@@ -67,6 +68,7 @@ def test_coding_prompt_has_instructions():
 Test prompts in context with actual AI responses.
 
 **Example**: Testing prompt output quality
+
 ```python
 # tests/test_output_quality.py
 import pytest
@@ -76,7 +78,7 @@ from ai_client import generate_response
 def test_reasoning_prompt_output():
     """Test that reasoning prompt produces thoughtful output"""
     response = generate_response(REASONING_PROMPT + "\n\nExplain quantum computing")
-    
+
     # Check for quality indicators
     assert len(response) > 100
     assert "quantum" in response.lower()
@@ -88,7 +90,8 @@ def test_reasoning_prompt_output():
 Test the complete user experience with prompts.
 
 **Manual Test Script**:
-```
+
+```text
 1. Select a prompt from the library
 2. Apply the prompt to a test scenario
 3. Review the generated output
@@ -105,18 +108,21 @@ Test the complete user experience with prompts.
 For **every prompt**, manually test:
 
 #### Quality Tests
+
 - [ ] Prompt produces relevant output
 - [ ] Prompt produces coherent output
 - [ ] Prompt produces useful output
 - [ ] Prompt is clear and understandable
 
 #### Safety Tests
+
 - [ ] No harmful content generated
 - [ ] No inappropriate content generated
 - [ ] No biased content generated
 - [ ] No sensitive data exposed
 
 #### Consistency Tests
+
 - [ ] Similar inputs produce similar outputs
 - [ ] Prompt works across different scenarios
 - [ ] Prompt handles edge cases
@@ -155,7 +161,7 @@ For **every prompt**, manually test:
 
 ### Test File Structure
 
-```
+```text
 hermes-prompts/
 ├── tests/
 │   ├── __init__.py
@@ -207,7 +213,7 @@ Before opening a pull request:
 ## 🎯 Summary
 
 | Aspect | Requirement |
-|--------|-------------|
+| -------- | ------------- |
 | Manual Testing | ✅ Required for all prompts |
 | Automated Testing | ⚠️ Recommended for all prompts |
 | Quality Testing | ✅ Required |

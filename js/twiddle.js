@@ -13,13 +13,13 @@ function initTwiddle() {
 
     // Create tiles with numbers that can be rearranged
     // The goal is to get them in order 1-25
-    
+
     // Initialize with numbers 1-25 (24 tiles + 1 empty)
     for (let i = 1; i <= 24; i++) {
         tiles[i - 1] = i;
     }
     tiles[24] = 0; // Empty space at end
-    
+
     // Shuffle
     for (let i = tiles.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -34,7 +34,7 @@ function initTwiddle() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `twiddle-${r}-${c}`;
-            
+
             if (tiles[idx] === 0) {
                 // Empty space
                 cell.innerText = '';
@@ -45,23 +45,23 @@ function initTwiddle() {
                 cell.style.fontWeight = 'bold';
                 cell.style.fontSize = '18px';
             }
-            
+
             cell.onclick = () => {
                 // Slide tile into empty space
                 const emptyIdx = tiles.indexOf(0);
                 const [er, ec] = [Math.floor(emptyIdx / actualSize), emptyIdx % actualSize];
                 const [rr, cc] = [r, c];
-                
+
                 if (Math.abs(rr - er) === 1 && cc === ec || Math.abs(cc - ec) === 1 && rr === er) {
                     [tiles[emptyIdx], tiles[idx]] = [tiles[idx], tiles[emptyIdx]];
                     initTwiddle(); // Re-render
                 }
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkTwiddleWin();
 }
 

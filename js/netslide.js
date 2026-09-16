@@ -13,10 +13,10 @@ function initNetSlide() {
 
     // NetSlide: slide rows/columns to connect the power source
     // The goal is to create a continuous path from the start
-    
+
     // Initialize grid with some patterns
     slides = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Create a simple path from top-left to bottom-right
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         const r = Math.floor(i / BOARD_SIZE);
@@ -32,7 +32,7 @@ function initNetSlide() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `netslide-${r}-${c}`;
-            
+
             if (slides[idx]) {
                 cell.innerText = '→';
                 cell.style.color = 'var(--primary)';
@@ -42,7 +42,7 @@ function initNetSlide() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle slide direction
                 if (slides[idx]) {
@@ -55,11 +55,11 @@ function initNetSlide() {
                 }
                 checkNetSlideWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkNetSlideWin();
 }
 

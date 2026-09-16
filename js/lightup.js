@@ -13,12 +13,12 @@ function initLightUp() {
 
     // Place bulbs and lamps: bulbs light up cells, must light all white cells
     // No two bulbs can see each other, bulbs can't be adjacent
-    
+
     // Initialize: some cells are fixed walls ('#'), rest are empty
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         grid[i] = Math.random() > 0.85 ? 'wall' : 'empty'; // ~15% walls
     }
-    
+
     // Place bulbs (simplified: randomly place some)
     let bulbsPlaced = 0;
     while (bulbsPlaced < 10) {
@@ -66,7 +66,7 @@ function initLightUp() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `lightup-${r}-${c}`;
-            
+
             if (grid[idx] === 'wall') {
                 cell.innerText = '■';
                 cell.style.background = '#0f172a';
@@ -95,11 +95,11 @@ function initLightUp() {
                     initLightUp();
                 };
             }
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkLightUpWin();
 }
 

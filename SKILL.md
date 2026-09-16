@@ -51,7 +51,7 @@ This repository contains [description].
 ## 📚 Documentation
 
 | Document | Description | Required Reading |
-|----------|-------------|------------------|
+| ---------- | ------------- | ------------------ |
 | [SECURITY.md](./SECURITY.md) | Security policy | ✅ Yes |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guide | ⚠️ For contributors |
 | [TESTING.md](./TESTING.md) | Testing guide | ⚠️ For contributors |
@@ -75,9 +75,9 @@ This repository is licensed under the **MIT License**. See [LICENSE](./LICENSE).
 ## 📞 Support
 
 | Issue Type | How to Get Help |
-|-----------|-----------------|
+| ----------- | ----------------- |
 | Bug Report | Open a [GitHub Issue](https://github.com/Stijnman/puzzle-paradise/issues) |
-| Security Issue | Email: security@stijnman.com |
+| Security Issue | Email: <security@stijnman.com> |
 | General Question | Open a [GitHub Discussion](https://github.com/Stijnman/puzzle-paradise/discussions) |
 
 ---

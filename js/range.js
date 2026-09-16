@@ -13,7 +13,7 @@ function initRange() {
 
     // Create ranges: each number indicates the length of the contiguous block
     // in that row/column direction
-    
+
     // Simplified: place numbers 1-8 indicating range lengths
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
@@ -27,7 +27,7 @@ function initRange() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `range-${r}-${c}`;
-            
+
             if (ranges[idx] > 0 && ranges[idx] <= 8) {
                 cell.innerText = String.fromCodePoint(0x1F7E0 + ranges[idx] - 1); // Keycap: 1-8
                 cell.style.color = 'var(--primary)';
@@ -37,7 +37,7 @@ function initRange() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle range length
                 if (ranges[idx] >= 8) {
@@ -51,11 +51,11 @@ function initRange() {
                 }
                 checkRangeWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkRangeWin();
 }
 

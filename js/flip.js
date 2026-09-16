@@ -14,20 +14,20 @@ function initFlip() {
     // Create a path from (0,0) to (n-1,n-1) that doesn't cross itself
     // The path number indicates the step number
     path = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Create a simple snake path
     let pos = 0;
     let dir = 0; // 0:right, 1:down, 2:left, 3:up
     const dr = [0, 1, 0, -1];
     const dc = [1, 0, -1, 0];
-    
+
     path[pos] = 1; // Start at 1
-    
+
     while (pos < BOARD_SIZE * BOARD_SIZE - 1) {
         const nextPos = pos + dr[dir] * BOARD_SIZE + dc[dir];
         const r = Math.floor(nextPos / BOARD_SIZE);
         const c = nextPos % BOARD_SIZE;
-        
+
         if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && path[nextPos] === 0) {
             pos = nextPos;
             path[pos] = Math.floor(pos / BOARD_SIZE) + 1;
@@ -43,7 +43,7 @@ function initFlip() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `flip-${r}-${c}`;
-            
+
             if (path[idx]) {
                 cell.innerText = path[idx] % 10 || 10; // Show last digit
                 cell.style.color = 'var(--primary)';
@@ -52,7 +52,7 @@ function initFlip() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle direction/rotation marker
                 if (path[idx]) {
@@ -67,11 +67,11 @@ function initFlip() {
                 }
                 checkFlipWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkFlipWin();
 }
 

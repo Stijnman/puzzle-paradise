@@ -13,14 +13,14 @@ function initSolo() {
 
     // Create a Latin square: each row and column has numbers 1-6
     // Some cells are given as clues
-    
+
     // Initialize Latin square
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
             grid[r * BOARD_SIZE + c] = (r + c) % BOARD_SIZE + 1;
         }
     }
-    
+
     // Remove some for clues
     const clueCount = 12;
     let removed = 0;
@@ -39,7 +39,7 @@ function initSolo() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `solo-${r}-${c}`;
-            
+
             if (grid[idx]) {
                 cell.innerText = grid[idx];
                 cell.style.color = 'var(--primary)';
@@ -49,7 +49,7 @@ function initSolo() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Enter number as candidate
                 if (cell.classList.contains('fixed')) return;
@@ -59,11 +59,11 @@ function initSolo() {
                 grid[idx] = current;
                 checkSoloWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkSoloWin();
 }
 
@@ -71,7 +71,7 @@ function checkSoloWin() {
     const status = document.getElementById('arrow-status');
     // Check rows and columns for 1-6
     let valid = true;
-    
+
     // Check rows
     for (let r = 0; r < BOARD_SIZE && valid; r++) {
         const rowNums = [];
@@ -84,7 +84,7 @@ function checkSoloWin() {
             if (sorted[i] !== i + 1) valid = false;
         }
     }
-    
+
     // Check columns
     for (let c = 0; c < BOARD_SIZE && valid; c++) {
         const colNums = [];
@@ -97,7 +97,7 @@ function checkSoloWin() {
             if (sorted[i] !== i + 1) valid = false;
         }
     }
-    
+
     if (valid) {
         status.innerText = 'Valid Latin square! Puzzle Solved.';
         status.style.color = 'var(--accent-success)';

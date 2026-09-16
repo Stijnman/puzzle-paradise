@@ -13,7 +13,7 @@ function initSequence() {
 
     // Create strands of connected cells
     // Each strand has a sequence number
-    
+
     // Simplified: place sequence numbers 1-6
     const seqNumbers = [1, 2, 3, 4, 5, 6];
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
@@ -27,7 +27,7 @@ function initSequence() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `sequence-${r}-${c}`;
-            
+
             if (strands[idx] > 0) {
                 cell.innerText = strands[idx];
                 cell.style.color = getSequenceColor(strands[idx]);
@@ -37,7 +37,7 @@ function initSequence() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle sequence number
                 if (strands[idx]) {
@@ -51,11 +51,11 @@ function initSequence() {
                 }
                 checkSequenceWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkSequenceWin();
 }
 

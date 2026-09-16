@@ -27,11 +27,11 @@ function initBlackBox() {
         grid[r] = [];
         for (let c = 0; c < BOARD_SIZE; c++) {
             grid[r][c] = 0; // 0=empty, 1=photon, 2=wall marker
-            
+
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `bb-${r}-${c}`;
-            
+
             // Count visible photons in each direction
             let clues = [0, 0, 0, 0]; // N, S, W, E
             for (let d = 1; d < BOARD_SIZE; d++) {
@@ -56,9 +56,9 @@ function initBlackBox() {
                     else if (grid[r][c+d] === 2) break;
                 }
             }
-            
+
             cell.dataset.clues = clues.join(',');
-            
+
             cell.onclick = () => {
                 if (grid[r][c] === 0) {
                     grid[r][c] = 2; // Place wall marker
@@ -70,7 +70,7 @@ function initBlackBox() {
                 }
                 checkBlackBoxWin();
             };
-            
+
             board.appendChild(cell);
         }
     }

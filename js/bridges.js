@@ -16,7 +16,7 @@ function initBridges() {
     const cluePositions = [
         [0, 1], [1, 0], [1, 5], [2, 3], [3, 3], [5, 1], [5, 4]
     ];
-    
+
     for (let i = 0; i < cluePositions.length; i++) {
         const [r, c] = cluePositions[i];
         grid[r][c] = i + 1; // 1-7
@@ -37,13 +37,13 @@ function initBridges() {
             cell.className = 'grid-cell';
             cell.id = `bridges-${r}-${c}`;
             cell.dataset.value = grid[r][c] || '';
-            
+
             // Draw horizontal/vertical lines based on value
             if (grid[r][c] && grid[r][c] <= 2) {
                 cell.innerText = grid[r][c] === 1 ? '─' : '│';
                 cell.style.color = 'var(--primary)';
             }
-            
+
             cell.onclick = () => {
                 // Toggle line direction
                 if (!grid[r][c]) {
@@ -60,7 +60,7 @@ function initBridges() {
                 }
                 checkBridgesWin();
             };
-            
+
             board.appendChild(cell);
         }
     }

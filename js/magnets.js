@@ -13,10 +13,10 @@ function initMagnets() {
 
     // Place magnets: north and south poles that repel/attract
     // Number clues indicate how many magnets in that row/column
-    
+
     // Initialize with random pole placements
     poles = new Array(BOARD_SIZE * BOARD_SIZE).fill(null);
-    
+
     // Place 7 North (N) and 7 South (S) poles
     let nPlaced = 0, sPlaced = 0;
     while (nPlaced < 7 || sPlaced < 7) {
@@ -39,7 +39,7 @@ function initMagnets() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `magnets-${r}-${c}`;
-            
+
             if (poles[idx] === 'N') {
                 cell.innerText = '⊕';
                 cell.style.color = '#dc2626';
@@ -63,7 +63,7 @@ function initMagnets() {
                 cell.style.fontSize = '12px';
                 cell.style.background = 'rgba(37, 99, 235, 0.1)';
             }
-            
+
             cell.onclick = () => {
                 // Toggle pole type
                 if (poles[idx] === 'N') {
@@ -86,11 +86,11 @@ function initMagnets() {
                 }
                 checkMagnetsWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkMagnetsWin();
 }
 

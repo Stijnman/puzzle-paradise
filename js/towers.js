@@ -13,13 +13,13 @@ function initTowers() {
 
     // Towers: Skyscraper puzzle - numbers 1-6 indicate building heights
     // Edge numbers tell how many buildings are visible
-    
+
     // Initialize with building heights 1-6
     heights = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         heights[i] = Math.floor(Math.random() * BOARD_SIZE) + 1;
     }
-    
+
     // Create cells
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -27,7 +27,7 @@ function initTowers() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `towers-${r}-${c}`;
-            
+
             if (heights[idx] > 0 && heights[idx] <= 6) {
                 cell.innerText = heights[idx];
                 cell.style.color = 'var(--primary)';
@@ -37,7 +37,7 @@ function initTowers() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Change building height
                 if (heights[idx] >= 6) {
@@ -51,11 +51,11 @@ function initTowers() {
                 }
                 checkTowersWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkTowersWin();
 }
 

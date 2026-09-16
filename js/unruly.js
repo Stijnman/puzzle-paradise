@@ -13,7 +13,7 @@ function initUnruly() {
 
     // Place X's and O's: each row and column must have equal numbers
     // No two adjacent cells (including diagonally) can have the same symbol
-    
+
     // Initialize with random X and O
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         grid[i] = Math.random() > 0.5 ? 'x' : 'o';
@@ -26,7 +26,7 @@ function initUnruly() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `unruly-${r}-${c}`;
-            
+
             cell.innerText = grid[idx];
             if (grid[idx] === 'x') {
                 cell.style.color = '#dc2626';
@@ -35,7 +35,7 @@ function initUnruly() {
             }
             cell.style.fontWeight = 'bold';
             cell.style.fontSize = '18px';
-            
+
             cell.onclick = () => {
                 // Toggle between X, O, empty
                 if (grid[idx] === 'x') {
@@ -52,11 +52,11 @@ function initUnruly() {
                 }
                 checkUnrulyWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkUnrulyWin();
 }
 
@@ -64,7 +64,7 @@ function checkUnrulyWin() {
     const status = document.getElementById('arrow-status');
     // Check: equal X and O in each row/col, no adjacent same
     let valid = true;
-    
+
     // Check rows
     for (let r = 0; r < BOARD_SIZE && valid; r++) {
         let xCount = 0, oCount = 0;
@@ -75,7 +75,7 @@ function checkUnrulyWin() {
         }
         if (xCount !== oCount) valid = false;
     }
-    
+
     if (valid) {
         status.innerText = 'Balanced grid! Puzzle Solved.';
         status.style.color = 'var(--accent-success)';

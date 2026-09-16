@@ -13,21 +13,21 @@ function initInk() {
 
     // Create a continuous path of lines connecting all cells
     // The goal is to fill the grid with continuous ink flow
-    
+
     // Create a snake pattern that covers all cells
     lines = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
     let dir = 0; // 0:right, 1:down, 2:left, 3:up
     const dr = [0, 1, 0, -1];
     const dc = [1, 0, -1, 0];
-    
+
     let pos = 0;
     lines[pos] = 1; // Start
-    
+
     for (let step = 1; step < BOARD_SIZE * BOARD_SIZE; step++) {
         // Try to go straight, otherwise turn
         const nextR = Math.floor((pos + dr[dir] * BOARD_SIZE + dc[dir]) / BOARD_SIZE);
         const nextC = (pos + dr[dir] * BOARD_SIZE + dc[dir]) % BOARD_SIZE;
-        
+
         if (nextR >= 0 && nextR < BOARD_SIZE && nextC >= 0 && nextC < BOARD_SIZE && lines[nextR * BOARD_SIZE + nextC] === 0) {
             pos = nextR * BOARD_SIZE + nextC;
         } else {
@@ -48,7 +48,7 @@ function initInk() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `ink-${r}-${c}`;
-            
+
             if (lines[idx]) {
                 cell.innerText = '●'; // Dot showing ink path
                 cell.style.color = 'var(--primary)';
@@ -57,7 +57,7 @@ function initInk() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle ink direction marker
                 if (lines[idx]) {
@@ -70,11 +70,11 @@ function initInk() {
                 }
                 checkInkWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkInkWin();
 }
 

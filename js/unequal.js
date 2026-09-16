@@ -14,7 +14,7 @@ function initUnequal() {
     // Unequal: fill grid with numbers 1-6
     // Adjacent cells (horiz/vert) must have unequal values
     // Some cells are pre-filled
-    
+
     // Initialize with a valid unequal grid
     // Simple Latin square approach with inequality
     for (let r = 0; r < BOARD_SIZE; r++) {
@@ -23,14 +23,14 @@ function initUnequal() {
             grid[r * BOARD_SIZE + c] = (c % BOARD_SIZE) + 1;
         }
     }
-    
+
     // Ensure vertical inequality too (simple: shift each row)
     for (let r = 1; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
             grid[r * BOARD_SIZE + c] = ((grid[(r-1) * BOARD_SIZE + c] - 2) % BOARD_SIZE) + 1;
         }
     }
-    
+
     // Remove some for clues
     const cluePositions = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5]];
     for (const [r, c] of cluePositions) {
@@ -44,7 +44,7 @@ function initUnequal() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `unequal-${r}-${c}`;
-            
+
             if (grid[idx]) {
                 cell.innerText = grid[idx];
                 cell.style.color = 'var(--primary)';
@@ -55,7 +55,7 @@ function initUnequal() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Enter number 1-6
                 if (cell.classList.contains('fixed')) return;
@@ -65,11 +65,11 @@ function initUnequal() {
                 grid[idx] = current;
                 checkUnequalWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkUnequalWin();
 }
 
@@ -77,19 +77,19 @@ function checkUnequalWin() {
     const status = document.getElementById('arrow-status');
     // Check all adjacent cells are unequal
     let valid = true;
-    
+
     for (let r = 0; r < BOARD_SIZE && valid; r++) {
         for (let c = 0; c < BOARD_SIZE && valid; c++) {
             const idx = r * BOARD_SIZE + c;
             if (!grid[idx]) continue;
-            
+
             // Check right neighbor
             if (c + 1 < BOARD_SIZE && grid[idx] && grid[r * BOARD_SIZE + c + 1] && grid[idx] === grid[r * BOARD_SIZE + c + 1]) valid = false;
             // Check bottom neighbor
             if (r + 1 < BOARD_SIZE && grid[idx] && grid[(r+1) * BOARD_SIZE + c] && grid[idx] === grid[(r+1) * BOARD_SIZE + c]) valid = false;
         }
     }
-    
+
     if (valid) {
         status.innerText = 'All unequal! Puzzle Solved.';
         status.style.color = 'var(--accent-success)';

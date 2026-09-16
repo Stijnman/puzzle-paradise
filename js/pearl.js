@@ -13,10 +13,10 @@ function initPearl() {
 
     // Place pearls: black pearls must not touch each other orthogonally
     // White pearls indicate the number of adjacent pearls (black or white)
-    
+
     // Simplified: place some pearls
     pearls = new Array(BOARD_SIZE * BOARD_SIZE).fill(null);
-    
+
     // Place 3 white pearls and 2 black pearls randomly
     let placedWhite = 0, placedBlack = 0;
     while (placedWhite < 3 || placedBlack < 2) {
@@ -39,7 +39,7 @@ function initPearl() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `pearl-${r}-${c}`;
-            
+
             if (pearls[idx] === 'w') {
                 cell.innerText = '●'; // White pearl
                 cell.style.color = '#f3e8ff';
@@ -70,7 +70,7 @@ function initPearl() {
                     cell.innerText = '';
                 }
             }
-            
+
             cell.onclick = () => {
                 // Toggle pearl type
                 if (pearls[idx] === 'w') {
@@ -105,11 +105,11 @@ function initPearl() {
                 }
                 checkPearlWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkPearlWin();
 }
 

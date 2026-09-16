@@ -1,5 +1,4 @@
 {
-  "default": true,
   "MD001": false,
   "MD002": false,
   "MD003": false,
@@ -13,8 +12,10 @@
   "MD033": false,
   "MD036": false,
   "MD041": false,
-  "line-length": false,
-  "no-inline-html": false,
+  "MD060": false,
   "blanks-around-headers": false,
-  "blanks-around-lists": false
+  "blanks-around-lists": false,
+  "default": true,
+  "line-length": false,
+  "no-inline-html": false
 }

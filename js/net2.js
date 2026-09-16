@@ -13,15 +13,15 @@ function initNet() {
 
     // Create pipe connections - each number connects to another same number
     // The goal is to connect all pairs
-    
+
     // Create pairs: numbers 1-12 (24 cells for 12 pairs, but 5x5=25... use some as empty)
     connections = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Place 6 pairs (12 cells with numbers, rest empty)
     const pairCount = 6;
     let placedPairs = 0;
     let usedNumbers = [];
-    
+
     while (placedPairs < pairCount) {
         const num = Math.floor(Math.random() * 9) + 1; // 1-9
         if (!usedNumbers.includes(num)) {
@@ -46,7 +46,7 @@ function initNet() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `net2-${r}-${c}`;
-            
+
             if (connections[idx]) {
                 cell.innerText = connections[idx];
                 cell.style.color = 'var(--primary)';
@@ -56,7 +56,7 @@ function initNet() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle connection marker
                 if (connections[idx]) {
@@ -70,11 +70,11 @@ function initNet() {
                 }
                 checkNetWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkNetWin();
 }
 

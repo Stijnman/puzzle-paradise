@@ -13,11 +13,11 @@ function initSlant() {
 
     // Create slant lines: each number 0-2 indicates the number of slants in that row/column
     // Slants are / or \ that don't touch
-    
+
     // Initialize with row/column clues
     // For simplicity, just place slash/backslash indicators
     slants = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Place some slashes randomly
     for (let i = 0; i < BOARD_SIZE; i++) {
         const r = Math.floor(Math.random() * BOARD_SIZE);
@@ -34,7 +34,7 @@ function initSlant() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `slant-${r}-${c}`;
-            
+
             if (slants[idx] === 1) {
                 cell.innerText = '\\';
                 cell.style.color = 'var(--primary)';
@@ -49,7 +49,7 @@ function initSlant() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Cycle: / -> \ -> empty
                 if (slants[idx] === -1) {
@@ -66,11 +66,11 @@ function initSlant() {
                 }
                 checkSlantWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkSlantWin();
 }
 

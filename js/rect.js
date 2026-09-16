@@ -13,10 +13,10 @@ function initRect() {
 
     // Create rectangles: each numbered cell is part of a rectangle of that area
     // All cells with the same number form a rectangle
-    
+
     // Simplified: place rectangle area numbers
     rectangles = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Place rectangle area numbers 1-8
     const areas = [1, 2, 3, 4, 5, 6, 7, 8];
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
@@ -30,7 +30,7 @@ function initRect() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `rect-${r}-${c}`;
-            
+
             if (rectangles[idx] > 0 && rectangles[idx] <= 8) {
                 cell.innerText = String.fromCodePoint(0x25A0); // ▓ block
                 cell.style.background = getRectColor(rectangles[idx]);
@@ -40,7 +40,7 @@ function initRect() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Cycle rectangle area
                 if (rectangles[idx] >= 8) {
@@ -54,11 +54,11 @@ function initRect() {
                 }
                 checkRectWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkRectWin();
 }
 

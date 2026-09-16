@@ -14,14 +14,14 @@ function initUntangle() {
     // Place points and create no-crossing lines connecting them in pairs
     // Each point must be connected to exactly one other point
     // Lines cannot cross
-    
+
     // Place 6 points (12 cells needed, we have 36... use some as connectors)
     // Simplified: place numbered connections
-    
+
     // Create 3 pairs of points
     points = new Array(BOARD_SIZE * BOARD_SIZE).fill(null);
     const pairCount = 3;
-    
+
     for (let p = 0; p < pairCount; p++) {
         // Place two points
         let placed = 0;
@@ -41,7 +41,7 @@ function initUntangle() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `untangle-${r}-${c}`;
-            
+
             if (points[idx]) {
                 cell.innerText = String.fromCodePoint(0x1F5FA); // 📿 bead
                 cell.style.color = getUntangleColor(points[idx]);
@@ -50,7 +50,7 @@ function initUntangle() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Toggle point connection
                 if (points[idx]) {
@@ -63,11 +63,11 @@ function initUntangle() {
                 }
                 checkUntangleWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkUntangleWin();
 }
 

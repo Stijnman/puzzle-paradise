@@ -16,7 +16,7 @@ function initHitori() {
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         grid[i] = Math.floor(Math.random() * 5) + 1;
     }
-    
+
     // Create cells
     for (let r = 0; r < BOARD_SIZE; r++) {
         for (let c = 0; c < BOARD_SIZE; c++) {
@@ -24,12 +24,12 @@ function initHitori() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `hitori-${r}-${c}`;
-            
+
             cell.innerText = grid[idx];
             cell.style.color = 'var(--primary)';
             cell.style.fontWeight = 'bold';
             cell.dataset.value = grid[idx];
-            
+
             // Mark: click to shade cell (remove)
             cell.onclick = () => {
                 // Toggle: shaded (black) or keep
@@ -44,17 +44,17 @@ function initHitori() {
                 }
                 checkHitoriWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkHitoriWin();
 }
 
 function checkHitoriWin() {
     const status = document.getElementById('arrow-status');
-    // Win condition: no two identical numbers visible (unshaded), 
+    // Win condition: no two identical numbers visible (unshaded),
     // and all unshaded cells are connected
     let shadedCount = 0;
     for (let r = 0; r < BOARD_SIZE; r++) {

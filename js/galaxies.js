@@ -13,15 +13,15 @@ function initGalaxies() {
 
     // Create galaxy regions - each region is rotationally symmetric around its center
     // Each region contains exactly one "star" (center cell)
-    
+
     // Initialize all cells as unassigned
     regions = new Array(BOARD_SIZE * BOARD_SIZE).fill(null);
-    
+
     // Place stars (one per region) - simplified: place on main diagonal
     for (let i = 0; i < BOARD_SIZE; i++) {
         regions[i * BOARD_SIZE + i] = 'star';
     }
-    
+
     // Fill remaining cells with region numbers
     let regionId = 1;
     for (let r = 0; r < BOARD_SIZE; r++) {
@@ -41,7 +41,7 @@ function initGalaxies() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `galaxies-${r}-${c}`;
-            
+
             if (regions[idx] === 'star') {
                 cell.innerText = '★';
                 cell.style.fontSize = '20px';
@@ -54,7 +54,7 @@ function initGalaxies() {
             } else {
                 cell.innerText = '';
             }
-            
+
             cell.onclick = () => {
                 // Toggle region assignment (simplified interaction)
                 if (regions[idx] === 'star') {
@@ -71,11 +71,11 @@ function initGalaxies() {
                 }
                 checkGalaxiesWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkGalaxiesWin();
 }
 

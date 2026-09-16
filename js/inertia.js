@@ -13,7 +13,7 @@ function initInertia() {
 
     // Place weights and determine direction of fall
     // Numbers indicate weight values; arrow direction shows fall direction
-    
+
     // Initialize with random weights 1-3
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         masses[i] = Math.floor(Math.random() * 3) + 1;
@@ -26,7 +26,7 @@ function initInertia() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `inertia-${r}-${c}`;
-            
+
             if (masses[idx] > 0 && masses[idx] <= 3) {
                 // Arrow direction: 1=↑, 2→, 3↓ (simplified)
                 const arrowChars = ['↑', '→', '↓'];
@@ -38,7 +38,7 @@ function initInertia() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Rotate arrow direction
                 if (masses[idx]) {
@@ -50,11 +50,11 @@ function initInertia() {
                 cell.style.color = 'var(--primary)';
                 checkInertiaWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkInertiaWin();
 }
 

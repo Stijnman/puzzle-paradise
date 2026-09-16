@@ -13,7 +13,7 @@ function initPattern() {
 
     // Create pipes with numbers indicating turns
     // Each pipe segment has a number showing how many turns it makes
-    
+
     // Initialize with random pipe rotations
     pipes = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
@@ -27,7 +27,7 @@ function initPattern() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `pattern-${r}-${c}`;
-            
+
             if (pipes[idx]) {
                 // Show pipe character based on rotation
                 const pipeChars = ['↑', '→', '↓', '←'];
@@ -38,7 +38,7 @@ function initPattern() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Rotate pipe
                 if (pipes[idx]) {
@@ -49,11 +49,11 @@ function initPattern() {
                 cell.innerText = pipeChars[pipes[idx]];
                 checkPatternWin();
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkPatternWin();
 }
 

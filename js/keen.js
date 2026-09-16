@@ -13,14 +13,14 @@ function initKeen() {
 
     // KenKen-like puzzle: each cage has a target number and operation
     // The cells in the cage must produce the target using the operation
-    
+
     // Initialize cages with target numbers and operations
     cages = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    
+
     // Place 8 cages with target numbers
-    const cageTargets = [6, +, 3, -, 12, *, 2, +];
+    const cageTargets = [6, '+', 3, '-', 12, '*', 2, '+'];
     let cageIdx = 0;
-    
+
     for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         if (cageIdx < cageTargets.length) {
             cages[i] = cageTargets[cageIdx++];
@@ -34,7 +34,7 @@ function initKeen() {
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `keen-${r}-${c}`;
-            
+
             if (cages[idx] && typeof cages[idx] === 'number') {
                 cell.innerText = 'T:' + cages[idx];
                 cell.style.color = 'var(--primary)';
@@ -46,7 +46,7 @@ function initKeen() {
                 cell.innerText = '';
                 cell.classList.add('empty');
             }
-            
+
             cell.onclick = () => {
                 // Enter candidate number 1-6
                 if (cell.classList.contains('fixed')) return;
@@ -54,11 +54,11 @@ function initKeen() {
                 current = current % 6 + 1;
                 cell.innerText = current;
             };
-            
+
             board.appendChild(cell);
         }
     }
-    
+
     checkKeenWin();
 }
 
