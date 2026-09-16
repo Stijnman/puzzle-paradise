@@ -10,26 +10,26 @@ repos:
       # Remove trailing whitespace
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        
+
       # Ensure files end with a newline
       - id: end-of-file-fixer
-        
+
       # Check for added large files
       - id: check-added-large-files
         args: ['--maxkb=1024']
-        
+
       # Check YAML validity
       - id: check-yaml
-        
+
       # Check for merge conflict markers
       - id: check-merge-conflict
-        
+
       # Detect private keys
       - id: detect-private-key
-        
+
       # Check JSON validity
       - id: check-json
-        
+
       # Pretty format JSON
       - id: pretty-format-json
         args: ['--autofix', '--indent=2', '--no-ensure-ascii']
@@ -55,7 +55,7 @@ repos:
     rev: v2.2.6
     hooks:
       - id: codespell
-        args: 
+        args:
           - --skip .git,*.json,*.yml,*.yaml,CHANGELOG.md,node_modules
           - --ignore-words-list competitor,researcher,gemini,typescript,react,express,api,AI,http,https
           - --check-filenames
@@ -69,13 +69,13 @@ repos:
         args: ['--baseline', '.secrets.baseline']
         exclude: .git/
 
-  # TypeScript/JS linting (if available)
+  # TypeScript/JS linting
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v8.56.0
     hooks:
       - id: eslint
-        types: [javascript, typescript, tsx]
-        args: [--fix, --ext, .ts,.tsx,.js,.jsx]
+        files: \.(js|jsx|ts|tsx)$
+        args: [--fix]
 
   # TypeScript type checking
   - repo: local
@@ -84,5 +84,5 @@ repos:
         name: TypeScript type check
         entry: npx tsc --noEmit
         language: system
-        types: [typescript, tsx]
+        files: \.(ts|tsx)$
         pass_filenames: false
