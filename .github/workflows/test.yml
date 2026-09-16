@@ -20,14 +20,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for Node project
+      - name: Check if Node project exists
         id: node_project
-        run: |
-          if [ -f package.json ]; then
-            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "has_package_json=${{ hashFiles('package.json') != '' }}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
         if: steps.node_project.outputs.has_package_json == 'true'
@@ -59,14 +54,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for Node project
+      - name: Check if Node project exists
         id: node_project
-        run: |
-          if [ -f package.json ]; then
-            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "has_package_json=${{ hashFiles('package.json') != '' }}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
         if: steps.node_project.outputs.has_package_json == 'true'
@@ -95,8 +85,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install markdownlint
-        run: |
-          npm install -g markdownlint-cli2
+        run: npm install -g markdownlint-cli2
 
       - name: Lint all markdown files
         run: |
@@ -111,8 +100,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install codespell
-        run: |
-          pip install codespell
+        run: pip install codespell
 
       - name: Check spelling
         run: |
@@ -145,14 +133,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check for pre-commit config
+      - name: Check if pre-commit config exists
         id: precommit
-        run: |
-          if [ -f .pre-commit-config.yaml ]; then
-            echo "has_precommit=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_precommit=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "has_precommit=${{ hashFiles('.pre-commit-config.yaml') != '' }}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Python
         if: steps.precommit.outputs.has_precommit == 'true'
@@ -174,13 +157,11 @@ jobs:
 
       - name: Install pre-commit hooks
         if: steps.precommit.outputs.has_precommit == 'true'
-        run: |
-          pre-commit install
+        run: pre-commit install
 
       - name: Run pre-commit on all files
         if: steps.precommit.outputs.has_precommit == 'true'
-        run: |
-          pre-commit run --all-files --show-diff-on-failure
+        run: pre-commit run --all-files --show-diff-on-failure
 
       - name: Skip pre-commit
         if: steps.precommit.outputs.has_precommit != 'true'
