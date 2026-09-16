@@ -156,10 +156,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install pre-commit
+      - name: Install pre-commit and Python compatibility deps
         if: steps.precommit.outputs.has_precommit == 'true'
         run: |
-          pip install pre-commit
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade "pre-commit>=3.8.0" "identify>=2.6.0"
           npm install -g markdownlint-cli2
 
       - name: Install pre-commit hooks
