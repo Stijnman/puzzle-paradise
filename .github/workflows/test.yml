@@ -27,8 +27,10 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-      - name: Syntax-check every engine
-        run: find js -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+      - name: Syntax-check all browser JavaScript
+        run: |
+          find js assets -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+          node -e "for (const f of require('fs').readdirSync('i18n')) JSON.parse(require('fs').readFileSync('i18n/'+f,'utf8'))"
 
   repository-tests:
     name: Repository Contract Tests
