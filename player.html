@@ -1,36 +1,95 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070914">
   <title>Puzzle Player</title>
-  <style>
-    :root{color-scheme:dark;--primary:#8299ff;--accent-success:#42e7a6;--accent-warning:#ffbd66;--text:#f4f6ff;--muted:#a1acc9;--border:rgba(151,169,255,.22)}*{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;display:flex;justify-content:center;color:var(--text);background:radial-gradient(circle at 50% 0,rgba(111,140,255,.15),transparent 24rem),#0b0e20;font-family:Inter,ui-sans-serif,system-ui,sans-serif}.player{width:100%;max-width:680px;display:flex;flex-direction:column;align-items:center}.instructions{max-width:560px;min-height:46px;margin:0 0 18px;color:var(--muted);text-align:center;line-height:1.55}.grid-board{display:grid;gap:5px;max-width:100%;padding:10px;border:1px solid var(--border);border-radius:16px;background:rgba(24,29,58,.85);box-shadow:0 18px 50px rgba(0,0,0,.28);overflow:auto}.grid-cell{width:clamp(34px,7vw,48px);height:clamp(34px,7vw,48px);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--text);background:linear-gradient(145deg,#29335f,#171c3d);box-shadow:inset 0 1px rgba(255,255,255,.08),0 3px 8px rgba(0,0,0,.18);cursor:pointer;font-weight:700;transition:transform .12s,border-color .12s,background .12s}.grid-cell:hover:not(.fixed){transform:translateY(-1px);border-color:rgba(130,153,255,.7)}.grid-cell.empty{background:rgba(8,10,24,.35);box-shadow:none}.grid-cell.fixed{color:#aab5d7;background:#151a35;cursor:default}.grid-cell.selected{border-color:#6fe6ed;background:#263d66;box-shadow:0 0 0 2px rgba(111,230,237,.16)}.status-msg{min-height:26px;margin:17px 0 8px;text-align:center;font-weight:750}.controls{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-top:12px}button{min-height:42px;padding:0 16px;border:1px solid var(--border);border-radius:11px;color:#fff;background:rgba(255,255,255,.065);cursor:pointer;font-weight:750}button:hover{background:rgba(130,153,255,.17)}.primary{border:0;color:#0a1021;background:linear-gradient(135deg,#6fe6ed,#b886ff)}.number-pad{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;max-width:440px;margin-top:14px}.number-pad button{min-width:42px;padding:0 12px}.error{max-width:520px;margin:auto;padding:20px;border:1px solid #7d334c;border-radius:14px;color:#ffc4d6;background:#28121d;text-align:center}@media(max-width:520px){body{padding:16px 8px}.grid-board{gap:3px;padding:6px}.grid-cell{width:min(10vw,42px);height:min(10vw,42px);border-radius:6px;font-size:13px}}
-  </style>
+  <link rel="stylesheet" href="assets/player.css">
 </head>
 <body>
-  <main class="player" id="player">
-    <p class="instructions" id="instructions"></p>
-    <div class="grid-board" id="arrow-board"></div>
-    <div class="grid-board" id="sudoku-board" style="display:none;grid-template-columns:repeat(9,1fr)"></div>
-    <div class="grid-board" id="net-board" style="display:none"></div>
-    <p class="status-msg" id="arrow-status" aria-live="polite"></p>
-    <p class="status-msg" id="sudoku-status" aria-live="polite"></p>
-    <p class="status-msg" id="net-status" aria-live="polite"></p>
-    <div class="number-pad" id="number-pad" hidden></div>
-    <div class="controls"><button class="primary" id="new-game">New puzzle</button></div>
-  </main>
+  <div class="player-app" id="player-app">
+    <header class="commandbar">
+      <div class="game-title"><strong id="game-name">Puzzle</strong><span id="seed-label">Seeded session</span></div>
+      <button class="cmd" id="undo" type="button" title="Undo" data-i18n-label="ui.undo">↶ <span class="label" data-i18n="ui.undo">Undo</span></button>
+      <button class="cmd" id="redo" type="button" title="Redo" data-i18n-label="ui.redo">↷ <span class="label" data-i18n="ui.redo">Redo</span></button>
+      <button class="cmd optional" id="reset" type="button" data-i18n="ui.reset">Reset</button>
+      <button class="cmd optional" id="hint" type="button">💡 <span data-i18n="ui.hint">Hint</span></button>
+      <button class="cmd" id="rules" type="button">? <span class="label" data-i18n="ui.rules">How to Play</span></button>
+      <button class="cmd" id="settings" type="button" aria-label="Settings">⚙</button>
+      <select class="select optional" id="difficulty-select" aria-label="Difficulty"><option value="easy" data-i18n="ui.easy">Easy</option><option value="medium" data-i18n="ui.medium">Medium</option><option value="hard" data-i18n="ui.hard">Hard</option><option value="expert" data-i18n="ui.expert">Expert</option></select>
+      <button class="cmd primary" id="new-game" type="button"><span class="label" data-i18n="ui.newPuzzle">New Puzzle</span><span aria-hidden="true">＋</span></button>
+    </header>
+
+    <div class="hud" aria-label="Puzzle statistics">
+      <div class="metric"><span data-i18n="ui.moves">Moves</span><strong id="move-count">0</strong></div>
+      <div class="metric"><span data-i18n="ui.time">Time</span><strong id="timer">00:00</strong></div>
+      <div class="metric"><span data-i18n="ui.accuracy">Accuracy</span><strong id="accuracy">100%</strong></div>
+      <div class="metric"><span data-i18n="ui.best">Personal Best</span><strong id="personal-best">—</strong></div>
+    </div>
+
+    <main class="stage" id="stage">
+      <section class="player" id="player">
+        <p class="instructions" id="instructions"></p>
+        <div class="board-wrap">
+          <div class="grid-board" id="arrow-board"></div>
+          <div class="grid-board" id="sudoku-board" style="display:none;grid-template-columns:repeat(9,1fr)"></div>
+          <div class="grid-board" id="net-board" style="display:none"></div>
+        </div>
+        <p class="status-msg" id="arrow-status" aria-live="polite"></p>
+        <p class="status-msg" id="sudoku-status" aria-live="polite"></p>
+        <p class="status-msg" id="net-status" aria-live="polite"></p>
+        <div class="number-pad" id="number-pad" hidden></div>
+        <div class="controls"></div>
+      </section>
+
+      <aside class="drawer" id="rules-drawer" aria-label="How to play">
+        <div class="drawer-head"><strong data-i18n="ui.rules">How to Play</strong><button class="cmd" type="button" data-close-drawer aria-label="Close">×</button></div>
+        <div class="drawer-body">
+          <section class="guide-section"><h2 data-i18n="ui.objective">Objective</h2><p id="guide-objective"></p></section>
+          <section class="guide-section"><h2 data-i18n="ui.constraints">Rules & Constraints</h2><ul id="guide-rules"></ul></section>
+          <section class="guide-section"><h2 data-i18n="ui.tutorial">Step-by-Step</h2><div class="tutorial-demo" id="guide-tutorial"></div></section>
+          <section class="guide-section"><h2 data-i18n="ui.tips">Pro Tips</h2><ul id="guide-tips"></ul></section>
+        </div>
+      </aside>
+
+      <aside class="drawer" id="settings-drawer" aria-label="Settings">
+        <div class="drawer-head"><strong data-i18n="ui.settings">Settings</strong><button class="cmd" type="button" data-close-drawer aria-label="Close">×</button></div>
+        <div class="drawer-body">
+          <div class="settings-grid">
+            <label class="settings-row"><span data-i18n="ui.language">Language</span><select class="select" id="language-select"><option value="en">EN</option><option value="nl">NL</option><option value="fr">FR</option><option value="de">DE</option><option value="es">ES</option></select></label>
+            <label class="settings-row"><span data-i18n="ui.theme">Theme</span><select class="select" id="theme-select"><option value="dark">Dark</option><option value="light">Light</option><option value="oled">OLED</option></select></label>
+            <div class="settings-row"><span data-i18n="ui.sound">Sound</span><button class="cmd toggle" id="sound-toggle" type="button">ON</button></div>
+            <div class="settings-row"><span data-i18n="ui.haptics">Haptics</span><button class="cmd toggle" id="haptics-toggle" type="button">ON</button></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+      <div class="victory" id="victory" role="dialog" aria-modal="true" aria-labelledby="victory-title">
+        <div class="victory-card">
+          <div class="victory-icon">🏆</div>
+          <h2 id="victory-title" data-i18n="ui.victory">Puzzle solved!</h2>
+          <div id="victory-stars">★★★</div>
+          <p id="victory-summary"></p>
+          <div class="victory-actions"><button class="cmd" id="victory-continue" type="button" data-i18n="ui.continue">Continue</button><button class="cmd primary" id="victory-new" type="button" data-i18n="ui.newPuzzle">New Puzzle</button></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
   <script>
     const puzzles={
       'arrow-escape':['initArrowGame','Tap an arrow with a clear path to send it off the board.','arrow'],sudoku:['initSudoku','Fill every row, column and 3×3 box with the numbers 1–9.','sudoku'],net:['initNetGame','Rotate every pipe tile until all 16 tiles belong to one connected network.','net'],
       blackbox:['initBlackBox','Trace rays through the box to locate hidden objects.'],bridges:['initBridges','Connect all islands without crossing bridges.'],cube:['initCube','Manipulate the board and complete the cube challenge.'],dominosa:['initDominosa','Pair every number into a unique domino.'],fifteen:['initFifteen','Slide the tiles until all numbers are in order.'],filling:['initFilling','Fill each region so its size agrees with its number.'],flip:['initFlip','Flip groups of cells until the target pattern is reached.'],galaxies:['initGalaxies','Divide the grid into rotationally symmetric galaxies.'],guess:['initGuess','Deduce the hidden sequence from the available clues.'],hitori:['initHitori','Shade duplicates without breaking the white path.'],inertia:['initInertia','Navigate the board and collect every target.'],ink:['initInk','Connect matching clues without crossing paths.'],keen:['initKeen','Fill 1–4 once per row and column while satisfying every arithmetic cage.'],lightup:['initLightUp','Light every open cell; bulbs may not see each other, and each wall number is its exact adjacent bulb count.'],loopy:['initLoopy','Draw one continuous loop that satisfies all clues.'],magnets:['initMagnets','Place magnetic poles while satisfying the counts.'],maps:['initMaps','Colour every region with one of four colours so regions sharing an edge are different.'],mines:['initMines','Reveal safe cells and avoid every mine.'],net2:['initNet','Rotate pieces to build one connected network.'],netslide:['initNetSlide','Slide pieces until every route connects.'],nullgame:['initNullGame','Clicking a cell flips it and its orthogonal neighbours; make all 25 cells null.'],pattern:['initPattern','Fill cells so every row and column matches its run-length clue.'],pearl:['initPearl','Create a loop that obeys every pearl constraint.'],pegs:['initPegs','Jump pegs and finish with as few as possible.'],range:['initRange','Place values that satisfy all range clues.'],rect:['initRect','Partition the board into correctly sized rectangles.'],samegame:['initSameGame','Remove connected colour groups and clear the board.'],sequencing:['initSequence','Put every item into the correct sequence.'],signpost:['initSignpost','Follow arrows to connect all numbers in order.'],singles:['initSingles','Complete the Latin square with no repeats.'],sixteen:['initSixteen','Fill the 4×4 grid with numbers 1–4.'],slant:['initSlant','Place slants to satisfy the grid constraints.'],solo:['initSolo','Complete the 6×6 Latin square.'],tents:['initTents','Match one tent to every tree, match the row/column totals, and never let tents touch even diagonally.'],towers:['initTowers','Fill 1–4 once per row and column; each edge clue is the number of towers visible from that side.'],twiddle:['initTwiddle','Move the tiles until every number is in order.'],undead:['initUndead','Restore all connections in the haunted network.'],unequal:['initUnequal','Fill the grid while keeping neighbours unequal.'],unruly:['initUnruly','Balance X and O without forbidden repetitions.'],untangle:['initUntangle','Select two numbered points to swap them; solve when no connecting lines cross.']
     };
     const game=new URLSearchParams(location.search).get('game'),config=puzzles[game];
-    if(!config){document.getElementById('player').innerHTML='<p class="error">This puzzle could not be found.</p>'}else{
-      const type=config[2]||'arrow';document.getElementById('instructions').textContent=config[1];['arrow','sudoku','net'].forEach(name=>{document.getElementById(`${name}-board`).style.display=name===type?'grid':'none';document.getElementById(`${name}-status`).style.display=name===type?'block':'none'});
-      if(game==='sudoku'){const pad=document.getElementById('number-pad');pad.hidden=false;pad.innerHTML=[1,2,3,4,5,6,7,8,9].map(n=>`<button data-number="${n}">${n}</button>`).join('');pad.onclick=e=>{const b=e.target.closest('[data-number]');if(b)inputSudokuNumber(Number(b.dataset.number))}}
-      const script=document.createElement('script');script.src=`js/${game}.js`;script.onload=()=>{const start=window[config[0]];if(typeof start==='function'){start();document.getElementById('new-game').onclick=start}else document.getElementById('player').innerHTML='<p class="error">The puzzle engine is unavailable.</p>'};script.onerror=()=>{document.getElementById('player').innerHTML='<p class="error">The puzzle engine failed to load.</p>'};document.body.appendChild(script)
-    }
+  </script>
+  <script src="assets/i18n.js"></script>
+  <script src="assets/player-runtime.js"></script>
+  <script>
+    if(!config){document.getElementById('player').innerHTML='<p class="error">This puzzle could not be found.</p>'}else{window.PPRuntime.boot({game,config,puzzles})}
   </script>
 </body>
 </html>
