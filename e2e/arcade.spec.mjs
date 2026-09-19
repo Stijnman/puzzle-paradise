@@ -39,8 +39,9 @@ test('all 43 engines load, render, and expose an interaction', async ({ page }) 
 
 test('same seed survives reload and restores move history', async ({ page }) => {
   await page.goto('/player.html?game=net&difficulty=easy&seed=persist-e2e');
-  const before = await page.locator('#net-board').innerText();
   const action = page.locator('[data-pp-action-key]').first();
+  await expect(action).toBeVisible();
+  const before = await page.locator('#net-board').innerText();
   await action.click();
   await expect(page.locator('#move-count')).toHaveText('1');
   await page.reload();
@@ -56,8 +57,10 @@ test('same seed survives reload and restores move history', async ({ page }) => 
 
 test('undo and redo replay deterministic state', async ({ page }) => {
   await page.goto('/player.html?game=net&difficulty=easy&seed=undo-e2e');
+  const action = page.locator('[data-pp-action-key]').first();
+  await expect(action).toBeVisible();
   const initial = await page.locator('#net-board').innerText();
-  await page.locator('[data-pp-action-key]').first().click();
+  await action.click();
   const moved = await page.locator('#net-board').innerText();
   expect(moved).not.toBe(initial);
 
