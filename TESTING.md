@@ -1,227 +1,82 @@
 # Testing Guide
 
-This document outlines the testing requirements and best practices for the **hermes-prompts** project.
+Puzzle Paradise uses layered tests so a green CI run means more than "the workflow started successfully."
 
----
+## Automated checks
 
-## 📋 Table of Contents
+### JavaScript syntax
 
-- [Testing Philosophy](#-testing-philosophy)
-- [Testing Levels](#testing-levels)
-- [Manual Testing](#-manual-testing)
-- [Automated Testing](#-automated-testing)
-- [Test Checklists](#-test-checklists)
+Every puzzle engine must parse successfully:
 
----
-
-## 🎯 Testing Philosophy
-
-### Core Principles
-
-1. **Quality First**: Ensure all prompts produce high-quality, useful output
-2. **Safety**: Verify prompts don't generate harmful or inappropriate content
-3. **Effectiveness**: Test that prompts achieve their intended purpose
-4. **Clarity**: Ensure prompts are clear and unambiguous
-5. **Documentation**: All tests should be documented
-
-### What Must Be Tested
-
-Every prompt **MUST** be tested for:
-- ✅ Output quality and usefulness
-- ✅ Content safety and appropriateness
-- ✅ Clarity and specificity
-- ✅ Ethical considerations
-- ✅ Bias and fairness
-- ✅ Consistency across runs
-
----
-
-## Testing Levels
-
-### Level 1: Unit Testing (Prompt Validation)
-
-Test individual prompts for correctness and quality.
-
-**Example**: Testing a reasoning prompt
-
-```python
-# tests/test_prompts.py
-import pytest
-from prompts import REASONING_PROMPT, CODING_PROMPT
-
-
-def test_reasoning_prompt_structure():
-    """Test that reasoning prompt has required structure"""
-    assert "You are" in REASONING_PROMPT
-    assert "Please reason" in REASONING_PROMPT
-    assert len(REASONING_PROMPT) > 100
-
-
-def test_coding_prompt_has_instructions():
-    """Test that coding prompt includes instructions"""
-    assert "write" in CODING_PROMPT.lower() or "create" in CODING_PROMPT.lower()
-    assert "code" in CODING_PROMPT.lower()
+```bash
+find js -name "*.js" -type f -print0 | xargs -0 -n1 node --check
 ```
 
-### Level 2: Integration Testing
+### Repository contract tests
 
-Test prompts in context with actual AI responses.
+Run:
 
-**Example**: Testing prompt output quality
-
-```python
-# tests/test_output_quality.py
-import pytest
-from ai_client import generate_response
-
-
-def test_reasoning_prompt_output():
-    """Test that reasoning prompt produces thoughtful output"""
-    response = generate_response(REASONING_PROMPT + "\n\nExplain quantum computing")
-
-    # Check for quality indicators
-    assert len(response) > 100
-    assert "quantum" in response.lower()
-    assert any(word in response.lower() for word in ["qubit", "superposition", "entanglement"])
+```bash
+node --test tests/*.test.mjs
 ```
 
-### Level 3: End-to-End Testing
+The contract suite verifies that:
 
-Test the complete user experience with prompts.
+- the catalogue contains unique puzzle IDs
+- every catalogue puzzle exists in the player mapping
+- the player mapping does not contain orphan puzzles
+- every mapped puzzle has a matching `js/<id>.js` engine
+- every engine defines the initialization function expected by the player
+- every engine parses as JavaScript
+- required accessibility and metadata hooks remain present
+- the repository does not silently drift away from the expected puzzle count
 
-**Manual Test Script**:
+These tests are dependency-free and use the Node.js built-in test runner.
 
-```text
-1. Select a prompt from the library
-2. Apply the prompt to a test scenario
-3. Review the generated output
-4. Evaluate quality, safety, and effectiveness
-5. Document any issues
-```
+## CI checks
 
----
+Pull requests and pushes are checked by `.github/workflows/test.yml` for:
 
-## 👤 Manual Testing
+- engine syntax
+- repository contract tests
+- Markdown lint
+- spelling
+- pre-commit hooks
+- verified-secret scanning where supported by the event
 
-### Required Manual Tests
+A skipped code test is not considered equivalent to a passing code test.
 
-For **every prompt**, manually test:
+## Browser smoke test
 
-#### Quality Tests
+Before merging a change that affects gameplay or the player shell:
 
-- [ ] Prompt produces relevant output
-- [ ] Prompt produces coherent output
-- [ ] Prompt produces useful output
-- [ ] Prompt is clear and understandable
+1. Open the home page at desktop width.
+2. Search for a puzzle and clear the search.
+3. Test every category filter.
+4. Test A-Z and difficulty sorting.
+5. Open a puzzle card.
+6. Start a new puzzle.
+7. Close the modal with the close button.
+8. Close the modal with Escape.
+9. Repeat at a narrow mobile width.
+10. Confirm no browser-console errors appear.
 
-#### Safety Tests
+## Puzzle gameplay checklist
 
-- [ ] No harmful content generated
-- [ ] No inappropriate content generated
-- [ ] No biased content generated
-- [ ] No sensitive data exposed
+For every puzzle changed in a pull request, verify:
 
-#### Consistency Tests
+- the board initializes without an exception
+- a new puzzle resets the state
+- legal input changes the board
+- illegal input is ignored or clearly rejected
+- the documented goal matches the implementation
+- a solvable state can reach its success condition
+- the success message appears exactly once
+- losing games expose a clear restart path
+- the board remains usable on a small screen
 
-- [ ] Similar inputs produce similar outputs
-- [ ] Prompt works across different scenarios
-- [ ] Prompt handles edge cases
+## Regression policy
 
-### Manual Testing Checklist Template
+A puzzle should not be advertised in `index.html` unless its engine exists and loads through `player.html`. The contract suite enforces that rule automatically.
 
-```markdown
-# Testing Checklist: [Prompt Name]
-
-## Setup
-- [ ] AI model available
-- [ ] Test environment configured
-- [ ] Test scenarios prepared
-
-## Quality Tests
-- [ ] Test 1: Basic usage
-- [ ] Test 2: Complex scenario
-- [ ] Test 3: Edge case
-- [ ] Test 4: Error handling
-
-## Safety Tests
-- [ ] No harmful content: _______________
-- [ ] No inappropriate content: _____________
-- [ ] No biased content: _______________
-- [ ] No sensitive data: ______________
-
-## Results
-- [ ] All tests passed
-- [ ] Issues found: _______________
-- [ ] Notes: _____________________
-```
-
----
-
-## 🤖 Automated Testing
-
-### Test File Structure
-
-```text
-hermes-prompts/
-├── tests/
-│   ├── __init__.py
-│   ├── conftest.py          # Fixtures and setup
-│   ├── test_prompts.py      # Prompt structure tests
-│   ├── test_quality.py      # Output quality tests
-│   └── test_safety.py       # Safety and ethics tests
-```
-
----
-
-## ✅ Test Checklists
-
-### New Prompt Checklist
-
-Before adding a new prompt to the library:
-
-- [ ] Prompt has clear purpose and description
-- [ ] Prompt is well-structured
-- [ ] Prompt has been manually tested
-- [ ] Prompt produces quality output
-- [ ] Prompt has safety considerations
-- [ ] Prompt is documented
-- [ ] Prompt follows library standards
-
-### Existing Prompt Update Checklist
-
-Before updating an existing prompt:
-
-- [ ] Changes tested with existing functionality
-- [ ] No breaking changes (or documented if breaking)
-- [ ] Version bumped appropriately
-- [ ] Changelog updated
-- [ ] Documentation updated
-
-### Pre-PR Checklist
-
-Before opening a pull request:
-
-- [ ] All manual tests pass
-- [ ] Automated tests pass (if applicable)
-- [ ] Code follows repository standards
-- [ ] Documentation is complete
-- [ ] No sensitive data committed
-- [ ] All links work
-
----
-
-## 🎯 Summary
-
-| Aspect | Requirement |
-| -------- | ------------- |
-| Manual Testing | ✅ Required for all prompts |
-| Automated Testing | ⚠️ Recommended for all prompts |
-| Quality Testing | ✅ Required |
-| Safety Testing | ✅ Required |
-| Documentation | ✅ Required |
-
-**Remember**: The quality of your prompts directly impacts the effectiveness and safety of AI-generated content.
-
----
-
-*Last updated: September 11, 2026*
+When a gameplay bug is fixed, add an automated invariant when practical and document the manual reproduction in the pull request.
