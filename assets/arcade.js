@@ -73,8 +73,9 @@
       const text = gameText(game);
       const progress = activeSessions[game.id]?.actions?.length > 0;
       const completed = allStats[game.id]?.completions || 0;
+      const starRating = allStats[game.id]?.stars || 0;
       return `<button class="game-card" data-game="${game.id}" aria-label="${t('ui.play','Play')} ${text.title}">
-        <span class="card-top"><span class="game-icon">${game.icon}</span>${progress ? `<span class="resume-badge">${t('ui.progress','Progress')}</span>` : completed ? `<span class="resume-badge">${completed}✓</span>` : ''}</span>
+        <span class="card-top"><span class="game-icon">${game.icon}</span>${starRating ? `<span class="resume-badge" aria-label="${starRating} ${t('ui.stars','Stars')}">${'★'.repeat(starRating)}${'☆'.repeat(3-starRating)}</span>` : progress ? `<span class="resume-badge">${t('ui.progress','Progress')}</span>` : completed ? `<span class="resume-badge">${completed}✓</span>` : ''}</span>
         <h3>${text.title}</h3>
         <p>${text.summary}</p>
         <span class="card-foot">${dots(game.difficulty)}<span>${t(`categories.${game.category}`,game.category)}</span></span>
