@@ -1,77 +1,152 @@
-// Rect / Rectangular Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Rectangles Puzzle Logic
+// Puzzle concept inspired by Simon Tatham's Portable Puzzle Collection.
 
-const BOARD_SIZE = 7;
-let rectangles = [];
+const RECT_SIZE = 6;
+const RECT_CLUES = new Map([
+    [0 * RECT_SIZE + 1, 6],
+    [0 * RECT_SIZE + 4, 6],
+    [2 * RECT_SIZE + 1, 6],
+    [2 * RECT_SIZE + 4, 6],
+    [4 * RECT_SIZE + 1, 6],
+    [4 * RECT_SIZE + 4, 6]
+]);
+let rectRegions = [];
+let rectStart = null;
 
 function initRect() {
     const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
+    board.style.gridTemplateColumns = `repeat(${RECT_SIZE}, 1fr)`;
     board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    rectangles = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
+    rectRegions = [];
+    rectStart = null;
 
-    // Create rectangles: each numbered cell is part of a rectangle of that area
-    // All cells with the same number form a rectangle
-
-    // Simplified: place rectangle area numbers
-    rectangles = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-
-    // Place rectangle area numbers 1-8
-    const areas = [1, 2, 3, 4, 5, 6, 7, 8];
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-        rectangles[i] = areas[i % areas.length];
-    }
-
-    // Create cells
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
+    for (let r = 0; r < RECT_SIZE; r++) {
+        for (let c = 0; c < RECT_SIZE; c++) {
+            const idx = r * RECT_SIZE + c;
             const cell = document.createElement('div');
-            cell.className = 'grid-cell';
+            cell.className = 'grid-cell empty';
             cell.id = `rect-${r}-${c}`;
-
-            if (rectangles[idx] > 0 && rectangles[idx] <= 8) {
-                cell.innerText = String.fromCodePoint(0x25A0); // ▓ block
-                cell.style.background = getRectColor(rectangles[idx]);
-                cell.style.color = 'white';
-                cell.style.fontSize = '12px';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-            }
-
-            cell.onclick = () => {
-                // Cycle rectangle area
-                if (rectangles[idx] >= 8) {
-                    rectangles[idx] = 0;
-                    cell.innerText = '';
-                } else {
-                    rectangles[idx]++;
-                    cell.style.background = getRectColor(rectangles[idx]);
-                    cell.innerText = String.fromCodePoint(0x25A0);
-                    cell.style.color = 'white';
+            cell.setAttribute('role', 'button');
+            cell.setAttribute('tabindex', '0');
+            cell.onclick = () => selectRectCorner(r, c);
+            cell.onkeydown = event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectRectCorner(r, c);
                 }
-                checkRectWin();
             };
-
             board.appendChild(cell);
         }
     }
 
+    renderRectangles();
+    const status = document.getElementById('arrow-status');
+    status.innerText = 'Select two opposite corners to draw a rectangle. Each rectangle must contain one clue and have that area.';
+    status.style.color = '';
+}
+
+function selectRectCorner(row, col) {
+    const existing = rectRegions.findIndex(region =>
+        row >= region.top && row <= region.bottom && col >= region.left && col <= region.right
+    );
+
+    if (existing >= 0 && rectStart === null) {
+        rectRegions.splice(existing, 1);
+        renderRectangles();
+        checkRectWin();
+        return;
+    }
+
+    if (rectStart === null) {
+        rectStart = { row, col };
+        renderRectangles();
+        return;
+    }
+
+    const region = {
+        top: Math.min(rectStart.row, row),
+        bottom: Math.max(rectStart.row, row),
+        left: Math.min(rectStart.col, col),
+        right: Math.max(rectStart.col, col)
+    };
+    rectStart = null;
+
+    if (!rectRegionOverlaps(region)) {
+        rectRegions.push(region);
+    } else {
+        const status = document.getElementById('arrow-status');
+        status.innerText = 'Rectangles cannot overlap.';
+        status.style.color = 'var(--accent-warning)';
+    }
+
+    renderRectangles();
     checkRectWin();
 }
 
-function getRectColor(area) {
-    const colors = ['#2563eb', '#1e40af', '#3b82f6', '#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#e4e6f1'];
-    return colors[area - 1] || '#6366f1';
+function rectRegionOverlaps(candidate) {
+    return rectRegions.some(region =>
+        !(candidate.right < region.left ||
+          candidate.left > region.right ||
+          candidate.bottom < region.top ||
+          candidate.top > region.bottom)
+    );
+}
+
+function rectRegionCells(region) {
+    const cells = [];
+    for (let r = region.top; r <= region.bottom; r++) {
+        for (let c = region.left; c <= region.right; c++) {
+            cells.push(r * RECT_SIZE + c);
+        }
+    }
+    return cells;
+}
+
+function rectRegionValid(region) {
+    const cells = rectRegionCells(region);
+    const clues = cells.filter(index => RECT_CLUES.has(index));
+    return clues.length === 1 && cells.length === RECT_CLUES.get(clues[0]);
+}
+
+function renderRectangles() {
+    for (let r = 0; r < RECT_SIZE; r++) {
+        for (let c = 0; c < RECT_SIZE; c++) {
+            const idx = r * RECT_SIZE + c;
+            const cell = document.getElementById(`rect-${r}-${c}`);
+            const regionIndex = rectRegions.findIndex(region =>
+                r >= region.top && r <= region.bottom && c >= region.left && c <= region.right
+            );
+
+            cell.innerText = RECT_CLUES.has(idx) ? String(RECT_CLUES.get(idx)) : '';
+            cell.style.background = regionIndex >= 0
+                ? `hsla(${(regionIndex * 53) % 360},65%,55%,.25)`
+                : 'rgba(8,10,24,.35)';
+            cell.style.outline = rectStart && rectStart.row === r && rectStart.col === c
+                ? '3px solid var(--accent-success)'
+                : '';
+            cell.classList.toggle('empty', regionIndex < 0);
+            cell.setAttribute(
+                'aria-label',
+                `${RECT_CLUES.has(idx) ? `Clue ${RECT_CLUES.get(idx)}, ` : ''}row ${r + 1}, column ${c + 1}`
+            );
+        }
+    }
 }
 
 function checkRectWin() {
+    const covered = new Set(rectRegions.flatMap(rectRegionCells));
+    const complete = covered.size === RECT_SIZE * RECT_SIZE;
+    const valid = rectRegions.every(rectRegionValid);
     const status = document.getElementById('arrow-status');
-    let filled = rectangles.filter(r => r > 0).length;
-    if (filled > 0) {
-        status.innerText = 'Drawing rectangles...';
+
+    if (complete && valid) {
+        status.innerText = 'The grid is partitioned into valid clue-sized rectangles. Puzzle solved!';
+        status.style.color = 'var(--accent-success)';
+    } else if (rectRegions.some(region => !rectRegionValid(region))) {
+        status.innerText = 'A rectangle must contain exactly one clue and its area must equal that clue.';
         status.style.color = 'var(--accent-warning)';
+    } else {
+        status.innerText = `${covered.size}/${RECT_SIZE * RECT_SIZE} cells covered by valid rectangles.`;
+        status.style.color = '';
     }
 }
