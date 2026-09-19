@@ -822,22 +822,22 @@
     },
     "undead": {
       "title": "Undead",
-      "summary": "Löse Undead, indem du alle rätselspezifischen Bedingungen erfüllst.",
-      "objective": "Löse Undead, indem du alle rätselspezifischen Bedingungen erfüllst.",
-      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus.",
+      "summary": "Platziere Geister, Vampire und Zombies passend zu den reflektierten Sicht-Hinweisen.",
+      "objective": "Fülle jedes Nicht-Spiegel-Feld mit Geist, Vampir oder Zombie und erfülle sowohl die Gesamtzahlen als auch alle Randhinweise.",
+      "hint": "Vampire zählen direkt, Geister nach einer Spiegelung und Zombies immer.",
       "rules": [
-        "Beachte alle sichtbaren Hinweise und Einschränkungen.",
-        "Ein Zug ist nur gültig, wenn eine Lösung weiterhin möglich bleibt.",
-        "Fertig ist das Puzzle erst bei erfüllter exakter Siegbedingung."
+        "Jedes Feld ohne Spiegel enthält genau ein Monster.",
+        "Vampire sind direkt sichtbar, Geister im Spiegel, Zombies in beiden Fällen.",
+        "Erfülle die Monster-Gesamtzahlen und jeden Randhinweis."
       ],
       "tutorial": [
-        "Lies Ziel und feste Hinweise.",
-        "Beginne mit dem am stärksten eingeschränkten Zug.",
-        "Nutze Hinweis für einen kleinen Anstoß statt der kompletten Lösung."
+        "Beginne mit kurzen Sichtlinien.",
+        "Verfolge jede Linie durch /- und \\\\-Spiegel.",
+        "Nutze die G/V/Z-Gesamtzahlen für die letzten offenen Felder."
       ],
       "tips": [
-        "Erzwungene Schlüsse sind besser als Raten.",
-        "Zurücksetzen behält denselben Seed; Neues Puzzle erzeugt einen neuen."
+        "Vor der ersten Spiegelung zählen nur Vampire und Zombies.",
+        "Nach einer Spiegelung zählen Geister und Zombies, Vampire nicht."
       ]
     },
     "unequal": {
