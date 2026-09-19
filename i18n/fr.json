@@ -1,0 +1,329 @@
+{
+  "locale": "fr",
+  "name": "Français",
+  "ui": {
+    "brand": "Puzzle Paradise",
+    "search": "Rechercher un puzzle",
+    "sort": "Trier",
+    "featured": "En vedette",
+    "az": "A–Z",
+    "difficulty": "Difficulté",
+    "all": "Tous",
+    "play": "Jouer",
+    "daily": "Défi du jour",
+    "progress": "Progression",
+    "completed": "Terminés",
+    "settings": "Réglages",
+    "language": "Langue",
+    "theme": "Thème",
+    "sound": "Son",
+    "haptics": "Vibrations",
+    "rules": "Comment jouer",
+    "objective": "Objectif",
+    "constraints": "Règles et contraintes",
+    "tutorial": "Pas à pas",
+    "tips": "Astuces pro",
+    "hint": "Indice",
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "reset": "Réinitialiser",
+    "newPuzzle": "Nouveau puzzle",
+    "moves": "Coups",
+    "time": "Temps",
+    "accuracy": "Précision",
+    "best": "Record personnel",
+    "stars": "Étoiles",
+    "easy": "Facile",
+    "medium": "Moyen",
+    "hard": "Difficile",
+    "expert": "Expert",
+    "close": "Fermer",
+    "victory": "Puzzle résolu !",
+    "continue": "Continuer",
+    "noResults": "Aucun puzzle ne correspond.",
+    "collapse": "Réduire l’en-tête",
+    "expand": "Déployer l’en-tête"
+  },
+  "categories": {
+    "Logic": "Logique",
+    "Number": "Nombres",
+    "Spatial": "Spatial",
+    "Strategy": "Stratégie"
+  },
+  "guide": {
+    "rules": [
+      "Respectez tous les indices et contraintes visibles.",
+      "Un coup n’est valide que s’il conserve une solution possible.",
+      "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+    ],
+    "tutorial": [
+      "Lisez l’objectif et repérez les indices fixes.",
+      "Commencez par le coup le plus contraint.",
+      "Utilisez Indice pour une aide légère sans révéler la solution."
+    ],
+    "tips": [
+      "Privilégiez les déductions forcées aux suppositions.",
+      "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+    ]
+  },
+  "puzzles": {
+    "sudoku": {
+      "title": "Classic Sudoku",
+      "summary": "Résolvez Classic Sudoku en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Classic Sudoku en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "arrow-escape": {
+      "title": "Arrow Escape",
+      "summary": "Résolvez Arrow Escape en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Arrow Escape en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "net": {
+      "title": "Pipe Routing",
+      "summary": "Résolvez Pipe Routing en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Pipe Routing en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "mines": {
+      "title": "Mines",
+      "summary": "Résolvez Mines en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Mines en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "fifteen": {
+      "title": "Fifteen",
+      "summary": "Résolvez Fifteen en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Fifteen en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "keen": {
+      "title": "Keen",
+      "summary": "Résolvez Keen en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Keen en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "hitori": {
+      "title": "Hitori",
+      "summary": "Résolvez Hitori en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Hitori en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "lightup": {
+      "title": "Light Up",
+      "summary": "Résolvez Light Up en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Light Up en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "loopy": {
+      "title": "Loopy",
+      "summary": "Résolvez Loopy en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Loopy en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "bridges": {
+      "title": "Bridges",
+      "summary": "Résolvez Bridges en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Bridges en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "samegame": {
+      "title": "Same Game",
+      "summary": "Résolvez Same Game en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Same Game en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "untangle": {
+      "title": "Untangle",
+      "summary": "Résolvez Untangle en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Untangle en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "blackbox": {
+      "title": "Black Box",
+      "summary": "Résolvez Black Box en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Black Box en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "dominosa": {
+      "title": "Dominosa",
+      "summary": "Résolvez Dominosa en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Dominosa en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "galaxies": {
+      "title": "Galaxies",
+      "summary": "Résolvez Galaxies en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Galaxies en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "guess": {
+      "title": "Guess",
+      "summary": "Résolvez Guess en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Guess en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "inertia": {
+      "title": "Inertia",
+      "summary": "Résolvez Inertia en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Inertia en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "ink": {
+      "title": "Ink",
+      "summary": "Résolvez Ink en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Ink en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "magnets": {
+      "title": "Magnets",
+      "summary": "Résolvez Magnets en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Magnets en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "maps": {
+      "title": "Map Colouring",
+      "summary": "Résolvez Map Colouring en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Map Colouring en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "net2": {
+      "title": "Network",
+      "summary": "Résolvez Network en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Network en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "netslide": {
+      "title": "Net Slide",
+      "summary": "Résolvez Net Slide en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Net Slide en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "nullgame": {
+      "title": "Null Game",
+      "summary": "Résolvez Null Game en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Null Game en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "pattern": {
+      "title": "Pattern",
+      "summary": "Résolvez Pattern en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Pattern en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "pearl": {
+      "title": "Pearl Loop",
+      "summary": "Résolvez Pearl Loop en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Pearl Loop en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "pegs": {
+      "title": "Pegs",
+      "summary": "Résolvez Pegs en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Pegs en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "range": {
+      "title": "Range",
+      "summary": "Résolvez Range en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Range en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "rect": {
+      "title": "Rectangles",
+      "summary": "Résolvez Rectangles en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Rectangles en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "sequencing": {
+      "title": "Sequencing",
+      "summary": "Résolvez Sequencing en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Sequencing en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "signpost": {
+      "title": "Signpost",
+      "summary": "Résolvez Signpost en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Signpost en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "singles": {
+      "title": "Singles",
+      "summary": "Résolvez Singles en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Singles en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "sixteen": {
+      "title": "Sixteen",
+      "summary": "Résolvez Sixteen en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Sixteen en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "slant": {
+      "title": "Slant",
+      "summary": "Résolvez Slant en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Slant en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "solo": {
+      "title": "Solo",
+      "summary": "Résolvez Solo en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Solo en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "tents": {
+      "title": "Tents",
+      "summary": "Résolvez Tents en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Tents en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "towers": {
+      "title": "Towers",
+      "summary": "Résolvez Towers en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Towers en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "twiddle": {
+      "title": "Twiddle",
+      "summary": "Résolvez Twiddle en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Twiddle en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "undead": {
+      "title": "Undead",
+      "summary": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "unequal": {
+      "title": "Unequal",
+      "summary": "Résolvez Unequal en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Unequal en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "unruly": {
+      "title": "Unruly",
+      "summary": "Résolvez Unruly en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Unruly en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "cube": {
+      "title": "Cube",
+      "summary": "Résolvez Cube en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Cube en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "filling": {
+      "title": "Filling",
+      "summary": "Résolvez Filling en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Filling en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    },
+    "flip": {
+      "title": "Flip",
+      "summary": "Résolvez Flip en respectant toutes les contraintes propres au puzzle.",
+      "objective": "Résolvez Flip en respectant toutes les contraintes propres au puzzle.",
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+    }
+  }
+}
