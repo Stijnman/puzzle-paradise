@@ -16,7 +16,7 @@ const playerCss = read('assets/player.css');
 const puzzleIds = loadRegistry().map(puzzle => puzzle.id);
 
 test('shared browser JavaScript parses', () => {
-  for (const file of ['assets/puzzle-registry.js','assets/storage.js','assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
+  for (const file of ['assets/puzzle-registry.js','assets/storage.js','assets/engine-api.js','assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
     assert.doesNotThrow(() => new vm.Script(read(file), { filename: file }), `${file} must parse`);
   }
 });
@@ -49,6 +49,9 @@ test('all five translation dictionaries are valid and cover every puzzle', () =>
 
 test('arcade is a fixed viewport application shell', () => {
   assert.match(index, /assets\/arcade\.css/);
+  assert.match(index, /manifest\.webmanifest/);
+  assert.match(read('assets/arcade.js'), /serviceWorker\.register/);
+  assert.match(read('sw.js'), /CACHE_NAME/);
   assert.match(index, /assets\/arcade\.js/);
   assert.match(index, /id="toggle-rail"/);
   assert.match(index, /id="language"/);
