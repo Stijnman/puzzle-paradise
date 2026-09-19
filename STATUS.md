@@ -1,73 +1,35 @@
 # Repository Status
 
-*Last updated: September 11, 2026*
+Last reviewed: 2026-09-19
 
----
+## Current state
 
-## 📊 Current State
+| Area | State |
+| --- | --- |
+| Puzzle catalogue | 43 advertised puzzles |
+| Puzzle engine files | 43 JavaScript engines |
+| GitHub Pages deployment | Enabled |
+| CI | Enabled |
+| JavaScript syntax gate | Enabled |
+| Repository contract tests | Enabled |
+| Markdown lint | Enabled |
+| Spell check | Enabled |
+| Pre-commit | Enabled |
+| Secret scan | Enabled |
+| Issue templates | Present |
+| Pull request template | Present |
+| Security policy | Present |
+| License | MIT |
+| Third-party attribution | Documented |
 
-### Repository Status
+## Quality definition
 
-| Component | Status | Version | Last Updated |
-|-----------|--------|---------|--------------|
-| Core | ✅ Production | 1.0.0 | 2026-09-11 |
+"Green" means the repository contract, syntax, documentation, spelling, pre-commit, and applicable secret checks passed. It does not by itself prove every generated puzzle position is mathematically valid; gameplay changes also require the browser checklist in [TESTING.md](TESTING.md).
 
-### Documentation Status
+## Known focus areas
 
-| Document | Status | Last Updated |
-| ---------- | -------- | -------------- |
-| README.md | ✅ Complete | 2026-09-11 |
-| SKILL.md | ✅ Complete | 2026-09-11 |
-| SECURITY.md | ✅ Complete | 2026-09-11 |
-| CONTRIBUTING.md | ✅ Complete | 2026-09-11 |
-| TESTING.md | ✅ Complete | 2026-09-11 |
-| CODE_OF_CONDUCT.md | ✅ Complete | 2026-09-11 |
-| CHANGELOG.md | ✅ Complete | 2026-09-11 |
-| STATUS.md | ✅ Complete | 2026-09-11 |
-| CONTRIBUTORS.md | ✅ Complete | 2026-09-11 |
+The project is intentionally framework-free. Future quality work should prioritize puzzle-rule correctness, deterministic test fixtures, browser-level interaction tests, accessibility, and performance without turning the site into a dependency-heavy application.
 
-### Infrastructure Status
+## Release readiness
 
-| Component | Status | Location |
-|-----------|--------|----------|
-| CI/CD Pipeline | ✅ Active |  |
-| Issue Templates | ✅ Active |  |
-| Pre-commit Hooks | ✅ Configured |  |
-| Markdown Lint Config | ✅ Configured |  |
-| License | ✅ MIT |  |
-
----
-
-## 🎯 Quality Metrics
-
-| Metric | Value | Target |
-| -------- | ------- | -------- |
-| Documentation Completeness | 100% | 100% |
-| Security Documentation | ✅ Complete | ✅ |
-| Testing Documentation | ✅ Complete | ✅ |
-| CI/CD Coverage | ✅ All components | ✅ |
-| Issue Management | ✅ Templates | ✅ |
-| Code of Conduct | ✅ Present | ✅ |
-| Changelog | ✅ Present | ✅ |
-| Pre-commit | ✅ Configured | ✅ |
-| **Overall Quality Score** | **10/10** | 10/10 |
-
----
-
-## ✅ Health Check
-
-- [x] All components have proper documentation
-- [x] All security considerations documented
-- [x] All documentation is cross-referenced
-- [x] CI/CD pipeline is configured
-- [x] Issue templates are in place
-- [x] Pre-commit hooks are configured
-- [x] License is present
-- [x] Code of Conduct is present
-- [x] Changelog is maintained
-
----
-
-*Status: ✅ PRODUCTION READY*
-*Maintainer: Stijnman*
-*Last updated: September 11, 2026*
+Changes should merge to `main` only after the pull-request checks are green and affected puzzles pass the gameplay checklist.
