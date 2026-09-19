@@ -210,8 +210,11 @@
     const status = currentStatus();
     if (!status) return;
     const rawText = status.textContent;
-    const victoryState = isVictoryStatus(status);
-    const warningState = isWarningStatus(status);
+    const wasLocalized = status.dataset.ppLocalizedText === rawText;
+    const previousSemantic = status.dataset.ppSemantic;
+    const victoryState = wasLocalized ? previousSemantic === 'success' : isVictoryStatus(status);
+    const warningState = wasLocalized ? previousSemantic === 'warning' : isWarningStatus(status);
+    if (!wasLocalized && rawText) status.dataset.ppRawText = rawText;
     if (runtime.lastTarget && warningState && !runtime.replaying) {
       runtime.invalidMoves += 1;
       runtime.lastTarget.classList.add('pp-invalid');
@@ -229,6 +232,8 @@
         : warningState
           ? t('ui.statusInvalid','That move conflicts with the current puzzle constraints.')
           : t('ui.statusProgress','Keep solving — the puzzle is still in progress.');
+      status.dataset.ppSemantic = victoryState ? 'success' : warningState ? 'warning' : 'progress';
+      status.dataset.ppLocalizedText = localized;
       if (status.textContent !== localized) status.textContent = localized;
     }
   }
@@ -351,6 +356,15 @@
       runtime.dictionary.puzzles?.[runtime.game]?.title || runtime.game;
     document.getElementById('instructions').textContent =
       runtime.dictionary.puzzles?.[runtime.game]?.objective || runtime.config[1];
+    const status = currentStatus();
+    if (status) {
+      if (runtime.dictionary.locale === 'en' && status.dataset.ppRawText) {
+        status.textContent = status.dataset.ppRawText;
+        delete status.dataset.ppLocalizedText;
+      } else if (status.textContent) {
+        handleStatusChange();
+      }
+    }
   }
 
   function populateGuide() {
@@ -379,6 +393,12 @@
   function setupKeyboard() {
     document.addEventListener('keydown', event => {
       const key = event.key.toLowerCase();
+      const active = document.activeElement;
+      if ((event.key === 'Enter' || event.key === ' ') && active?.classList?.contains('grid-cell') && typeof active.onclick === 'function' && !event.defaultPrevented) {
+        event.preventDefault();
+        active.click();
+        return;
+      }
       if ((event.ctrlKey || event.metaKey) && key === 'z') {
         event.preventDefault();
         event.shiftKey ? redo() : undo();
@@ -397,7 +417,6 @@
       if (key === 'r' && !/input|select|textarea/i.test(document.activeElement?.tagName || '')) resetSamePuzzle();
 
       if (!['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d'].includes(key)) return;
-      const active = document.activeElement;
       if (!active?.classList?.contains('grid-cell')) return;
       event.preventDefault();
       const cells = [...document.querySelectorAll('.grid-board .grid-cell[tabindex="0"],.grid-board .grid-cell[role="button"]')]
