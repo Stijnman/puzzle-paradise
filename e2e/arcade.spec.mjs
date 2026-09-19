@@ -38,36 +38,36 @@ test('all 43 engines load, render, and expose an interaction', async ({ page }) 
 });
 
 test('same seed survives reload and restores move history', async ({ page }) => {
-  await page.goto('/player.html?game=arrow-escape&difficulty=easy&seed=persist-e2e');
-  const before = await page.locator('#arrow-board').innerText();
+  await page.goto('/player.html?game=net&difficulty=easy&seed=persist-e2e');
+  const before = await page.locator('#net-board').innerText();
   const action = page.locator('[data-pp-action-key]').first();
   await action.click();
   await expect(page.locator('#move-count')).toHaveText('1');
   await page.reload();
   await expect(page.locator('#move-count')).toHaveText('1');
-  const afterReload = await page.locator('#arrow-board').innerText();
+  const afterReload = await page.locator('#net-board').innerText();
 
   await page.getByRole('button', { name:/reset/i }).click();
   await expect(page.locator('#move-count')).toHaveText('0');
-  const reset = await page.locator('#arrow-board').innerText();
+  const reset = await page.locator('#net-board').innerText();
   expect(reset).toBe(before);
   expect(afterReload).not.toBe('');
 });
 
 test('undo and redo replay deterministic state', async ({ page }) => {
-  await page.goto('/player.html?game=arrow-escape&difficulty=easy&seed=undo-e2e');
-  const initial = await page.locator('#arrow-board').innerText();
+  await page.goto('/player.html?game=net&difficulty=easy&seed=undo-e2e');
+  const initial = await page.locator('#net-board').innerText();
   await page.locator('[data-pp-action-key]').first().click();
-  const moved = await page.locator('#arrow-board').innerText();
+  const moved = await page.locator('#net-board').innerText();
   expect(moved).not.toBe(initial);
 
   await page.locator('#undo').click();
   await expect(page.locator('#move-count')).toHaveText('0');
-  expect(await page.locator('#arrow-board').innerText()).toBe(initial);
+  expect(await page.locator('#net-board').innerText()).toBe(initial);
 
   await page.locator('#redo').click();
   await expect(page.locator('#move-count')).toHaveText('1');
-  expect(await page.locator('#arrow-board').innerText()).toBe(moved);
+  expect(await page.locator('#net-board').innerText()).toBe(moved);
 });
 
 test('daily challenge creates a fixed shareable seed URL', async ({ page }) => {
