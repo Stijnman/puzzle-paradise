@@ -58,6 +58,7 @@
     ids.add(puzzle.id);
   }
 
-  window.PP_REGISTRY = Object.freeze(puzzles);
-  window.PP_GAMES = window.PP_REGISTRY;
+  const root = typeof window !== 'undefined' ? window : globalThis;
+  root.PP_REGISTRY = Object.freeze(puzzles);
+  root.PP_GAMES = root.PP_REGISTRY;
 })();
