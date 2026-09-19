@@ -17,7 +17,8 @@
     audioContext: null,
     observer: null,
     sessionKey: null,
-    dailyDate: null
+    dailyDate: null,
+    engine: null
   };
 
 
@@ -27,6 +28,14 @@
     runtime.session.elapsed = Math.max(0, Date.now() - runtime.startedAt);
     runtime.session.invalidMoves = runtime.invalidMoves;
     runtime.session.completed = runtime.completed;
+    if (runtime.engine?.serialize) {
+      try {
+        runtime.session.engineVersion = runtime.engine.version || 1;
+        runtime.session.snapshot = runtime.engine.serialize();
+      } catch {
+        delete runtime.session.snapshot;
+      }
+    }
     window.PPStorage.setSession(runtime.sessionKey, runtime.session);
   }
 
@@ -187,8 +196,10 @@
     const rawText = status.textContent;
     const wasLocalized = status.dataset.ppLocalizedText === rawText;
     const previousSemantic = status.dataset.ppSemantic;
-    const victoryState = wasLocalized ? previousSemantic === 'success' : isVictoryStatus(status);
-    const warningState = wasLocalized ? previousSemantic === 'warning' : isWarningStatus(status);
+    const engineSolved = runtime.engine?.isSolved ? Boolean(runtime.engine.isSolved()) : false;
+    const engineValidation = runtime.engine?.validate ? runtime.engine.validate() : null;
+    const victoryState = engineSolved || (wasLocalized ? previousSemantic === 'success' : isVictoryStatus(status));
+    const warningState = engineValidation === false || (wasLocalized ? previousSemantic === 'warning' : isWarningStatus(status));
     if (!wasLocalized && rawText) status.dataset.ppRawText = rawText;
     if (runtime.lastTarget && warningState && !runtime.replaying) {
       runtime.invalidMoves += 1;
@@ -297,6 +308,23 @@
     saveSession();
   }
 
+  function restoreSavedSnapshot() {
+    if (!runtime.engine?.restore || runtime.session.snapshot == null) return false;
+    try {
+      runtime.replaying = true;
+      initEngine();
+      const restored = runtime.engine.restore(runtime.session.snapshot) !== false;
+      runtime.replaying = false;
+      decorateActions();
+      handleStatusChange();
+      updateHUD();
+      return restored;
+    } catch {
+      runtime.replaying = false;
+      return false;
+    }
+  }
+
   function undo() {
     if (!runtime.history.length || runtime.completed) return;
     runtime.redo.push(runtime.history.pop());
@@ -316,6 +344,7 @@
     runtime.startedAt = Date.now();
     runtime.completed = false;
     runtime.session.completed = false;
+    delete runtime.session.snapshot;
     document.getElementById('victory').classList.remove('open');
     replayHistory();
   }
@@ -392,7 +421,20 @@
     const puzzle = runtime.dictionary?.puzzles?.[runtime.game] || {};
     const status = currentStatus();
     const contextual = status && isWarningStatus(status) ? t('ui.statusInvalid','That move conflicts with the current puzzle constraints.') : '';
-    showToast(contextual ? `${contextual} ${puzzle.hint || ''}`.trim() : (puzzle.hint || t('ui.hint','Hint')));
+    let engineHint = null;
+    if (runtime.engine?.getHint) {
+      try { engineHint = runtime.engine.getHint(); } catch {}
+    }
+    const message = typeof engineHint === 'string' ? engineHint : engineHint?.message;
+    const selector = typeof engineHint === 'object' ? engineHint?.selector : null;
+    if (selector) {
+      const target = document.querySelector(selector);
+      if (target) {
+        target.classList.add('selected');
+        setTimeout(() => target.classList.remove('selected'), 2200);
+      }
+    }
+    showToast(message || (contextual ? `${contextual} ${puzzle.hint || ''}`.trim() : (puzzle.hint || t('ui.hint','Hint'))));
     playSound('hint');
   }
 
@@ -569,8 +611,9 @@
 
     try {
       await loadEngine();
+      runtime.engine = window.PPEngine?.get(game) || null;
       setupSudokuPad();
-      replayHistory();
+      if (!restoreSavedSnapshot()) replayHistory();
       runtime.timer = setInterval(() => { updateHUD(); saveSession(); },1000);
     } catch (error) {
       document.getElementById('player').innerHTML = `<p class="error">${error.message}</p>`;
