@@ -20,10 +20,20 @@ function playerMappings() {
   return new Map(registry.map(puzzle => [puzzle.id, puzzle.init]));
 }
 
-test('catalogue contains exactly 43 unique puzzle IDs', () => {
+test('registry contains exactly 43 unique, complete puzzle records', () => {
   const ids = catalogueIds();
   assert.equal(ids.length, 43);
   assert.equal(new Set(ids).size, ids.length);
+  for (const puzzle of registry) {
+    assert.match(puzzle.id, /^[a-z0-9-]+$/);
+    assert.ok(puzzle.name);
+    assert.ok(puzzle.category);
+    assert.ok(puzzle.description);
+    assert.ok(puzzle.icon);
+    assert.ok(puzzle.init);
+    assert.ok(['arrow','sudoku','net'].includes(puzzle.boardType));
+    assert.ok(Number.isInteger(puzzle.difficulty) && puzzle.difficulty >= 1 && puzzle.difficulty <= 4);
+  }
 });
 
 test('registry is the single catalogue/player source of truth', () => {
