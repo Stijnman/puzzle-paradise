@@ -38,6 +38,9 @@ test('all five translation dictionaries are valid and cover every puzzle', () =>
       assert.ok(dictionary.puzzles[id].title, `${code}: missing ${id} title`);
       assert.ok(dictionary.puzzles[id].objective, `${code}: missing ${id} objective`);
       assert.ok(dictionary.puzzles[id].hint, `${code}: missing ${id} hint`);
+      assert.ok(dictionary.puzzles[id].rules?.length >= 3, `${code}: missing ${id} rules`);
+      assert.ok(dictionary.puzzles[id].tutorial?.length >= 3, `${code}: missing ${id} tutorial`);
+      assert.ok(dictionary.puzzles[id].tips?.length >= 2, `${code}: missing ${id} tips`);
     }
     assert.ok(dictionary.guide.rules.length >= 3);
     assert.ok(dictionary.guide.tutorial.length >= 3);
