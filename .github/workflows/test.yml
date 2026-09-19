@@ -27,9 +27,10 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-      - name: Syntax-check all browser JavaScript
+      - name: Syntax-check all JavaScript
         run: |
-          find js assets -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+          find js assets tests e2e -type f \( -name "*.js" -o -name "*.mjs" \) -print0 | xargs -0 -n1 node --check
+          node --check sw.js
           node -e "for (const f of require('fs').readdirSync('i18n')) JSON.parse(require('fs').readFileSync('i18n/'+f,'utf8'))"
 
   repository-tests:
@@ -116,3 +117,33 @@ jobs:
           npm install --global markdownlint-cli2
       - name: Run pre-commit on all files
         run: pre-commit run --all-files --show-diff-on-failure
+
+
+  browser-e2e:
+    name: Browser E2E + Accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install browser test dependencies
+        run: npm install --ignore-scripts
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Run browser tests
+        run: npm run test:e2e
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
