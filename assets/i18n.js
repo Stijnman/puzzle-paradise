@@ -2,6 +2,7 @@
   const SUPPORTED = ['en','nl','fr','de','es'];
   const STORAGE_KEY = 'pp.language';
   const cache = new Map();
+  let current = null;
 
   function detect() {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -24,6 +25,7 @@
     }
     try {
       const dictionary = await cache.get(lang);
+      current = dictionary;
       document.documentElement.lang = dictionary.locale || lang;
       return dictionary;
     } catch (error) {
@@ -38,6 +40,10 @@
 
   function get(object, path, fallback = '') {
     return String(path).split('.').reduce((value, key) => value?.[key], object) ?? fallback;
+  }
+
+  function translate(path, fallback = '') {
+    return get(current, path, fallback);
   }
 
   function apply(root, dictionary) {
@@ -55,5 +61,6 @@
     });
   }
 
-  window.PPI18N = { SUPPORTED, detect, load, save, get, apply };
+  window.PPI18N = { SUPPORTED, detect, load, save, get, translate, apply };
+  window.t = translate;
 })();
