@@ -822,22 +822,22 @@
     },
     "undead": {
       "title": "Undead",
-      "summary": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
-      "objective": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "summary": "Placez fantômes, vampires et zombies selon les indices de visibilité réfléchie.",
+      "objective": "Remplissez chaque case sans miroir avec un fantôme, vampire ou zombie afin de respecter les totaux et tous les indices de bord.",
+      "hint": "Le vampire compte en vision directe, le fantôme après réflexion et le zombie dans les deux cas.",
       "rules": [
-        "Respectez tous les indices et contraintes visibles.",
-        "Un coup n’est valide que s’il conserve une solution possible.",
-        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+        "Chaque case sans miroir contient exactement un monstre.",
+        "Les vampires sont visibles directement, les fantômes dans les miroirs et les zombies toujours.",
+        "Respectez les totaux de monstres et chaque indice autour de la grille."
       ],
       "tutorial": [
-        "Lisez l’objectif et repérez les indices fixes.",
-        "Commencez par le coup le plus contraint.",
-        "Utilisez Indice pour une aide légère sans révéler la solution."
+        "Commencez par les lignes de vue les plus courtes.",
+        "Suivez les rayons à travers les miroirs / et \\\\.",
+        "Utilisez les totaux G/V/Z pour finir les cases ambiguës."
       ],
       "tips": [
-        "Privilégiez les déductions forcées aux suppositions.",
-        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+        "Avant le premier miroir, seuls vampires et zombies comptent.",
+        "Après réflexion, fantômes et zombies comptent, pas les vampires."
       ]
     },
     "unequal": {
