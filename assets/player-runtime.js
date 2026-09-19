@@ -209,7 +209,10 @@
   function handleStatusChange() {
     const status = currentStatus();
     if (!status) return;
-    if (runtime.lastTarget && isWarningStatus(status) && !runtime.replaying) {
+    const rawText = status.textContent;
+    const victoryState = isVictoryStatus(status);
+    const warningState = isWarningStatus(status);
+    if (runtime.lastTarget && warningState && !runtime.replaying) {
       runtime.invalidMoves += 1;
       runtime.lastTarget.classList.add('pp-invalid');
       setTimeout(() => runtime.lastTarget?.classList.remove('pp-invalid'), 350);
@@ -219,7 +222,15 @@
       saveSession();
       updateHUD();
     }
-    if (!runtime.completed && isVictoryStatus(status)) completePuzzle();
+    if (!runtime.completed && victoryState) completePuzzle();
+    if (runtime.dictionary?.locale !== 'en' && rawText) {
+      const localized = victoryState
+        ? t('ui.statusSolved','Puzzle solved!')
+        : warningState
+          ? t('ui.statusInvalid','That move conflicts with the current puzzle constraints.')
+          : t('ui.statusProgress','Keep solving — the puzzle is still in progress.');
+      if (status.textContent !== localized) status.textContent = localized;
+    }
   }
 
   function completePuzzle() {
@@ -275,7 +286,7 @@
     if (typeof start !== 'function') throw new Error('Puzzle init function unavailable');
     window.PP_DIFFICULTY = runtime.session.difficulty;
     window.PP_SEED = runtime.session.seed;
-    document.getElementById('seed-label').textContent = `${runtime.session.difficulty.toUpperCase()} · ${runtime.session.seed.slice(0,10)}`;
+    document.getElementById('seed-label').textContent = `${t(`ui.${runtime.session.difficulty}`,runtime.session.difficulty)} · ${t('ui.seeded','Seed')} ${runtime.session.seed.slice(0,10)}`;
     resetRandom();
     start();
     decorateActions();
@@ -346,13 +357,16 @@
     const puzzle = runtime.dictionary?.puzzles?.[runtime.game] || {};
     document.getElementById('guide-objective').textContent = puzzle.objective || runtime.config[1];
     document.getElementById('guide-rules').innerHTML = (puzzle.rules || runtime.dictionary?.guide?.rules || []).map(item => `<li>${item}</li>`).join('');
-    document.getElementById('guide-tutorial').innerHTML = (puzzle.tutorial || runtime.dictionary?.guide?.tutorial || []).map((item,index) => `<div class="demo-step"><strong>${index+1}</strong><br>${item}</div>`).join('');
+    document.getElementById('guide-tutorial').innerHTML = (puzzle.tutorial || runtime.dictionary?.guide?.tutorial || []).map((item,index) => `<button class="demo-step" type="button"><strong>${index+1}</strong><br>${item}</button>`).join('');
+    document.querySelectorAll('#guide-tutorial .demo-step').forEach(step => step.onclick = () => step.classList.toggle('active'));
     document.getElementById('guide-tips').innerHTML = (puzzle.tips || runtime.dictionary?.guide?.tips || []).map(item => `<li>${item}</li>`).join('');
   }
 
   function hint() {
     const puzzle = runtime.dictionary?.puzzles?.[runtime.game] || {};
-    showToast(puzzle.hint || t('ui.hint','Hint'));
+    const status = currentStatus();
+    const contextual = status && isWarningStatus(status) ? t('ui.statusInvalid','That move conflicts with the current puzzle constraints.') : '';
+    showToast(contextual ? `${contextual} ${puzzle.hint || ''}`.trim() : (puzzle.hint || t('ui.hint','Hint')));
     playSound('hint');
   }
 
@@ -445,12 +459,12 @@
     document.getElementById('sound-toggle').onclick = event => {
       const enabled = localStorage.getItem('pp.sound') !== '0';
       localStorage.setItem('pp.sound', enabled ? '0' : '1');
-      event.currentTarget.textContent = enabled ? 'OFF' : 'ON';
+      event.currentTarget.textContent = enabled ? t('ui.off','Off') : t('ui.on','On');
     };
     document.getElementById('haptics-toggle').onclick = event => {
       const enabled = localStorage.getItem('pp.haptics') !== '0';
       localStorage.setItem('pp.haptics', enabled ? '0' : '1');
-      event.currentTarget.textContent = enabled ? 'OFF' : 'ON';
+      event.currentTarget.textContent = enabled ? t('ui.off','Off') : t('ui.on','On');
     };
 
     document.getElementById('stage').addEventListener('click', event => {
@@ -496,8 +510,8 @@
     document.getElementById('language-select').value = runtime.dictionary.locale;
     applyTheme(localStorage.getItem('pp.theme') || 'dark');
     document.getElementById('player-app').classList.toggle('compact', localStorage.getItem('pp.playerCompact') === '1');
-    document.getElementById('sound-toggle').textContent = localStorage.getItem('pp.sound') === '0' ? 'OFF' : 'ON';
-    document.getElementById('haptics-toggle').textContent = localStorage.getItem('pp.haptics') === '0' ? 'OFF' : 'ON';
+    document.getElementById('sound-toggle').textContent = localStorage.getItem('pp.sound') === '0' ? t('ui.off','Off') : t('ui.on','On');
+    document.getElementById('haptics-toggle').textContent = localStorage.getItem('pp.haptics') === '0' ? t('ui.off','Off') : t('ui.on','On');
 
     document.getElementById('game-name').textContent = runtime.dictionary.puzzles?.[game]?.title || game;
     document.getElementById('instructions').textContent = runtime.dictionary.puzzles?.[game]?.objective || config[1];
