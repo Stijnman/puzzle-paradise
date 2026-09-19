@@ -17,8 +17,8 @@
       <button class="cmd optional" id="hint" type="button">💡 <span data-i18n="ui.hint">Hint</span></button>
       <button class="cmd" id="rules" type="button">? <span class="label" data-i18n="ui.rules">How to Play</span></button>
       <button class="cmd" id="collapse-ui" type="button" aria-label="Collapse controls">⌃</button>
-      <button class="cmd" id="settings" type="button" aria-label="Settings">⚙</button>
-      <select class="select optional" id="difficulty-select" aria-label="Difficulty"><option value="easy" data-i18n="ui.easy">Easy</option><option value="medium" data-i18n="ui.medium">Medium</option><option value="hard" data-i18n="ui.hard">Hard</option><option value="expert" data-i18n="ui.expert">Expert</option></select>
+      <button class="cmd" id="settings" type="button" data-i18n-label="ui.settings" aria-label="Settings">⚙</button>
+      <select class="select optional" id="difficulty-select" data-i18n-label="ui.difficulty" aria-label="Difficulty"><option value="easy" data-i18n="ui.easy">Easy</option><option value="medium" data-i18n="ui.medium">Medium</option><option value="hard" data-i18n="ui.hard">Hard</option><option value="expert" data-i18n="ui.expert">Expert</option></select>
       <button class="cmd primary" id="new-game" type="button"><span class="label" data-i18n="ui.newPuzzle">New Puzzle</span><span aria-hidden="true">＋</span></button>
     </header>
 
@@ -45,7 +45,7 @@
       </section>
 
       <aside class="drawer" id="rules-drawer" aria-label="How to play">
-        <div class="drawer-head"><strong data-i18n="ui.rules">How to Play</strong><button class="cmd" type="button" data-close-drawer aria-label="Close">×</button></div>
+        <div class="drawer-head"><strong data-i18n="ui.rules">How to Play</strong><button class="cmd" type="button" data-close-drawer data-i18n-label="ui.close" aria-label="Close">×</button></div>
         <div class="drawer-body">
           <section class="guide-section"><h2 data-i18n="ui.objective">Objective</h2><p id="guide-objective"></p></section>
           <section class="guide-section"><h2 data-i18n="ui.constraints">Rules & Constraints</h2><ul id="guide-rules"></ul></section>
@@ -55,7 +55,7 @@
       </aside>
 
       <aside class="drawer" id="settings-drawer" aria-label="Settings">
-        <div class="drawer-head"><strong data-i18n="ui.settings">Settings</strong><button class="cmd" type="button" data-close-drawer aria-label="Close">×</button></div>
+        <div class="drawer-head"><strong data-i18n="ui.settings">Settings</strong><button class="cmd" type="button" data-close-drawer data-i18n-label="ui.close" aria-label="Close">×</button></div>
         <div class="drawer-body">
           <div class="settings-grid">
             <label class="settings-row"><span data-i18n="ui.language">Language</span><select class="select" id="language-select"><option value="en">EN</option><option value="nl">NL</option><option value="fr">FR</option><option value="de">DE</option><option value="es">ES</option></select></label>
