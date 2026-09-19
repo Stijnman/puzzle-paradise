@@ -1,65 +1,51 @@
 # Pull Request
 
-## 📌 Description
+## What changed
 
-Please provide a clear description of the changes in this PR.
+Describe the change and why it is needed.
 
-## 🎯 Related Issue
+## Related issue
 
-Fixes/Closes # (issue number)
+Fixes/Closes #
 
-## ⚙️ Changes Made
+## Area
 
-- [ ] New feature
-- [ ] Bug fix
-- [ ] Documentation update
-- [ ] Code refactoring
-- [ ] Test addition/improvement
-- [ ] Dependency update
-- [ ] UI/UX improvement
-- [ ] Other: _______________
+- [ ] Puzzle gameplay
+- [ ] Puzzle catalogue/player shell
+- [ ] Accessibility
+- [ ] UI/UX
+- [ ] Testing/CI
+- [ ] Documentation
+- [ ] Security/maintenance
+- [ ] Other
 
-## 📝 Detailed Changes
+## Gameplay verification
 
-- Change 1: Description
-- Change 2: Description
-- Change 3: Description
+For each affected puzzle:
 
-## ✅ Testing
+- [ ] Board initializes without console errors
+- [ ] Legal interaction changes state correctly
+- [ ] Illegal interaction is ignored or clearly rejected
+- [ ] New puzzle resets state
+- [ ] Success/loss condition works
+- [ ] Instructions match actual behavior
+- [ ] Checked at a narrow/mobile viewport
+- [ ] Keyboard interaction checked where applicable
 
-Describe how you tested these changes:
+## Automated checks
 
-- [ ] Manual testing completed
-- [ ] Automated tests pass
-- [ ] Tested on different browsers
-- [ ] Tested on mobile devices
-- [ ] All links work
-- [ ] No console errors
-- [ ] TypeScript compiles without errors
-- [ ] Linting passes
+- [ ] JavaScript syntax checks pass
+- [ ] Repository contract tests pass
+- [ ] Pre-commit checks pass
+- [ ] Documentation updated when behavior changed
 
-## 📎 Screenshots (if applicable)
+## Evidence
 
-Add screenshots showing the changes if relevant.
+Add screenshots, reproduction steps, or before/after notes when useful.
 
-## 📊 Impact
+## Checklist
 
-- [ ] Breaking change (requires version bump)
-- [ ] Non-breaking change
-- [ ] Documentation only
-- [ ] API changes
-
-## 🎫 Checklist
-
-- [ ] Code follows repository guidelines
-- [ ] All tests pass
-- [ ] Documentation updated
-- [ ] No sensitive data included
-- [ ] All links work
+- [ ] No credentials or personal data added
+- [ ] Third-party attribution preserved where applicable
 - [ ] Commit messages are clear
-- [ ] Version numbers updated (if applicable)
-- [ ] Dependencies updated (if applicable)
-
----
-
-**Note**: By submitting this pull request, you agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+- [ ] Change is scoped and ready for review
