@@ -1,0 +1,329 @@
+{
+  "locale": "es",
+  "name": "Español",
+  "ui": {
+    "brand": "Puzzle Paradise",
+    "search": "Buscar puzles",
+    "sort": "Ordenar",
+    "featured": "Destacados",
+    "az": "A–Z",
+    "difficulty": "Dificultad",
+    "all": "Todos",
+    "play": "Jugar",
+    "daily": "Reto diario",
+    "progress": "Progreso",
+    "completed": "Completados",
+    "settings": "Ajustes",
+    "language": "Idioma",
+    "theme": "Tema",
+    "sound": "Sonido",
+    "haptics": "Vibración",
+    "rules": "Cómo jugar",
+    "objective": "Objetivo",
+    "constraints": "Reglas y restricciones",
+    "tutorial": "Paso a paso",
+    "tips": "Consejos pro",
+    "hint": "Pista",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "reset": "Reiniciar",
+    "newPuzzle": "Nuevo puzle",
+    "moves": "Movimientos",
+    "time": "Tiempo",
+    "accuracy": "Precisión",
+    "best": "Mejor marca",
+    "stars": "Estrellas",
+    "easy": "Fácil",
+    "medium": "Medio",
+    "hard": "Difícil",
+    "expert": "Experto",
+    "close": "Cerrar",
+    "victory": "¡Puzle resuelto!",
+    "continue": "Continuar",
+    "noResults": "No hay puzles que coincidan.",
+    "collapse": "Contraer cabecera",
+    "expand": "Expandir cabecera"
+  },
+  "categories": {
+    "Logic": "Lógica",
+    "Number": "Números",
+    "Spatial": "Espacial",
+    "Strategy": "Estrategia"
+  },
+  "guide": {
+    "rules": [
+      "Respeta todas las pistas y restricciones visibles.",
+      "Un movimiento solo es válido si mantiene una solución posible.",
+      "El puzle termina únicamente al cumplir su condición de victoria exacta."
+    ],
+    "tutorial": [
+      "Lee el objetivo y revisa las pistas fijas.",
+      "Empieza por el movimiento más restringido.",
+      "Usa Pista para una ayuda sutil sin revelar la solución."
+    ],
+    "tips": [
+      "Prioriza deducciones forzadas frente a adivinar.",
+      "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+    ]
+  },
+  "puzzles": {
+    "sudoku": {
+      "title": "Classic Sudoku",
+      "summary": "Resuelve Classic Sudoku cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Classic Sudoku cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "arrow-escape": {
+      "title": "Arrow Escape",
+      "summary": "Resuelve Arrow Escape cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Arrow Escape cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "net": {
+      "title": "Pipe Routing",
+      "summary": "Resuelve Pipe Routing cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Pipe Routing cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "mines": {
+      "title": "Mines",
+      "summary": "Resuelve Mines cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Mines cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "fifteen": {
+      "title": "Fifteen",
+      "summary": "Resuelve Fifteen cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Fifteen cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "keen": {
+      "title": "Keen",
+      "summary": "Resuelve Keen cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Keen cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "hitori": {
+      "title": "Hitori",
+      "summary": "Resuelve Hitori cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Hitori cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "lightup": {
+      "title": "Light Up",
+      "summary": "Resuelve Light Up cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Light Up cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "loopy": {
+      "title": "Loopy",
+      "summary": "Resuelve Loopy cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Loopy cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "bridges": {
+      "title": "Bridges",
+      "summary": "Resuelve Bridges cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Bridges cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "samegame": {
+      "title": "Same Game",
+      "summary": "Resuelve Same Game cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Same Game cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "untangle": {
+      "title": "Untangle",
+      "summary": "Resuelve Untangle cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Untangle cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "blackbox": {
+      "title": "Black Box",
+      "summary": "Resuelve Black Box cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Black Box cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "dominosa": {
+      "title": "Dominosa",
+      "summary": "Resuelve Dominosa cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Dominosa cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "galaxies": {
+      "title": "Galaxies",
+      "summary": "Resuelve Galaxies cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Galaxies cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "guess": {
+      "title": "Guess",
+      "summary": "Resuelve Guess cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Guess cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "inertia": {
+      "title": "Inertia",
+      "summary": "Resuelve Inertia cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Inertia cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "ink": {
+      "title": "Ink",
+      "summary": "Resuelve Ink cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Ink cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "magnets": {
+      "title": "Magnets",
+      "summary": "Resuelve Magnets cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Magnets cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "maps": {
+      "title": "Map Colouring",
+      "summary": "Resuelve Map Colouring cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Map Colouring cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "net2": {
+      "title": "Network",
+      "summary": "Resuelve Network cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Network cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "netslide": {
+      "title": "Net Slide",
+      "summary": "Resuelve Net Slide cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Net Slide cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "nullgame": {
+      "title": "Null Game",
+      "summary": "Resuelve Null Game cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Null Game cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "pattern": {
+      "title": "Pattern",
+      "summary": "Resuelve Pattern cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Pattern cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "pearl": {
+      "title": "Pearl Loop",
+      "summary": "Resuelve Pearl Loop cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Pearl Loop cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "pegs": {
+      "title": "Pegs",
+      "summary": "Resuelve Pegs cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Pegs cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "range": {
+      "title": "Range",
+      "summary": "Resuelve Range cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Range cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "rect": {
+      "title": "Rectangles",
+      "summary": "Resuelve Rectangles cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Rectangles cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "sequencing": {
+      "title": "Sequencing",
+      "summary": "Resuelve Sequencing cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Sequencing cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "signpost": {
+      "title": "Signpost",
+      "summary": "Resuelve Signpost cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Signpost cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "singles": {
+      "title": "Singles",
+      "summary": "Resuelve Singles cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Singles cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "sixteen": {
+      "title": "Sixteen",
+      "summary": "Resuelve Sixteen cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Sixteen cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "slant": {
+      "title": "Slant",
+      "summary": "Resuelve Slant cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Slant cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "solo": {
+      "title": "Solo",
+      "summary": "Resuelve Solo cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Solo cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "tents": {
+      "title": "Tents",
+      "summary": "Resuelve Tents cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Tents cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "towers": {
+      "title": "Towers",
+      "summary": "Resuelve Towers cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Towers cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "twiddle": {
+      "title": "Twiddle",
+      "summary": "Resuelve Twiddle cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Twiddle cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "undead": {
+      "title": "Undead",
+      "summary": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "unequal": {
+      "title": "Unequal",
+      "summary": "Resuelve Unequal cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Unequal cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "unruly": {
+      "title": "Unruly",
+      "summary": "Resuelve Unruly cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Unruly cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "cube": {
+      "title": "Cube",
+      "summary": "Resuelve Cube cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Cube cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "filling": {
+      "title": "Filling",
+      "summary": "Resuelve Filling cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Filling cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    },
+    "flip": {
+      "title": "Flip",
+      "summary": "Resuelve Flip cumpliendo todas las restricciones específicas del puzle.",
+      "objective": "Resuelve Flip cumpliendo todas las restricciones específicas del puzle.",
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+    }
+  }
+}
