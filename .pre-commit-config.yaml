@@ -15,7 +15,7 @@ repos:
       - id: detect-private-key
       - id: check-json
       - id: pretty-format-json
-        args: ['--autofix', '--indent=2', '--no-ensure-ascii']
+        args: ['--autofix', '--indent=2', '--no-ensure-ascii', '--no-sort-keys']
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
@@ -49,7 +49,7 @@ repos:
         files: \.(js|mjs)$
       - id: repository-contract-tests
         name: Repository contract tests
-        entry: node --test tests/*.test.mjs
+        entry: bash -c 'node --test tests/*.test.mjs'
         language: system
         pass_filenames: false
         always_run: true
