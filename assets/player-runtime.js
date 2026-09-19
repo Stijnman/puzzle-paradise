@@ -345,9 +345,9 @@
   function populateGuide() {
     const puzzle = runtime.dictionary?.puzzles?.[runtime.game] || {};
     document.getElementById('guide-objective').textContent = puzzle.objective || runtime.config[1];
-    document.getElementById('guide-rules').innerHTML = (runtime.dictionary?.guide?.rules || []).map(item => `<li>${item}</li>`).join('');
-    document.getElementById('guide-tutorial').innerHTML = (runtime.dictionary?.guide?.tutorial || []).map((item,index) => `<div class="demo-step"><strong>${index+1}</strong><br>${item}</div>`).join('');
-    document.getElementById('guide-tips').innerHTML = (runtime.dictionary?.guide?.tips || []).map(item => `<li>${item}</li>`).join('');
+    document.getElementById('guide-rules').innerHTML = (puzzle.rules || runtime.dictionary?.guide?.rules || []).map(item => `<li>${item}</li>`).join('');
+    document.getElementById('guide-tutorial').innerHTML = (puzzle.tutorial || runtime.dictionary?.guide?.tutorial || []).map((item,index) => `<div class="demo-step"><strong>${index+1}</strong><br>${item}</div>`).join('');
+    document.getElementById('guide-tips').innerHTML = (puzzle.tips || runtime.dictionary?.guide?.tips || []).map(item => `<li>${item}</li>`).join('');
   }
 
   function hint() {
