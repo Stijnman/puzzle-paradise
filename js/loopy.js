@@ -111,7 +111,6 @@ function initLoopy(){
                 cell.className='grid-cell fixed';
                 cell.innerText=clue===null?'':String(clue);
                 cell.style.fontSize='11px';
-                cell.setAttribute('aria-label',clue===null?'No clue':'Loop clue '+clue);
             }else{
                 const edge=loopyVisualEdge(vr,vc);
                 cell.className='grid-cell empty';
