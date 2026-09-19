@@ -42,7 +42,20 @@
     "continue": "Continue",
     "noResults": "No puzzles match your search.",
     "collapse": "Collapse header",
-    "expand": "Expand header"
+    "expand": "Expand header",
+    "tagline": "43 puzzles · zero ads",
+    "hero": "A dense, full-screen puzzle arcade with saved progress, daily challenges, multilingual play and keyboard-first controls.",
+    "puzzles": "Puzzles",
+    "categories": "Categories",
+    "dark": "Dark",
+    "light": "Light",
+    "oled": "OLED Black",
+    "statusProgress": "Keep solving — the puzzle is still in progress.",
+    "statusInvalid": "That move conflicts with the current puzzle constraints.",
+    "statusSolved": "Puzzle solved!",
+    "seeded": "Seed",
+    "on": "On",
+    "off": "Off"
   },
   "categories": {
     "Logic": "Logic",
