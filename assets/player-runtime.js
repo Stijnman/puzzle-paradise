@@ -15,69 +15,36 @@
     invalidMoves: 0,
     statusBeforeMove: '',
     audioContext: null,
-    observer: null
+    observer: null,
+    sessionKey: null,
+    dailyDate: null
   };
 
-  function readJSON(key, fallback) {
-    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
-  }
-
-  function writeJSON(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  function hashSeed(value) {
-    let hash = 2166136261;
-    for (const char of String(value)) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-    return hash >>> 0;
-  }
-
-  function mulberry32(seed) {
-    let value = seed >>> 0;
-    return () => {
-      value += 0x6D2B79F5;
-      let t = value;
-      t = Math.imul(t ^ t >>> 15, t | 1);
-      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-
-  function freshSeed() {
-    if (crypto?.getRandomValues) {
-      const values = new Uint32Array(2);
-      crypto.getRandomValues(values);
-      return `${values[0].toString(36)}${values[1].toString(36)}`;
-    }
-    return `${Date.now().toString(36)}-${nativeRandom().toString(36).slice(2)}`;
-  }
-
-  function resetRandom() {
-    Math.random = mulberry32(hashSeed(`${runtime.session.seed}:${runtime.session.difficulty}`));
-  }
-
-  function t(path, fallback = '') {
-    return window.PPI18N.get(runtime.dictionary, path, fallback);
-  }
-
-  function allSessions() {
-    return readJSON('pp.sessions', {});
-  }
 
   function saveSession() {
-    const all = allSessions();
     runtime.session.actions = runtime.history;
     runtime.session.redo = runtime.redo;
     runtime.session.elapsed = Math.max(0, Date.now() - runtime.startedAt);
     runtime.session.invalidMoves = runtime.invalidMoves;
     runtime.session.completed = runtime.completed;
-    all[runtime.game] = runtime.session;
-    writeJSON('pp.sessions', all);
+    window.PPStorage.setSession(runtime.sessionKey, runtime.session);
   }
 
-  function loadSession(difficulty) {
-    const current = allSessions()[runtime.game];
-    if (current && current.difficulty === difficulty && current.seed) {
+  function sessionKeyFor(seed, dailyDate) {
+    if (dailyDate) return `${runtime.game}:daily:${dailyDate}`;
+    if (seed) return `${runtime.game}:seed:${seed}`;
+    return runtime.game;
+  }
+
+  function loadSession(difficulty, requestedSeed = null, dailyDate = null) {
+    runtime.sessionKey = sessionKeyFor(requestedSeed, dailyDate);
+    const current = window.PPStorage.getSession(runtime.sessionKey);
+    if (
+      current &&
+      current.difficulty === difficulty &&
+      current.seed &&
+      (!requestedSeed || current.seed === requestedSeed)
+    ) {
       runtime.session = current;
       runtime.history = Array.isArray(current.actions) ? current.actions : [];
       runtime.redo = Array.isArray(current.redo) ? current.redo : [];
@@ -86,7 +53,16 @@
       runtime.startedAt = Date.now() - (current.elapsed || 0);
       return;
     }
-    runtime.session = { seed: freshSeed(), difficulty, actions: [], redo: [], elapsed: 0, invalidMoves: 0 };
+    runtime.session = {
+      saveVersion: 2,
+      seed: requestedSeed || freshSeed(),
+      difficulty,
+      actions: [],
+      redo: [],
+      elapsed: 0,
+      invalidMoves: 0,
+      completed: false
+    };
     runtime.history = [];
     runtime.redo = [];
     runtime.invalidMoves = 0;
@@ -95,7 +71,7 @@
   }
 
   function saveStats(result = {}) {
-    const all = readJSON('pp.stats', {});
+    const all = window.PPStorage.getStats();
     const stats = all[runtime.game] || { completions: 0, best: {}, stars: 0, moves: 0, accuracy: 100 };
     if (result.completed) stats.completions += 1;
     stats.moves = result.moves ?? stats.moves;
@@ -105,8 +81,7 @@
       const old = stats.best[runtime.session.difficulty];
       if (!old || result.time < old) stats.best[runtime.session.difficulty] = result.time;
     }
-    all[runtime.game] = stats;
-    writeJSON('pp.stats', all);
+    window.PPStorage.setGameStats(runtime.game, stats);
     parent.postMessage({ type: 'pp:stats', game: runtime.game }, '*');
   }
 
@@ -131,7 +106,7 @@
     const total = runtime.history.length;
     const accuracy = total ? Math.max(0, Math.round((total - runtime.invalidMoves) / total * 100)) : 100;
     document.getElementById('accuracy').textContent = `${accuracy}%`;
-    const all = readJSON('pp.stats', {});
+    const all = window.PPStorage.getStats();
     const best = all[runtime.game]?.best?.[runtime.session.difficulty];
     document.getElementById('personal-best').textContent = best ? formatTime(best) : '—';
     document.getElementById('undo').disabled = runtime.history.length === 0;
@@ -248,7 +223,18 @@
     const accuracy = moves ? Math.max(0, Math.round((moves - runtime.invalidMoves) / moves * 100)) : 100;
     const par = ({ easy: 80, medium: 120, hard: 180, expert: 260 })[runtime.session.difficulty] || 120;
     const score = Math.max(1, 3 - (runtime.invalidMoves > 2 ? 1 : 0) - (moves > par ? 1 : 0));
-    if (!alreadyCounted) saveStats({ completed:true, time:elapsed, moves, accuracy, stars:score });
+    if (!alreadyCounted) {
+      saveStats({ completed:true, time:elapsed, moves, accuracy, stars:score });
+      if (runtime.dailyDate) {
+        window.PPStorage.recordDailyCompletion(runtime.dailyDate, runtime.game, {
+          time: elapsed,
+          moves,
+          accuracy,
+          stars: score,
+          seed: runtime.session.seed
+        });
+      }
+    }
     playSound('victory');
     vibrate('victory');
     document.getElementById('victory-stars').textContent = '★'.repeat(score) + '☆'.repeat(3-score);
@@ -335,8 +321,34 @@
   }
 
   function newPuzzle() {
+    if (runtime.dailyDate) return;
     runtime.session.seed = freshSeed();
+    runtime.sessionKey = sessionKeyFor(runtime.session.seed, null);
     resetSamePuzzle();
+  }
+
+  async function sharePuzzle() {
+    const params = new URLSearchParams({
+      game: runtime.game,
+      difficulty: runtime.session.difficulty,
+      seed: runtime.session.seed,
+      lang: runtime.dictionary?.locale || 'en'
+    });
+    if (runtime.dailyDate) params.set('daily', runtime.dailyDate);
+    const url = new URL(`index.html?${params.toString()}`, location.href).href;
+    const title = runtime.dictionary?.puzzles?.[runtime.game]?.title || runtime.config.name;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, text: `${title} · Puzzle Paradise`, url });
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        showToast(url);
+      } else {
+        showToast(url);
+      }
+    } catch (error) {
+      if (error?.name !== 'AbortError') showToast(url);
+    }
   }
 
   function applyTheme(value) {
@@ -460,6 +472,7 @@
     document.getElementById('hint').onclick = hint;
     document.getElementById('rules').onclick = () => toggleDrawer('rules-drawer');
     document.getElementById('settings').onclick = () => toggleDrawer('settings-drawer');
+    document.getElementById('share-game').onclick = sharePuzzle;
     document.getElementById('collapse-ui').onclick = () => {
       document.getElementById('player-app').classList.toggle('compact');
       localStorage.setItem('pp.playerCompact', document.getElementById('player-app').classList.contains('compact') ? '1' : '0');
@@ -519,13 +532,20 @@
     const params = new URLSearchParams(location.search);
     const requestedLanguage = params.get('lang') || window.PPI18N.detect();
     const difficulty = params.get('difficulty') || localStorage.getItem('pp.defaultDifficulty') || 'medium';
+    const requestedSeed = params.get('seed');
+    runtime.dailyDate = params.get('daily');
 
     runtime.dictionary = await window.PPI18N.load(requestedLanguage);
-    loadSession(difficulty);
+    loadSession(difficulty, requestedSeed, runtime.dailyDate);
+    window.PPStorage.recordRecent(game);
     window.PP_DIFFICULTY = runtime.session.difficulty;
     window.PP_SEED = runtime.session.seed;
 
     document.getElementById('difficulty-select').value = runtime.session.difficulty;
+    if (runtime.dailyDate) {
+      document.getElementById('difficulty-select').disabled = true;
+      document.getElementById('new-game').disabled = true;
+    }
     document.getElementById('language-select').value = runtime.dictionary.locale;
     applyTheme(localStorage.getItem('pp.theme') || 'dark');
     document.getElementById('player-app').classList.toggle('compact', localStorage.getItem('pp.playerCompact') === '1');
@@ -533,7 +553,7 @@
     document.getElementById('haptics-toggle').textContent = localStorage.getItem('pp.haptics') === '0' ? t('ui.off','Off') : t('ui.on','On');
 
     document.getElementById('game-name').textContent = runtime.dictionary.puzzles?.[game]?.title || game;
-    document.getElementById('instructions').textContent = runtime.dictionary.puzzles?.[game]?.objective || config[1];
+    document.getElementById('instructions').textContent = runtime.dictionary.puzzles?.[game]?.objective || config.description;
     populateGuide();
     window.PPI18N.apply(document,runtime.dictionary);
 
