@@ -71,259 +71,861 @@
       "title": "Classic Sudoku",
       "summary": "Résolvez Classic Sudoku en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Classic Sudoku en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "arrow-escape": {
       "title": "Arrow Escape",
       "summary": "Résolvez Arrow Escape en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Arrow Escape en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "net": {
       "title": "Pipe Routing",
       "summary": "Résolvez Pipe Routing en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Pipe Routing en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "mines": {
       "title": "Mines",
       "summary": "Résolvez Mines en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Mines en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "fifteen": {
       "title": "Fifteen",
       "summary": "Résolvez Fifteen en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Fifteen en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "keen": {
       "title": "Keen",
       "summary": "Résolvez Keen en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Keen en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "hitori": {
       "title": "Hitori",
       "summary": "Résolvez Hitori en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Hitori en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "lightup": {
       "title": "Light Up",
       "summary": "Résolvez Light Up en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Light Up en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "loopy": {
       "title": "Loopy",
       "summary": "Résolvez Loopy en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Loopy en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "bridges": {
       "title": "Bridges",
       "summary": "Résolvez Bridges en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Bridges en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "samegame": {
       "title": "Same Game",
       "summary": "Résolvez Same Game en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Same Game en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "untangle": {
       "title": "Untangle",
       "summary": "Résolvez Untangle en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Untangle en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "blackbox": {
       "title": "Black Box",
       "summary": "Résolvez Black Box en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Black Box en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "dominosa": {
       "title": "Dominosa",
       "summary": "Résolvez Dominosa en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Dominosa en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "galaxies": {
       "title": "Galaxies",
       "summary": "Résolvez Galaxies en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Galaxies en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "guess": {
       "title": "Guess",
       "summary": "Résolvez Guess en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Guess en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "inertia": {
       "title": "Inertia",
       "summary": "Résolvez Inertia en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Inertia en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "ink": {
       "title": "Ink",
       "summary": "Résolvez Ink en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Ink en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "magnets": {
       "title": "Magnets",
       "summary": "Résolvez Magnets en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Magnets en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "maps": {
       "title": "Map Colouring",
       "summary": "Résolvez Map Colouring en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Map Colouring en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "net2": {
       "title": "Network",
       "summary": "Résolvez Network en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Network en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "netslide": {
       "title": "Net Slide",
       "summary": "Résolvez Net Slide en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Net Slide en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "nullgame": {
       "title": "Null Game",
       "summary": "Résolvez Null Game en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Null Game en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "pattern": {
       "title": "Pattern",
       "summary": "Résolvez Pattern en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Pattern en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "pearl": {
       "title": "Pearl Loop",
       "summary": "Résolvez Pearl Loop en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Pearl Loop en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "pegs": {
       "title": "Pegs",
       "summary": "Résolvez Pegs en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Pegs en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "range": {
       "title": "Range",
       "summary": "Résolvez Range en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Range en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "rect": {
       "title": "Rectangles",
       "summary": "Résolvez Rectangles en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Rectangles en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "sequencing": {
       "title": "Sequencing",
       "summary": "Résolvez Sequencing en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Sequencing en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "signpost": {
       "title": "Signpost",
       "summary": "Résolvez Signpost en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Signpost en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "singles": {
       "title": "Singles",
       "summary": "Résolvez Singles en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Singles en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "sixteen": {
       "title": "Sixteen",
       "summary": "Résolvez Sixteen en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Sixteen en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "slant": {
       "title": "Slant",
       "summary": "Résolvez Slant en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Slant en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "solo": {
       "title": "Solo",
       "summary": "Résolvez Solo en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Solo en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "tents": {
       "title": "Tents",
       "summary": "Résolvez Tents en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Tents en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "towers": {
       "title": "Towers",
       "summary": "Résolvez Towers en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Towers en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "twiddle": {
       "title": "Twiddle",
       "summary": "Résolvez Twiddle en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Twiddle en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "undead": {
       "title": "Undead",
       "summary": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Undead en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "unequal": {
       "title": "Unequal",
       "summary": "Résolvez Unequal en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Unequal en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "unruly": {
       "title": "Unruly",
       "summary": "Résolvez Unruly en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Unruly en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "cube": {
       "title": "Cube",
       "summary": "Résolvez Cube en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Cube en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "filling": {
       "title": "Filling",
       "summary": "Résolvez Filling en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Filling en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     },
     "flip": {
       "title": "Flip",
       "summary": "Résolvez Flip en respectant toutes les contraintes propres au puzzle.",
       "objective": "Résolvez Flip en respectant toutes les contraintes propres au puzzle.",
-      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités."
+      "hint": "Commencez par les indices les plus contraints et éliminez les impossibilités.",
+      "rules": [
+        "Respectez tous les indices et contraintes visibles.",
+        "Un coup n’est valide que s’il conserve une solution possible.",
+        "Le puzzle est terminé uniquement lorsque sa condition de victoire exacte est satisfaite."
+      ],
+      "tutorial": [
+        "Lisez l’objectif et repérez les indices fixes.",
+        "Commencez par le coup le plus contraint.",
+        "Utilisez Indice pour une aide légère sans révéler la solution."
+      ],
+      "tips": [
+        "Privilégiez les déductions forcées aux suppositions.",
+        "Réinitialiser conserve la même graine ; Nouveau puzzle en crée une autre."
+      ]
     }
   }
 }
