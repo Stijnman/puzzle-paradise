@@ -120,6 +120,44 @@ function tryClearArrow(r, c) {
     checkArrowWin();
 }
 
+function renderArrowGrid() {
+    for (let r = 0; r < arrowSize; r++) {
+        for (let c = 0; c < arrowSize; c++) {
+            const cell = document.getElementById('arrow-' + r + '-' + c);
+            if (!cell) continue;
+            const value = arrowGrid[r][c];
+            cell.innerText = value || '';
+            cell.classList.toggle('empty', !value);
+            if (value) {
+                cell.setAttribute('tabindex','0');
+                cell.setAttribute('aria-label','Arrow row ' + (r + 1) + ', column ' + (c + 1) + ', ' + value);
+            } else {
+                cell.removeAttribute('tabindex');
+                cell.setAttribute('aria-label','Cleared cell');
+            }
+        }
+    }
+}
+
+function arrowSolved() {
+    return arrowGrid.flat().every(value => value == null);
+}
+
+function arrowHint() {
+    for (let r = 0; r < arrowSize; r++) {
+        for (let c = 0; c < arrowSize; c++) {
+            const value = arrowGrid[r][c];
+            if (value && rayClearInGrid(arrowGrid,r,c,value)) {
+                return {
+                    message:'This arrow has a clear path to the edge.',
+                    selector:'#arrow-' + r + '-' + c
+                };
+            }
+        }
+    }
+    return 'Re-scan the boundary for an arrow whose ray contains no remaining arrows.';
+}
+
 function checkArrowWin() {
     const remaining = arrowGrid.flat().filter(Boolean).length;
     const status = document.getElementById('arrow-status');
@@ -132,3 +170,23 @@ function checkArrowWin() {
         status.style.color = '';
     }
 }
+
+
+window.PPEngine?.register('arrow-escape', {
+    version:1,
+    serialize:() => ({
+        version:1,
+        size:arrowSize,
+        grid:arrowGrid.map(row => [...row])
+    }),
+    restore:snapshot => {
+        if (!snapshot || snapshot.version !== 1 || snapshot.size !== arrowSize || !Array.isArray(snapshot.grid)) return false;
+        arrowGrid = snapshot.grid.map(row => [...row]);
+        renderArrowGrid();
+        checkArrowWin();
+        return true;
+    },
+    validate:() => arrowGrid.length === arrowSize && arrowGrid.every(row => row.length === arrowSize),
+    isSolved:arrowSolved,
+    getHint:arrowHint
+});
