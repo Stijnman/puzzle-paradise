@@ -42,7 +42,20 @@
     "continue": "Weiter",
     "noResults": "Keine passenden Puzzles.",
     "collapse": "Kopfzeile einklappen",
-    "expand": "Kopfzeile ausklappen"
+    "expand": "Kopfzeile ausklappen",
+    "tagline": "43 Puzzles · keine Werbung",
+    "hero": "Eine kompakte Vollbild-Puzzlehalle mit gespeichertem Fortschritt, Tagesrätsel, mehreren Sprachen und Tastatursteuerung.",
+    "puzzles": "Puzzles",
+    "categories": "Kategorien",
+    "dark": "Dunkel",
+    "light": "Hell",
+    "oled": "OLED-Schwarz",
+    "statusProgress": "Weiterlösen — das Puzzle ist noch nicht fertig.",
+    "statusInvalid": "Dieser Zug widerspricht den aktuellen Puzzle-Regeln.",
+    "statusSolved": "Puzzle gelöst!",
+    "seeded": "Seed",
+    "on": "An",
+    "off": "Aus"
   },
   "categories": {
     "Logic": "Logik",
