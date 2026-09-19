@@ -1,281 +1,84 @@
-# Contributing Guide
+# Contributing to Puzzle Paradise
 
-Thank you for your interest in contributing to **hermes-prompts**!
-This document outlines how to contribute new prompts, improve existing ones, and help maintain this library.
+Contributions that improve puzzle correctness, accessibility, performance, documentation, or the player experience are welcome.
 
----
+## Before changing code
 
-## 📋 Table of Contents
+- Check existing issues and pull requests for overlapping work.
+- Keep the site framework-free unless a dependency solves a clear problem that cannot reasonably be handled with the current stack.
+- Do not advertise a puzzle until its engine, loader mapping, instructions, and success condition all exist.
 
-- [Code of Conduct](#-code-of-conduct)
-- [How to Contribute](#-how-to-contribute)
-- [Adding a New Prompt](#-adding-a-new-prompt)
-- [Improving Existing Prompts](#-improving-existing-prompts)
-- [Testing Requirements](#-testing-requirements)
-- [Pull Request Process](#-pull-request-process)
-- [Review Process](#-review-process)
+## Local checks
 
----
-
-## 🤝 Code of Conduct
-
-By participating in this project, you agree to abide by the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
-We are committed to providing a welcoming and inspiring community for all.
-
----
-
-## 🚀 How to Contribute
-
-### Reporting Issues
-
-If you find an issue with a prompt, please [open an issue](https://github.com/Stijnman/hermes-prompts/issues/new) with:
-- Clear description of the problem
-- Which prompt is affected
-- What happened vs what you expected
-- Any error messages
-
-### Suggesting Enhancements
-
-For feature requests or improvements:
-1. Check existing issues for duplicates
-2. Open a new issue with:
-   - Detailed description of the enhancement
-   - Use case or problem it solves
-   - Proposed solution (if you have one)
-
-### Contributing Code/Prompts
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-prompt`)
-3. Make your changes
-4. Add documentation
-5. Commit your changes
-6. Push to your fork
-7. Open a Pull Request
-
----
-
-## ✨ Adding a New Prompt
-
-### Before You Start
-
-1. **Check for duplicates**: Search existing prompts to ensure the capability isn't already covered
-2. **Verify usefulness**: Ensure the prompt provides value and isn't redundant
-3. **Test manually**: Verify the prompt works with available AI models
-
-### Prompt Structure
-
-Every prompt should follow this structure:
-
-````markdown
-## Prompt Name
-
-**Purpose**: Clear description of what this prompt does
-
-**Use When**: When to use this prompt
-
-**Don't Use When**: When NOT to use this prompt
-
-**Prompt**:
-```text
-
-[The actual prompt text goes here]
-
-```
-
-**Example Usage**:
-```text
-
-User: [example input]
-AI: [example output]
-
-```
-
-**Notes**:
-- Any additional notes or warnings
-````
-
-### Prompt Requirements
-
-Every new prompt **MUST** include:
-1. Clear name and purpose
-2. Usage guidelines (when to use/when not to use)
-3. The prompt text itself
-4. Example usage
-5. Any relevant notes or warnings
-
-### Content Guidelines
-
-**DO:**
-- Use clear, concise language
-- Include specific instructions
-- Add context when helpful
-- Include examples
-- Add safety disclaimers when needed
-
-**DON'T:**
-- Include sensitive or personal data
-- Request inappropriate information
-- Encourage illegal or unethical behavior
-- Make promises the AI can't keep
-- Use overly complex or confusing language
-
----
-
-## 🔧 Improving Existing Prompts
-
-### Before Submitting Changes
-
-1. **Verify the issue**: Ensure the change addresses a real problem
-2. **Check existing PRs**: Avoid duplicate work
-3. **Test locally**: Verify your changes work as expected
-
-### Types of Improvements
-
-- Fix typos or unclear language
-- Add missing examples
-- Clarify ambiguous instructions
-- Add warnings or notes
-- Improve prompt structure
-- Enhance prompt effectiveness
-- Add cross-references
-
----
-
-## 🧪 Testing Requirements
-
-All contributions **MUST** be tested. At minimum:
-
-### Manual Testing
-
-- [ ] Prompt works with valid inputs
-- [ ] Prompt handles edge cases
-- [ ] Prompt produces quality output
-- [ ] Prompt is safe and appropriate
-
-### Documentation
-
-- [ ] Prompt is properly documented
-- [ ] Examples are clear
-- [ ] Usage guidelines are provided
-
----
-
-## 📤 Pull Request Process
-
-### 1. Fork and Branch
+Use Node.js 20 or newer:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hermes-prompts.git
-cd hermes-prompts
-git checkout -b feature/your-prompt-name
+find js -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+node --test tests/*.test.mjs
 ```
 
-### 2. Make Changes
+For the full test matrix, see [TESTING.md](TESTING.md).
 
-- Add your new prompt or improve existing one
-- Add documentation
-- Update any relevant files
+## Adding a puzzle
 
-### 3. Commit Messages
+A puzzle contribution must update all relevant layers:
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/) format:
+1. Add catalogue metadata in `index.html`.
+2. Add the puzzle ID, initialization function, and instructions in `player.html`.
+3. Add `js/<puzzle-id>.js`.
+4. Give the engine a working reset path through the shared **New puzzle** button.
+5. Implement a meaningful success or completion condition.
+6. Verify keyboard and small-screen usability where practical.
+7. Update documentation if the puzzle introduces a new interaction pattern.
+
+The repository contract tests intentionally fail when the catalogue, loader, and engine files drift apart.
+
+## Gameplay fixes
+
+For a gameplay bug, include in the pull request:
+
+- the puzzle affected
+- steps to reproduce the old behavior
+- the expected behavior
+- the code path changed
+- how the fix was tested
+
+Prefer deterministic logic for tests. Random generation is fine for gameplay, but invariants should be testable without depending on a lucky random board.
+
+## Code style
+
+- Use plain JavaScript compatible with the browsers supported by GitHub Pages.
+- Keep puzzle-specific state inside its engine file.
+- Use descriptive function and variable names.
+- Preserve the shared player element IDs unless the shell changes with the engine.
+- Use `textContent` or `innerText` for user-controlled text.
+- Add ARIA labels or live status text for important interactive state.
+- Avoid hidden tracking, analytics, advertising, and unnecessary network calls.
+
+## Documentation
+
+Keep claims evidence-based. Do not mark a feature as complete merely because a placeholder file or workflow exists.
+
+Third-party inspiration or adapted code must retain appropriate attribution and license notices. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Pull requests
+
+Create a focused branch, make the change, run the local checks, and open a pull request against `main`.
+
+Use clear commit messages such as:
 
 ```text
-feat: add new reasoning prompt for complex problems
-fix: correct typo in coding prompt
-docs: update README with new prompts
-test: add tests for new prompts
+fix: correct mines reveal logic
+test: cover puzzle loader mappings
+docs: update gameplay testing guide
 ```
 
-**Guidelines:**
-- Use present tense
-- Limit first line to 50 characters
-- Separate subject from body with blank line
-- Wrap body at 72 characters
+A pull request is ready to merge when relevant CI checks are green and affected puzzles pass the manual gameplay checklist.
 
-### 4. Push Changes
+## Security
 
-```bash
-git push origin feature/your-prompt-name
-```
+Do not place credentials, tokens, private keys, or personal data in the repository. Report security issues according to [SECURITY.md](SECURITY.md).
 
-### 5. Open Pull Request
+## Code of conduct
 
-1. Go to <https://github.com/Stijnman/hermes-prompts>
-2. Click "New Pull Request"
-3. Select your fork and feature branch
-4. Fill in PR template
-5. Click "Create Pull Request"
-
----
-
-## 🎯 Pull Request Template
-
-```markdown
-## Description
-
-[Clear description of the changes]
-
-## Type of Change
-
-- [ ] New prompt
-- [ ] Prompt improvement
-- [ ] Documentation update
-- [ ] Bug fix
-- [ ] Other: _______________
-
-## Testing
-
-- [ ] Manual testing completed
-- [ ] Prompt tested with multiple inputs
-- [ ] Output quality verified
-- [ ] Safety considerations reviewed
-
-## Checklist
-
-- [ ] Code follows repository standards
-- [ ] I have read CONTRIBUTING.md
-- [ ] Documentation added
-- [ ] All tests pass
-- [ ] No sensitive data
-- [ ] All links work
-```
-
----
-
-## 🔍 Review Process
-
-1. **Maintainer Review**: Repository maintainer reviews the PR
-2. **Feedback**: You may receive requests for changes
-3. **Approval**: PR is approved and merged
-
-### Review Criteria
-
-- [ ] Follows repository standards
-- [ ] Clear and readable
-- [ ] Well-documented
-- [ ] Ethically sound
-- [ ] Safe and appropriate
-
----
-
-## 🛠️ Maintenance
-
-### Versioning
-
-- **MINOR**: New prompts or significant improvements
-- **PATCH**: Bug fixes and documentation updates
-
-### Organization
-
-- Keep prompts well-organized by category
-- Maintain consistent formatting
-- Update cross-references
-- Archive deprecated prompts
-
----
-
-*Thank you for contributing! Your help makes this library better for everyone.*
-
-*Last updated: September 11, 2026*
+Participation in the project is covered by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
