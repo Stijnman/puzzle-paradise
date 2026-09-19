@@ -4,9 +4,9 @@ import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import { loadRegistry } from './helpers/registry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const playerSource = fs.readFileSync(path.join(root, 'player.html'), 'utf8');
 
 class FakeClassList {
   constructor(element) {
@@ -236,15 +236,7 @@ class FakeDocument {
 }
 
 function puzzleMappings() {
-  const match = playerSource.match(/const puzzles=\{(.*?)\};/s);
-  assert.ok(match, 'player.html puzzle mapping was not found');
-
-  const result = [];
-  const pattern = /(?:'([^']+)'|([a-z0-9-]+)):\['([^']+)'/g;
-  for (const item of match[1].matchAll(pattern)) {
-    result.push({ id: item[1] || item[2], initFunction: item[3] });
-  }
-  return result;
+  return loadRegistry().map(puzzle => ({ id: puzzle.id, initFunction: puzzle.init }));
 }
 
 function createContext() {
