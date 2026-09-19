@@ -1,187 +1,226 @@
-// Loopy / Slitherlink Puzzle Logic
-// Puzzle concept inspired by Simon Tatham's Portable Puzzle Collection.
+// Loopy / Slitherlink.
+// A simply connected generated region provides a known single-loop boundary.
 
-const LOOPY_SIZE = 4;
-let loopyEdges = new Set();
-let loopyClues = [];
+let loopySize=4;
+let loopyEdges=new Set();
+let loopyTarget=new Set();
+let loopyClues=[];
 
-function initLoopy() {
-    const board = document.getElementById('arrow-board');
-    const side = LOOPY_SIZE * 2 + 1;
-    board.style.gridTemplateColumns = `repeat(${side}, minmax(18px,1fr))`;
-    board.innerHTML = '';
-    loopyEdges = new Set();
-    loopyClues = buildLoopyClues();
+function loopyDifficulty(){
+    return ['easy','medium','hard','expert'].includes(window.PP_DIFFICULTY)?window.PP_DIFFICULTY:'medium';
+}
+function loopySettings(){
+    return {
+        easy:{size:3,clue:1},
+        medium:{size:4,clue:.86},
+        hard:{size:5,clue:.68},
+        expert:{size:6,clue:.52}
+    }[loopyDifficulty()];
+}
 
-    for (let vr = 0; vr < side; vr++) {
-        for (let vc = 0; vc < side; vc++) {
-            const cell = document.createElement('div');
-            cell.style.minWidth = '18px';
-            cell.style.minHeight = '18px';
-            cell.style.display = 'grid';
-            cell.style.placeItems = 'center';
+function loopyVertex(row,col){ return row*(loopySize+1)+col; }
+function loopyEdgeKey(a,b){ return [a,b].sort((x,y)=>x-y).join('-'); }
 
-            if (vr % 2 === 0 && vc % 2 === 0) {
-                cell.innerText = '•';
-                cell.setAttribute('aria-hidden', 'true');
-            } else if (vr % 2 === 1 && vc % 2 === 1) {
-                const row = (vr - 1) / 2;
-                const col = (vc - 1) / 2;
-                const clue = loopyClues[row * LOOPY_SIZE + col];
-                cell.className = 'grid-cell fixed';
-                cell.innerText = clue;
-                cell.style.fontSize = '11px';
-                cell.setAttribute('aria-label', `Loop clue ${clue}`);
-            } else {
-                const edge = loopyVisualEdge(vr, vc);
-                cell.className = 'grid-cell empty';
-                cell.id = `loopy-edge-${vr}-${vc}`;
-                cell.dataset.edge = edge;
-                cell.setAttribute('role', 'button');
-                cell.setAttribute('tabindex', '0');
-                cell.setAttribute('aria-label', 'Toggle loop edge');
-                cell.onclick = () => toggleLoopyEdge(edge);
-                cell.onkeydown = event => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        toggleLoopyEdge(edge);
-                    }
+function loopyCellEdges(row,col){
+    return [
+        loopyEdgeKey(loopyVertex(row,col),loopyVertex(row,col+1)),
+        loopyEdgeKey(loopyVertex(row+1,col),loopyVertex(row+1,col+1)),
+        loopyEdgeKey(loopyVertex(row,col),loopyVertex(row+1,col)),
+        loopyEdgeKey(loopyVertex(row,col+1),loopyVertex(row+1,col+1))
+    ];
+}
+
+function buildLoopyTarget(){
+    const heights=[];
+    let height=1+Math.floor(Math.random()*loopySize);
+    for(let col=0;col<loopySize;col++){
+        if(col>0){
+            height+=Math.floor(Math.random()*3)-1;
+            height=Math.max(1,Math.min(loopySize,height));
+        }
+        heights.push(height);
+    }
+
+    const filled=new Set();
+    for(let col=0;col<loopySize;col++){
+        for(let row=loopySize-heights[col];row<loopySize;row++){
+            filled.add(row*loopySize+col);
+        }
+    }
+
+    const target=new Set();
+    for(const index of filled){
+        const row=Math.floor(index/loopySize),col=index%loopySize;
+        const neighbours=[
+            [-1,0,loopyEdgeKey(loopyVertex(row,col),loopyVertex(row,col+1))],
+            [1,0,loopyEdgeKey(loopyVertex(row+1,col),loopyVertex(row+1,col+1))],
+            [0,-1,loopyEdgeKey(loopyVertex(row,col),loopyVertex(row+1,col))],
+            [0,1,loopyEdgeKey(loopyVertex(row,col+1),loopyVertex(row+1,col+1))]
+        ];
+        for(const [dr,dc,edge] of neighbours){
+            const r=row+dr,c=col+dc;
+            if(r<0||r>=loopySize||c<0||c>=loopySize||!filled.has(r*loopySize+c)) target.add(edge);
+        }
+    }
+    return target;
+}
+
+function buildLoopyClues(probability){
+    return Array.from({length:loopySize*loopySize},(_,index)=>{
+        if(Math.random()>probability) return null;
+        const row=Math.floor(index/loopySize),col=index%loopySize;
+        return loopyCellEdges(row,col).filter(edge=>loopyTarget.has(edge)).length;
+    });
+}
+
+function loopyVisualEdge(vr,vc){
+    if(vr%2===0){
+        const row=vr/2,col=(vc-1)/2;
+        return loopyEdgeKey(loopyVertex(row,col),loopyVertex(row,col+1));
+    }
+    const row=(vr-1)/2,col=vc/2;
+    return loopyEdgeKey(loopyVertex(row,col),loopyVertex(row+1,col));
+}
+
+function initLoopy(){
+    const settings=loopySettings();
+    loopySize=settings.size;
+    loopyTarget=buildLoopyTarget();
+    loopyClues=buildLoopyClues(settings.clue);
+    loopyEdges=new Set();
+
+    const board=document.getElementById('arrow-board');
+    const side=loopySize*2+1;
+    board.style.gridTemplateColumns='repeat('+side+',minmax(16px,1fr))';
+    board.innerHTML='';
+
+    for(let vr=0;vr<side;vr++){
+        for(let vc=0;vc<side;vc++){
+            const cell=document.createElement('div');
+            cell.style.minWidth='16px';
+            cell.style.minHeight='16px';
+            cell.style.display='grid';
+            cell.style.placeItems='center';
+
+            if(vr%2===0&&vc%2===0){
+                cell.innerText='•';
+                cell.setAttribute('aria-hidden','true');
+            }else if(vr%2===1&&vc%2===1){
+                const row=(vr-1)/2,col=(vc-1)/2;
+                const clue=loopyClues[row*loopySize+col];
+                cell.className='grid-cell fixed';
+                cell.innerText=clue===null?'':String(clue);
+                cell.style.fontSize='11px';
+                cell.setAttribute('aria-label',clue===null?'No clue':'Loop clue '+clue);
+            }else{
+                const edge=loopyVisualEdge(vr,vc);
+                cell.className='grid-cell empty';
+                cell.id='loopy-edge-'+vr+'-'+vc;
+                cell.dataset.edge=edge;
+                cell.setAttribute('role','button');
+                cell.setAttribute('tabindex','0');
+                cell.setAttribute('aria-label','Toggle loop edge');
+                cell.onclick=()=>toggleLoopyEdge(edge);
+                cell.onkeydown=event=>{
+                    if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLoopyEdge(edge);}
                 };
             }
-
             board.appendChild(cell);
         }
     }
 
     renderLoopy();
-    const status = document.getElementById('arrow-status');
-    status.innerText = 'Draw one closed loop. Each number tells how many of its four surrounding edges belong to the loop.';
-    status.style.color = '';
+    checkLoopyWin();
 }
 
-function loopyVertex(row, col) {
-    return row * (LOOPY_SIZE + 1) + col;
-}
-
-function loopyEdgeKey(a, b) {
-    return [a, b].sort((x, y) => x - y).join('-');
-}
-
-function loopyVisualEdge(vr, vc) {
-    if (vr % 2 === 0) {
-        const row = vr / 2;
-        const col = (vc - 1) / 2;
-        return loopyEdgeKey(loopyVertex(row, col), loopyVertex(row, col + 1));
-    }
-
-    const row = (vr - 1) / 2;
-    const col = vc / 2;
-    return loopyEdgeKey(loopyVertex(row, col), loopyVertex(row + 1, col));
-}
-
-function buildLoopyTarget() {
-    const target = new Set();
-
-    for (let c = 0; c < LOOPY_SIZE; c++) {
-        target.add(loopyEdgeKey(loopyVertex(0, c), loopyVertex(0, c + 1)));
-        target.add(loopyEdgeKey(loopyVertex(LOOPY_SIZE, c), loopyVertex(LOOPY_SIZE, c + 1)));
-    }
-    for (let r = 0; r < LOOPY_SIZE; r++) {
-        target.add(loopyEdgeKey(loopyVertex(r, 0), loopyVertex(r + 1, 0)));
-        target.add(loopyEdgeKey(loopyVertex(r, LOOPY_SIZE), loopyVertex(r + 1, LOOPY_SIZE)));
-    }
-
-    return target;
-}
-
-function loopyCellEdges(row, col) {
-    return [
-        loopyEdgeKey(loopyVertex(row, col), loopyVertex(row, col + 1)),
-        loopyEdgeKey(loopyVertex(row + 1, col), loopyVertex(row + 1, col + 1)),
-        loopyEdgeKey(loopyVertex(row, col), loopyVertex(row + 1, col)),
-        loopyEdgeKey(loopyVertex(row, col + 1), loopyVertex(row + 1, col + 1))
-    ];
-}
-
-function buildLoopyClues() {
-    const target = buildLoopyTarget();
-    return Array.from({ length: LOOPY_SIZE * LOOPY_SIZE }, (_, index) => {
-        const row = Math.floor(index / LOOPY_SIZE);
-        const col = index % LOOPY_SIZE;
-        return loopyCellEdges(row, col).filter(edge => target.has(edge)).length;
-    });
-}
-
-function toggleLoopyEdge(edge) {
-    if (loopyEdges.has(edge)) loopyEdges.delete(edge);
-    else loopyEdges.add(edge);
+function toggleLoopyEdge(edge){
+    if(loopyEdges.has(edge)) loopyEdges.delete(edge); else loopyEdges.add(edge);
     renderLoopy();
     checkLoopyWin();
 }
 
-function renderLoopy() {
-    const side = LOOPY_SIZE * 2 + 1;
-    for (let vr = 0; vr < side; vr++) {
-        for (let vc = 0; vc < side; vc++) {
-            if (vr % 2 === vc % 2) continue;
-            const cell = document.getElementById(`loopy-edge-${vr}-${vc}`);
-            if (!cell) continue;
-            const edge = cell.dataset.edge;
-            const active = loopyEdges.has(edge);
-            cell.innerText = active ? (vr % 2 === 0 ? '━' : '┃') : '';
-            cell.classList.toggle('empty', !active);
-            cell.style.color = 'var(--primary)';
+function renderLoopy(){
+    const side=loopySize*2+1;
+    for(let vr=0;vr<side;vr++){
+        for(let vc=0;vc<side;vc++){
+            if(vr%2===vc%2) continue;
+            const cell=document.getElementById('loopy-edge-'+vr+'-'+vc);
+            if(!cell) continue;
+            const active=loopyEdges.has(cell.dataset.edge);
+            cell.innerText=active?(vr%2===0?'━':'┃'):'';
+            cell.classList.toggle('empty',!active);
+            cell.style.color='var(--primary)';
         }
     }
 }
 
-function loopySingleLoop() {
-    if (!loopyEdges.size) return false;
-
-    const adjacency = new Map();
-    for (const edge of loopyEdges) {
-        const [a, b] = edge.split('-').map(Number);
-        if (!adjacency.has(a)) adjacency.set(a, []);
-        if (!adjacency.has(b)) adjacency.set(b, []);
-        adjacency.get(a).push(b);
-        adjacency.get(b).push(a);
+function loopySingleLoop(){
+    if(!loopyEdges.size) return false;
+    const adjacency=new Map();
+    for(const edge of loopyEdges){
+        const [a,b]=edge.split('-').map(Number);
+        if(!adjacency.has(a)) adjacency.set(a,[]);
+        if(!adjacency.has(b)) adjacency.set(b,[]);
+        adjacency.get(a).push(b);adjacency.get(b).push(a);
     }
-
-    if ([...adjacency.values()].some(neighbours => neighbours.length !== 2)) return false;
-
-    const start = adjacency.keys().next().value;
-    const reached = new Set([start]);
-    const queue = [start];
-
-    while (queue.length) {
-        const current = queue.shift();
-        for (const next of adjacency.get(current)) {
-            if (reached.has(next)) continue;
-            reached.add(next);
-            queue.push(next);
+    if([...adjacency.values()].some(list=>list.length!==2)) return false;
+    const start=adjacency.keys().next().value,reached=new Set([start]),queue=[start];
+    while(queue.length){
+        const current=queue.shift();
+        for(const next of adjacency.get(current)){
+            if(!reached.has(next)){reached.add(next);queue.push(next);}
         }
     }
-
-    return reached.size === adjacency.size;
+    return reached.size===adjacency.size;
 }
 
-function checkLoopyWin() {
-    const cluesValid = loopyClues.every((clue, index) => {
-        const row = Math.floor(index / LOOPY_SIZE);
-        const col = index % LOOPY_SIZE;
-        return loopyCellEdges(row, col).filter(edge => loopyEdges.has(edge)).length === clue;
+function loopyCluesValid(){
+    return loopyClues.every((clue,index)=>{
+        if(clue===null) return true;
+        const row=Math.floor(index/loopySize),col=index%loopySize;
+        return loopyCellEdges(row,col).filter(edge=>loopyEdges.has(edge)).length===clue;
     });
-    const singleLoop = loopySingleLoop();
-    const status = document.getElementById('arrow-status');
+}
 
-    if (cluesValid && singleLoop) {
-        status.innerText = 'Every clue matches and the edges form one closed loop. Puzzle solved!';
-        status.style.color = 'var(--accent-success)';
-    } else if (loopyEdges.size && !singleLoop) {
-        status.innerText = 'The selected edges do not yet form one closed, non-branching loop.';
-        status.style.color = '';
-    } else {
-        status.innerText = 'Draw a single loop while matching every numbered clue.';
-        status.style.color = '';
+function loopySolved(){ return loopyCluesValid()&&loopySingleLoop(); }
+
+function checkLoopyWin(){
+    const status=document.getElementById('arrow-status');
+    if(loopySolved()){
+        status.innerText='Every visible clue matches and the edges form one closed loop. Puzzle solved!';
+        status.style.color='var(--accent-success)';
+    }else{
+        status.innerText=loopyDifficulty()[0].toUpperCase()+loopyDifficulty().slice(1)+' · draw one non-branching loop matching all visible clues.';
+        status.style.color='';
     }
 }
+
+function loopyHint(){
+    for(const edge of loopyTarget){
+        if(!loopyEdges.has(edge)){
+            const cell=[...document.querySelectorAll('[data-edge]')].find(node=>node.dataset.edge===edge);
+            return {
+                message:'A known valid loop uses the highlighted edge.',
+                selector:cell?'#'+cell.id:null
+            };
+        }
+    }
+    return 'Check numbered cells whose current edge count is already close to their clue.';
+}
+
+window.PPEngine?.register('loopy',{
+    version:1,
+    serialize:()=>({version:1,size:loopySize,edges:[...loopyEdges],target:[...loopyTarget],clues:[...loopyClues]}),
+    restore:s=>{
+        if(!s||s.version!==1||s.size!==loopySize) return false;
+        loopyEdges=new Set(s.edges||[]);loopyTarget=new Set(s.target||[]);loopyClues=[...s.clues];
+        renderLoopy();checkLoopyWin();return true;
+    },
+    validate:()=>loopyClues.every((clue,index)=>{
+        if(clue===null) return true;
+        const row=Math.floor(index/loopySize),col=index%loopySize;
+        return loopyCellEdges(row,col).filter(edge=>loopyEdges.has(edge)).length<=clue;
+    }),
+    isSolved:loopySolved,
+    getHint:loopyHint
+});
