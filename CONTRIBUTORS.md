@@ -1,88 +1,23 @@
 # Contributors
 
-This project exists thanks to all the people who contribute.
+Puzzle Paradise is maintained by [Stijnman](https://github.com/Stijnman).
 
----
+## Contribution credit
 
-## 🏆 Core Maintainers
+Git history and pull requests are the source of truth for authorship. Contributors are encouraged to use their own GitHub account when submitting changes so commits and pull requests preserve accurate credit.
 
-| Name | Role | GitHub | Contributions |
-|------|------|-------|--------------|
-| **Stijnman** | Owner, Lead Maintainer | [@Stijnman](https://github.com/Stijnman) | Repository creation, all initial prompts, documentation, infrastructure |
+Contributions can include:
 
----
+- puzzle engines and rule-correctness fixes
+- testing and quality automation
+- accessibility improvements
+- user-interface improvements
+- documentation
+- security and dependency maintenance
+- bug reports and reproducible test cases
 
-## 🙏 Contributors
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution process.
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## Third-party work
 
-| Name | GitHub | Contributions |
-|------|-------|--------------|
-| Mistral Vibe | [@mistralai](https://github.com/mistralai) | ✅ Comprehensive documentation, security enhancements, CI/CD setup, issue templates, code of conduct, changelog, pre-commit hooks, .gitignore |
-
----
-
-## 📊 Contribution Types
-
-This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind are welcome!
-
-| Emoji | Description |
-| ------- | ------------- |
-| 📖 | Documentation |
-| 🐛 | Bug reports |
-| 💡 | Feature requests |
-| 🔒 | Security |
-| ⚠️ | Testing |
-| 📦 | New prompts |
-| 🛠️ | Infrastructure |
-| 📚 | Examples |
-| 🤔 | Ideas |
-
----
-
-## 🤝 How to Contribute
-
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed contribution guidelines.
-
----
-
-## 🏷️ Recognition
-
-All contributors will be:
-- Added to this file (if desired)
-- Mentioned in release notes
-- Credited in relevant documentation
-
-To be added to this file, please:
-1. Make a meaningful contribution to the repository
-2. Open a pull request
-3. Request to be added in the PR description
-
----
-
-## 📈 Statistics
-
-| Metric | Value |
-| -------- | ------- |
-| Total Contributors | 2 |
-| Core Maintainers | 1 |
-| External Contributors | 1 |
-
----
-
-## 🎯 How to Add Yourself
-
-1. **Fork** the repository
-2. **Edit** this file to add your contribution
-3. **Commit** with message: `docs: add [Your Name] to CONTRIBUTORS.md`
-4. **Open** a Pull Request
-
-**Format**:
-
-```markdown
-| Your Name | [@yourgithub](https://github.com/yourgithub) | Your contributions |
-```
-
----
-
-*Last updated: September 11, 2026*
+Puzzle concepts and upstream inspiration are credited separately in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This file should not be used to replace upstream copyright or license notices.

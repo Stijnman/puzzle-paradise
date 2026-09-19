@@ -1,114 +1,227 @@
-// Light Up / Akari Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Light Up / Akari.
+// A valid bulb placement is generated first; numbered wall clues are then revealed by difficulty.
 
-const BOARD_SIZE = 8;
-let grid = [];
+let lightupSize=6;
+let lightupWalls=new Set();
+let lightupClues=new Map();
+let lightupBulbs=new Set();
+let lightupSolution=new Set();
 
-function initLightUp() {
-    const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
-    board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    grid = new Array(BOARD_SIZE * BOARD_SIZE).fill('empty'); // empty, bulb, lit
+function lightupDifficulty(){
+    return ['easy','medium','hard','expert'].includes(window.PP_DIFFICULTY)?window.PP_DIFFICULTY:'medium';
+}
 
-    // Place bulbs and lamps: bulbs light up cells, must light all white cells
-    // No two bulbs can see each other, bulbs can't be adjacent
+function lightupSettings(){
+    return {
+        easy:{size:5,wall:.25,clue:1},
+        medium:{size:6,wall:.21,clue:.8},
+        hard:{size:7,wall:.17,clue:.58},
+        expert:{size:8,wall:.14,clue:.38}
+    }[lightupDifficulty()];
+}
 
-    // Initialize: some cells are fixed walls ('#'), rest are empty
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-        grid[i] = Math.random() > 0.85 ? 'wall' : 'empty'; // ~15% walls
+function lightUpRayCells(index,walls=lightupWalls){
+    const row=Math.floor(index/lightupSize),col=index%lightupSize,cells=[];
+    for(const [dr,dc] of [[-1,0],[1,0],[0,-1],[0,1]]){
+        let r=row+dr,c=col+dc;
+        while(r>=0&&r<lightupSize&&c>=0&&c<lightupSize){
+            const next=r*lightupSize+c;
+            if(walls.has(next)) break;
+            cells.push(next);
+            r+=dr;c+=dc;
+        }
+    }
+    return cells;
+}
+
+function isLightUpCellLit(index,bulbs=lightupBulbs,walls=lightupWalls){
+    return bulbs.has(index)||lightUpRayCells(index,walls).some(cell=>bulbs.has(cell));
+}
+
+function adjacentLightUpBulbs(index,bulbs=lightupBulbs){
+    const row=Math.floor(index/lightupSize),col=index%lightupSize;
+    let count=0;
+    for(const [dr,dc] of [[-1,0],[1,0],[0,-1],[0,1]]){
+        const r=row+dr,c=col+dc;
+        if(r<0||r>=lightupSize||c<0||c>=lightupSize) continue;
+        if(bulbs.has(r*lightupSize+c)) count++;
+    }
+    return count;
+}
+
+function generateLightUpPuzzle(){
+    const settings=lightupSettings();
+    lightupSize=settings.size;
+    lightupWalls=new Set();
+
+    for(let index=0;index<lightupSize*lightupSize;index++){
+        if(Math.random()<settings.wall) lightupWalls.add(index);
     }
 
-    // Place bulbs (simplified: randomly place some)
-    let bulbsPlaced = 0;
-    while (bulbsPlaced < 10) {
-        const idx = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
-        if (grid[idx] === 'empty') {
-            grid[idx] = 'bulb';
-            bulbsPlaced++;
+    if(lightupWalls.size<2){
+        lightupWalls.add(0);
+        lightupWalls.add(lightupSize*lightupSize-1);
+    }
+
+    const open=Array.from({length:lightupSize*lightupSize},(_,i)=>i).filter(i=>!lightupWalls.has(i));
+    for(let i=open.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [open[i],open[j]]=[open[j],open[i]];
+    }
+
+    lightupSolution=new Set();
+    for(const index of open){
+        if(!isLightUpCellLit(index,lightupSolution,lightupWalls)){
+            lightupSolution.add(index);
         }
     }
 
-    // Calculate lit cells (simplified)
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
-            if (grid[idx] === 'bulb') {
-                // Light up in 4 directions until wall
-                for (let dc = 1; c + dc < BOARD_SIZE; dc++) {
-                    const nIdx = r * BOARD_SIZE + c + dc;
-                    if (grid[nIdx] === 'wall') break;
-                    grid[nIdx] = 'lit';
-                }
-                for (let dc = -1; c + dc >= 0; dc--) {
-                    const nIdx = r * BOARD_SIZE + c + dc;
-                    if (grid[nIdx] === 'wall') break;
-                    grid[nIdx] = 'lit';
-                }
-                for (let dr = 1; r + dr < BOARD_SIZE; dr++) {
-                    const nIdx = (r + dr) * BOARD_SIZE + c;
-                    if (grid[nIdx] === 'wall') break;
-                    grid[nIdx] = 'lit';
-                }
-                for (let dr = -1; r + dr >= 0; dr--) {
-                    const nIdx = (r + dr) * BOARD_SIZE + c;
-                    if (grid[nIdx] === 'wall') break;
-                    grid[nIdx] = 'lit';
-                }
-            }
+    lightupClues=new Map();
+    for(const index of lightupWalls){
+        if(Math.random()<=settings.clue){
+            lightupClues.set(index,adjacentLightUpBulbs(index,lightupSolution));
         }
     }
+    if(!lightupClues.size){
+        const first=[...lightupWalls][0];
+        lightupClues.set(first,adjacentLightUpBulbs(first,lightupSolution));
+    }
 
-    // Create cells
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
-            const cell = document.createElement('div');
-            cell.className = 'grid-cell';
-            cell.id = `lightup-${r}-${c}`;
+    lightupBulbs=new Set();
+}
 
-            if (grid[idx] === 'wall') {
-                cell.innerText = '■';
-                cell.style.background = '#0f172a';
-                cell.style.color = '#6b7280';
-                cell.style.fontWeight = 'bold';
-            } else if (grid[idx] === 'bulb') {
-                cell.innerText = '☀';
-                cell.style.color = '#f59e0b';
-                cell.style.fontWeight = 'bold';
-                cell.style.fontSize = '18px';
-                cell.onclick = () => {
-                    // Toggle bulb
-                    grid[idx] = 'empty';
-                    initLightUp(); // Re-render
-                };
-            } else if (grid[idx] === 'lit') {
-                cell.innerText = '.';
-                cell.style.color = '#eab308';
-                cell.style.fontSize = '12px';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-                cell.onclick = () => {
-                    // Place bulb
-                    grid[idx] = 'bulb';
-                    initLightUp();
+function initLightUp(){
+    const board=document.getElementById('arrow-board');
+    generateLightUpPuzzle();
+    board.style.gridTemplateColumns='repeat('+lightupSize+',1fr)';
+    board.innerHTML='';
+
+    for(let r=0;r<lightupSize;r++){
+        for(let c=0;c<lightupSize;c++){
+            const index=r*lightupSize+c;
+            const cell=document.createElement('div');
+            cell.className='grid-cell';
+            cell.id='lightup-'+r+'-'+c;
+
+            if(lightupWalls.has(index)){
+                cell.classList.add('fixed');
+            }else{
+                cell.setAttribute('role','button');
+                cell.setAttribute('tabindex','0');
+                cell.onclick=()=>toggleLightUpBulb(index);
+                cell.onkeydown=event=>{
+                    if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleLightUpBulb(index);}
                 };
             }
-
             board.appendChild(cell);
         }
     }
 
+    renderLightUp();
     checkLightUpWin();
 }
 
-function checkLightUpWin() {
-    const status = document.getElementById('arrow-status');
-    let litCells = grid.filter(g => g === 'lit').length;
-    let bulbs = grid.filter(g => g === 'bulb').length;
-    if (bulbs > 0 && litCells > 0) {
-        status.innerText = 'Lighting grid...';
-        status.style.color = 'var(--accent-warning)';
+function lightUpBulbConflict(index){
+    return lightUpRayCells(index).some(cell=>lightupBulbs.has(cell));
+}
+
+function toggleLightUpBulb(index){
+    if(lightupBulbs.has(index)) lightupBulbs.delete(index);
+    else lightupBulbs.add(index);
+    renderLightUp();
+    checkLightUpWin();
+}
+
+function renderLightUp(){
+    for(let r=0;r<lightupSize;r++){
+        for(let c=0;c<lightupSize;c++){
+            const index=r*lightupSize+c;
+            const cell=document.getElementById('lightup-'+r+'-'+c);
+
+            if(lightupWalls.has(index)){
+                const hasClue=lightupClues.has(index);
+                cell.innerText=hasClue?String(lightupClues.get(index)):'■';
+                cell.style.background='#101426';
+                cell.style.color='#f4f6ff';
+                cell.setAttribute('aria-label',hasClue?'Wall clue '+lightupClues.get(index):'Wall');
+                continue;
+            }
+
+            const bulb=lightupBulbs.has(index);
+            const lit=isLightUpCellLit(index);
+            const conflict=bulb&&lightUpBulbConflict(index);
+            cell.innerText=bulb?'☀':'';
+            cell.classList.toggle('empty',!bulb);
+            cell.style.background=conflict?'rgba(239,68,68,.28)':lit?'rgba(250,204,21,.22)':'rgba(8,10,24,.35)';
+            cell.style.color=conflict?'#fca5a5':'#fbbf24';
+            cell.setAttribute('aria-label',(bulb?'Bulb':lit?'Lit':'Unlit')+' cell row '+(r+1)+', column '+(c+1));
+        }
     }
 }
+
+function lightUpSolved(){
+    const white=[];
+    for(let i=0;i<lightupSize*lightupSize;i++) if(!lightupWalls.has(i)) white.push(i);
+    return white.every(index=>isLightUpCellLit(index)) &&
+        [...lightupBulbs].every(index=>!lightUpBulbConflict(index)) &&
+        [...lightupClues].every(([index,clue])=>adjacentLightUpBulbs(index)===clue);
+}
+
+function checkLightUpWin(){
+    const status=document.getElementById('arrow-status');
+    if(lightUpSolved()){
+        status.innerText='Every square is lit and every clue is satisfied. Puzzle solved!';
+        status.style.color='var(--accent-success)';
+        return;
+    }
+
+    if([...lightupBulbs].some(index=>lightUpBulbConflict(index))){
+        status.innerText='Two bulbs can see each other.';
+        status.style.color='var(--accent-warning)';
+        return;
+    }
+
+    let unlit=0;
+    for(let i=0;i<lightupSize*lightupSize;i++){
+        if(!lightupWalls.has(i)&&!isLightUpCellLit(i)) unlit++;
+    }
+    status.innerText=lightupDifficulty()[0].toUpperCase()+lightupDifficulty().slice(1)+' · '+unlit+' unlit cell'+(unlit===1?'':'s')+' remain.';
+    status.style.color='';
+}
+
+function lightUpHint(){
+    for(const [index,clue] of lightupClues){
+        const current=adjacentLightUpBulbs(index);
+        if(current>clue){
+            const r=Math.floor(index/lightupSize),c=index%lightupSize;
+            return {message:'This numbered wall currently has too many adjacent bulbs.',selector:'#lightup-'+r+'-'+c};
+        }
+    }
+
+    for(const index of lightupSolution){
+        if(!lightupBulbs.has(index)){
+            const r=Math.floor(index/lightupSize),c=index%lightupSize;
+            return {message:'A valid solution places a bulb in the highlighted cell.',selector:'#lightup-'+r+'-'+c};
+        }
+    }
+    return 'Use numbered walls to eliminate impossible bulb locations.';
+}
+
+window.PPEngine?.register('lightup',{
+    version:1,
+    serialize:()=>({
+        version:1,size:lightupSize,walls:[...lightupWalls],clues:[...lightupClues],
+        bulbs:[...lightupBulbs],solution:[...lightupSolution]
+    }),
+    restore:s=>{
+        if(!s||s.version!==1||s.size!==lightupSize) return false;
+        lightupWalls=new Set(s.walls||[]);
+        lightupClues=new Map(s.clues||[]);
+        lightupBulbs=new Set(s.bulbs||[]);
+        lightupSolution=new Set(s.solution||[]);
+        renderLightUp();checkLightUpWin();return true;
+    },
+    validate:()=>[...lightupBulbs].every(index=>!lightUpBulbConflict(index)),
+    isSolved:lightUpSolved,
+    getHint:lightUpHint
+});

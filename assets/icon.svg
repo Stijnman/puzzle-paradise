@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Puzzle Paradise">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#62e7e9"/>
+      <stop offset=".55" stop-color="#8299ff"/>
+      <stop offset="1" stop-color="#ef6cff"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#070914"/>
+  <path d="M256 76l45 106 111 14-84 73 25 109-97-58-97 58 25-109-84-73 111-14z" fill="url(#g)"/>
+  <circle cx="256" cy="256" r="48" fill="#070914"/>
+  <circle cx="256" cy="256" r="23" fill="#f7f8ff"/>
+</svg>

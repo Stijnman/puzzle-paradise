@@ -1,92 +1,158 @@
-// Flip / Signpost Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Flip: cross-neighbour toggling puzzle.
+// Generated from the all-lit target by legal moves, so every board is solvable.
 
-const BOARD_SIZE = 6;
-let path = [];
+let flipSize = 5;
+let flipGrid = [];
+let flipNeeded = new Set();
+
+function flipDifficulty() {
+    return ['easy','medium','hard','expert'].includes(window.PP_DIFFICULTY)
+        ? window.PP_DIFFICULTY
+        : 'medium';
+}
+
+function flipSettings() {
+    return {
+        easy:{ size:4, moves:4 },
+        medium:{ size:5, moves:7 },
+        hard:{ size:6, moves:11 },
+        expert:{ size:7, moves:16 }
+    }[flipDifficulty()];
+}
+
+function flipCross(index, trackSolution = true) {
+    const row = Math.floor(index / flipSize);
+    const col = index % flipSize;
+
+    for (const [dr,dc] of [[0,0],[-1,0],[1,0],[0,-1],[0,1]]) {
+        const r = row + dr;
+        const c = col + dc;
+        if (r < 0 || r >= flipSize || c < 0 || c >= flipSize) continue;
+        const target = r * flipSize + c;
+        flipGrid[target] = !flipGrid[target];
+    }
+
+    if (trackSolution) {
+        if (flipNeeded.has(index)) flipNeeded.delete(index);
+        else flipNeeded.add(index);
+    }
+}
+
+function generateFlip() {
+    const settings = flipSettings();
+    flipSize = settings.size;
+    flipGrid = new Array(flipSize * flipSize).fill(true);
+    flipNeeded = new Set();
+
+    const indices = Array.from({ length:flipGrid.length }, (_,i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i],indices[j]] = [indices[j],indices[i]];
+    }
+
+    for (const index of indices.slice(0,Math.min(settings.moves,indices.length))) {
+        flipCross(index,true);
+    }
+
+    if (flipGrid.every(Boolean)) flipCross(indices[0],true);
+}
 
 function initFlip() {
     const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
+    generateFlip();
+    board.style.gridTemplateColumns = 'repeat(' + flipSize + ',1fr)';
     board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    path = [];
 
-    // Create a path from (0,0) to (n-1,n-1) that doesn't cross itself
-    // The path number indicates the step number
-    path = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-
-    // Create a simple snake path
-    let pos = 0;
-    let dir = 0; // 0:right, 1:down, 2:left, 3:up
-    const dr = [0, 1, 0, -1];
-    const dc = [1, 0, -1, 0];
-
-    path[pos] = 1; // Start at 1
-
-    while (pos < BOARD_SIZE * BOARD_SIZE - 1) {
-        const nextPos = pos + dr[dir] * BOARD_SIZE + dc[dir];
-        const r = Math.floor(nextPos / BOARD_SIZE);
-        const c = nextPos % BOARD_SIZE;
-
-        if (r >= 0 && r < BOARD_SIZE && c >= 0 && c < BOARD_SIZE && path[nextPos] === 0) {
-            pos = nextPos;
-            path[pos] = Math.floor(pos / BOARD_SIZE) + 1;
-        } else {
-            dir = (dir + 1) % 4; // Turn
-        }
-    }
-
-    // Create cells
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
+    for (let r = 0; r < flipSize; r++) {
+        for (let c = 0; c < flipSize; c++) {
+            const index = r * flipSize + c;
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
-            cell.id = `flip-${r}-${c}`;
-
-            if (path[idx]) {
-                cell.innerText = path[idx] % 10 || 10; // Show last digit
-                cell.style.color = 'var(--primary)';
-                cell.style.fontWeight = 'bold';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-            }
-
-            cell.onclick = () => {
-                // Toggle direction/rotation marker
-                if (path[idx]) {
-                    path[idx] = 0;
-                    cell.innerText = '';
-                    cell.classList.remove('selected');
-                } else {
-                    path[idx] = (path[idx] || 0) + 1;
-                    if (path[idx] > 9) path[idx] = 1;
-                    cell.innerText = path[idx];
-                    cell.classList.add('selected');
+            cell.id = 'flip-' + r + '-' + c;
+            cell.setAttribute('role','button');
+            cell.setAttribute('tabindex','0');
+            cell.onclick = () => playFlip(index);
+            cell.onkeydown = event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    playFlip(index);
                 }
-                checkFlipWin();
             };
-
             board.appendChild(cell);
         }
     }
 
+    renderFlip();
     checkFlipWin();
+}
+
+function playFlip(index) {
+    flipCross(index,true);
+    renderFlip();
+    checkFlipWin();
+}
+
+function renderFlip() {
+    for (let r = 0; r < flipSize; r++) {
+        for (let c = 0; c < flipSize; c++) {
+            const index = r * flipSize + c;
+            const cell = document.getElementById('flip-' + r + '-' + c);
+            const lit = flipGrid[index];
+            cell.innerText = lit ? '✦' : '·';
+            cell.style.background = lit ? 'rgba(250,204,21,.28)' : 'rgba(8,10,24,.55)';
+            cell.style.color = lit ? '#facc15' : '#64748b';
+            cell.setAttribute(
+                'aria-label',
+                (lit ? 'Lit' : 'Dark') + ' cell row ' + (r + 1) + ', column ' + (c + 1)
+            );
+        }
+    }
+}
+
+function flipSolved() {
+    return flipGrid.every(Boolean);
 }
 
 function checkFlipWin() {
     const status = document.getElementById('arrow-status');
-    // Check if path goes from start to end
-    let hasStart = false, hasEnd = false;
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            if (r === 0 && c === 0 && path[0]) hasStart = true;
-            if (r === BOARD_SIZE-1 && c === BOARD_SIZE-1 && path[(BOARD_SIZE-1)*BOARD_SIZE+(BOARD_SIZE-1)]) hasEnd = true;
-        }
-    }
-    if (hasStart && hasEnd) {
-        status.innerText = 'Path connected! Puzzle Solved.';
+    if (flipSolved()) {
+        status.innerText = 'Every square is lit. Puzzle solved!';
         status.style.color = 'var(--accent-success)';
+    } else {
+        status.innerText = flipDifficulty()[0].toUpperCase() + flipDifficulty().slice(1) +
+            ' · each move flips a cell and its orthogonal neighbours.';
+        status.style.color = '';
     }
 }
+
+function flipHint() {
+    const index = flipNeeded.values().next().value;
+    if (index === undefined) return 'All required flips have been accounted for.';
+    const row = Math.floor(index / flipSize);
+    const col = index % flipSize;
+    return {
+        message:'One solution includes flipping the highlighted cell.',
+        selector:'#flip-' + row + '-' + col
+    };
+}
+
+window.PPEngine?.register('flip', {
+    version:1,
+    serialize:() => ({
+        version:1,
+        size:flipSize,
+        grid:[...flipGrid],
+        needed:[...flipNeeded]
+    }),
+    restore:snapshot => {
+        if (!snapshot || snapshot.version !== 1 || snapshot.size !== flipSize || !Array.isArray(snapshot.grid)) return false;
+        flipGrid = snapshot.grid.map(Boolean);
+        flipNeeded = new Set(snapshot.needed || []);
+        renderFlip();
+        checkFlipWin();
+        return true;
+    },
+    validate:() => flipGrid.length === flipSize * flipSize,
+    isSolved:flipSolved,
+    getHint:flipHint
+});

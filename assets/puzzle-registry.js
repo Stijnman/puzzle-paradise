@@ -1,0 +1,64 @@
+(() => {
+  const puzzles = [
+    {id:'sudoku',name:'Classic Sudoku',category:'Number',description:'Complete every row, column and 3×3 box.',icon:'▦',difficulty:2,init:'initSudoku',boardType:'sudoku',difficultyNative:true},
+    {id:'arrow-escape',name:'Arrow Escape',category:'Spatial',description:'Clear arrows that point off the board.',icon:'➶',difficulty:2,init:'initArrowGame',boardType:'arrow',difficultyNative:true},
+    {id:'net',name:'Pipe Routing',category:'Logic',description:'Rotate every tile until all pipes form one connected network.',icon:'⌘',difficulty:2,init:'initNetGame',boardType:'net'},
+    {id:'mines',name:'Mines',category:'Logic',description:'Reveal every safe cell; the first move is guaranteed safe.',icon:'✹',difficulty:2,init:'initMines',difficultyNative:true},
+    {id:'fifteen',name:'Fifteen',category:'Spatial',description:'Slide tiles into numerical order using the single empty space.',icon:'⑮',difficulty:2,init:'initFifteen',difficultyNative:true},
+    {id:'keen',name:'Keen',category:'Number',description:'Fill a Latin square while satisfying every arithmetic cage.',icon:'⌗',difficulty:3,init:'initKeen'},
+    {id:'hitori',name:'Hitori',category:'Number',description:'Shade duplicates while preserving the path.',icon:'◩',difficulty:3,init:'initHitori'},
+    {id:'lightup',name:'Light Up',category:'Logic',description:'Light every open cell; bulbs cannot see each other and wall clues must match.',icon:'☀',difficulty:3,init:'initLightUp'},
+    {id:'loopy',name:'Loopy',category:'Logic',description:'Draw one loop around the numbered clues.',icon:'∞',difficulty:3,init:'initLoopy'},
+    {id:'bridges',name:'Bridges',category:'Logic',description:'Connect every island into one network.',icon:'≋',difficulty:3,init:'initBridges'},
+    {id:'samegame',name:'Same Game',category:'Strategy',description:'Select and remove connected colour groups, then let gravity collapse the board.',icon:'◆',difficulty:1,init:'initSameGame',difficultyNative:true},
+    {id:'untangle',name:'Untangle',category:'Spatial',description:'Swap connected points until none of the lines cross.',icon:'⌬',difficulty:2,init:'initUntangle'},
+    {id:'blackbox',name:'Black Box',category:'Logic',description:'Find hidden objects by tracing rays.',icon:'◈',difficulty:4,init:'initBlackBox'},
+    {id:'dominosa',name:'Dominosa',category:'Number',description:'Pair every number into a unique domino.',icon:'▥',difficulty:3,init:'initDominosa'},
+    {id:'galaxies',name:'Galaxies',category:'Spatial',description:'Create rotationally symmetric regions.',icon:'✧',difficulty:3,init:'initGalaxies'},
+    {id:'guess',name:'Guess',category:'Logic',description:'Crack a hidden Mastermind-style colour code from exact and misplaced feedback.',icon:'?',difficulty:2,init:'initGuess',difficultyNative:true},
+    {id:'inertia',name:'Inertia',category:'Strategy',description:'Slide through the maze and collect gems.',icon:'◉',difficulty:3,init:'initInertia'},
+    {id:'ink',name:'Ink Trail',category:'Logic',description:'Connect matching ink endpoints with non-crossing paths that cover the board.',icon:'✎',difficulty:3,init:'initInk',difficultyNative:true},
+    {id:'magnets',name:'Magnets',category:'Logic',description:'Place poles while satisfying every clue.',icon:'±',difficulty:4,init:'initMagnets'},
+    {id:'maps',name:'Map Colouring',category:'Logic',description:'Colour every region so neighbours sharing an edge never match.',icon:'⌖',difficulty:2,init:'initMaps'},
+    {id:'net2',name:'Network',category:'Logic',description:'Rotate a larger NetWalk board into one connected loop-free network.',icon:'⌘',difficulty:3,init:'initNet',difficultyNative:true},
+    {id:'netslide',name:'Net Slide',category:'Spatial',description:'Slide tiles until every route connects.',icon:'⇄',difficulty:3,init:'initNetSlide'},
+    {id:'nullgame',name:'Null Game',category:'Strategy',description:'Flip cross-shaped groups until every cell is null.',icon:'∅',difficulty:2,init:'initNullGame'},
+    {id:'pattern',name:'Pattern',category:'Logic',description:'Fill cells to satisfy every row and column run-length clue.',icon:'▧',difficulty:3,init:'initPattern'},
+    {id:'pearl',name:'Pearl Loop',category:'Logic',description:'Draw a loop that obeys pearl rules.',icon:'○',difficulty:4,init:'initPearl'},
+    {id:'pegs',name:'Pegs',category:'Strategy',description:'Jump adjacent pegs into empty holes until only one peg remains.',icon:'♟',difficulty:3,init:'initPegs',difficultyNative:true},
+    {id:'range',name:'Range',category:'Number',description:'Place values that satisfy range clues.',icon:'↔',difficulty:3,init:'initRange'},
+    {id:'rect',name:'Rectangles',category:'Spatial',description:'Partition the board into rectangles.',icon:'▭',difficulty:3,init:'initRect'},
+    {id:'sequencing',name:'Sequencing',category:'Number',description:'Arrange items in the right progression.',icon:'123',difficulty:2,init:'initSequence'},
+    {id:'signpost',name:'Signpost',category:'Number',description:'Follow arrows to link numbers in order.',icon:'➜',difficulty:3,init:'initSignpost'},
+    {id:'singles',name:'Singles',category:'Logic',description:'Shade duplicate numbers without touching black cells or disconnecting white cells.',icon:'◩',difficulty:3,init:'initSingles',difficultyNative:true},
+    {id:'sixteen',name:'Sixteen',category:'Spatial',description:'Cyclically shift whole rows and columns until tiles 1–16 are ordered.',icon:'16',difficulty:2,init:'initSixteen',difficultyNative:true},
+    {id:'slant',name:'Slant',category:'Logic',description:'Place diagonals without forbidden loops.',icon:'╱',difficulty:3,init:'initSlant'},
+    {id:'solo',name:'Solo',category:'Number',description:'Complete a 6×6 Sudoku with 2×3 blocks and a unique solution.',icon:'6×6',difficulty:3,init:'initSolo',difficultyNative:true},
+    {id:'tents',name:'Tents',category:'Logic',description:'Match one tent to each tree, obey row/column counts, and keep tents apart.',icon:'⛺',difficulty:3,init:'initTents'},
+    {id:'towers',name:'Towers',category:'Number',description:'Fill each row and column once per height while satisfying visibility clues.',icon:'▥',difficulty:3,init:'initTowers'},
+    {id:'twiddle',name:'Twiddle',category:'Spatial',description:'Rotate 2×2 tile groups until all sixteen numbers are in order.',icon:'⟳',difficulty:3,init:'initTwiddle',difficultyNative:true},
+    {id:'undead',name:'Undead',category:'Logic',description:'Place ghosts, vampires and zombies to satisfy reflected sight-line clues.',icon:'☽',difficulty:3,init:'initUndead'},
+    {id:'unequal',name:'Unequal',category:'Number',description:'Keep neighbouring values unequal.',icon:'≠',difficulty:2,init:'initUnequal'},
+    {id:'unruly',name:'Unruly',category:'Logic',description:'Balance X and O without repetitions.',icon:'XO',difficulty:3,init:'initUnruly'},
+    {id:'cube',name:'Cube',category:'Spatial',description:'Roll the cube and transfer all six blue marks onto its faces.',icon:'⬡',difficulty:3,init:'initCube',difficultyNative:true},
+    {id:'filling',name:'Filling',category:'Number',description:'Match every region to its area.',icon:'▤',difficulty:3,init:'initFilling'},
+    {id:'flip',name:'Flip',category:'Strategy',description:'Flip cross-shaped neighbourhoods until every square is lit.',icon:'◐',difficulty:2,init:'initFlip',difficultyNative:true}
+  ].map((puzzle,index) => Object.freeze({
+    boardType:'arrow',
+    seeded:true,
+    difficultyNative:false,
+    ...puzzle,
+    index
+  }));
+
+  const ids = new Set();
+  for (const puzzle of puzzles) {
+    if (!/^[a-z0-9-]+$/.test(puzzle.id)) throw new Error(`Invalid puzzle id: ${puzzle.id}`);
+    if (ids.has(puzzle.id)) throw new Error(`Duplicate puzzle id: ${puzzle.id}`);
+    ids.add(puzzle.id);
+  }
+
+  const root = typeof window !== 'undefined' ? window : globalThis;
+  root.PP_REGISTRY = Object.freeze(puzzles);
+  root.PP_GAMES = root.PP_REGISTRY;
+})();

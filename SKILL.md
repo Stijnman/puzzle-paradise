@@ -1,85 +1,49 @@
-# puzzle-paradise
+# Puzzle Paradise Agent Guide
 
-**Description**: Repository for puzzle-paradise - [Brief description to be added]
+## Repository purpose
 
-**Purpose**: Enable AI agents to [main purpose to be added].
+Puzzle Paradise is a static GitHub Pages puzzle arcade. The production surface is plain HTML, CSS, and JavaScript.
 
----
+## Important files
 
-## 🎯 Quick Start
+- `index.html`: catalogue, filtering, sorting, daily puzzle, modal shell
+- `player.html`: shared puzzle player and puzzle-to-engine mapping
+- `js/*.js`: individual puzzle engines
+- `tests/repository.test.mjs`: repository contract tests
+- `.github/workflows/test.yml`: pull-request quality gates
+- `.github/workflows/deploy-pages.yml`: GitHub Pages deployment
+- `TESTING.md`: manual and automated testing expectations
 
-### For AI Agent Developers
+## Change rules
 
-1. Review the documentation below
-2. Configure required settings
-3. Test with sample data
-4. Deploy and monitor
+When adding or renaming a puzzle, keep these three layers synchronized:
 
-### For Users
+1. catalogue ID in `index.html`
+2. loader mapping in `player.html`
+3. engine file at `js/<id>.js`
 
-Tell your AI agent to use this repository for [use case].
+The engine must expose the init function named by `player.html`.
 
----
+Do not mark a puzzle complete merely because it renders. Verify that legal interactions work, reset works, and the engine can reach a real success or loss state.
 
-## 📊 Overview
+## Required checks
 
-This repository contains [description].
+```bash
+find js -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+node --test tests/*.test.mjs
+```
 
-### Core Capabilities
+Also follow the browser checklist in [TESTING.md](TESTING.md) for gameplay changes.
 
-| Category | Description | Status |
-|----------|-------------|--------|
-| [Feature 1] | [Description] | ✅ Production |
-| [Feature 2] | [Description] | ✅ Production |
+## Design constraints
 
----
+- keep the site ad-free and tracking-free
+- prefer zero runtime dependencies
+- preserve mobile usability
+- preserve keyboard accessibility and live status messages
+- avoid unnecessary network requests
+- keep repository claims evidence-based
 
-## 🔒 Security Overview
+## Licensing
 
-⚠️ **IMPORTANT**: Please read [SECURITY.md](./SECURITY.md) before using this repository.
-
-### Key Security Principles
-
-1. Data Privacy
-2. Input Validation
-3. Secure Configuration
-4. Rate Limiting
-5. Audit Trail
-
----
-
-## 📚 Documentation
-
-| Document | Description | Required Reading |
-| ---------- | ------------- | ------------------ |
-| [SECURITY.md](./SECURITY.md) | Security policy | ✅ Yes |
-| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guide | ⚠️ For contributors |
-| [TESTING.md](./TESTING.md) | Testing guide | ⚠️ For contributors |
-| [README.md](./README.md) | Overview | ✅ Yes |
-| [CHANGELOG.md](./CHANGELOG.md) | Changes | ⚠️ For reference |
-
----
-
-## 📜 License
-
-This repository is licensed under the **MIT License**. See [LICENSE](./LICENSE).
-
----
-
-## 👤 Maintainer
-
-**Stijnman** - [GitHub Profile](https://github.com/Stijnman)
-
----
-
-## 📞 Support
-
-| Issue Type | How to Get Help |
-| ----------- | ----------------- |
-| Bug Report | Open a [GitHub Issue](https://github.com/Stijnman/puzzle-paradise/issues) |
-| Security Issue | Email: <security@stijnman.com> |
-| General Question | Open a [GitHub Discussion](https://github.com/Stijnman/puzzle-paradise/discussions) |
-
----
-
-*Last updated: September 11, 2026*
+See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Preserve upstream attribution when adapting third-party work.

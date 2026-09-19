@@ -1,67 +1,120 @@
-// Pattern / Numbered Pipes Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Pattern (Nonogram) Puzzle Logic
+// Puzzle concept inspired by Simon Tatham's Portable Puzzle Collection.
 
 const BOARD_SIZE = 6;
-let pipes = [];
+const PATTERN_TARGET = [
+    [0, 1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1],
+    [0, 1, 0, 0, 1, 0],
+    [0, 0, 1, 1, 0, 0]
+];
+let patternState = [];
 
 function initPattern() {
     const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
+    const status = document.getElementById('arrow-status');
+
+    board.style.gridTemplateColumns = `minmax(54px,auto) repeat(${BOARD_SIZE},1fr)`;
     board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    pipes = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
+    patternState = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
 
-    // Create pipes with numbers indicating turns
-    // Each pipe segment has a number showing how many turns it makes
+    const rowClues = PATTERN_TARGET.map(line => patternClue(line));
+    const colClues = Array.from({ length: BOARD_SIZE }, (_, col) =>
+        patternClue(PATTERN_TARGET.map(row => row[col]))
+    );
 
-    // Initialize with random pipe rotations
-    pipes = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-        pipes[i] = Math.floor(Math.random() * 4); // 0:up, 1:right, 2:down, 3:left
-    }
+    const corner = document.createElement('div');
+    corner.className = 'grid-cell fixed';
+    corner.innerText = 'Clues';
+    corner.style.fontSize = '10px';
+    board.appendChild(corner);
 
-    // Create cells
+    colClues.forEach(clue => {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell fixed';
+        cell.innerText = clue;
+        cell.style.fontSize = '11px';
+        cell.setAttribute('aria-label', `Column clue ${clue}`);
+        board.appendChild(cell);
+    });
+
     for (let r = 0; r < BOARD_SIZE; r++) {
+        const clue = document.createElement('div');
+        clue.className = 'grid-cell fixed';
+        clue.innerText = rowClues[r];
+        clue.style.fontSize = '11px';
+        clue.setAttribute('aria-label', `Row clue ${rowClues[r]}`);
+        board.appendChild(clue);
+
         for (let c = 0; c < BOARD_SIZE; c++) {
             const idx = r * BOARD_SIZE + c;
             const cell = document.createElement('div');
-            cell.className = 'grid-cell';
+            cell.className = 'grid-cell empty';
             cell.id = `pattern-${r}-${c}`;
-
-            if (pipes[idx]) {
-                // Show pipe character based on rotation
-                const pipeChars = ['↑', '→', '↓', '←'];
-                cell.innerText = pipeChars[pipes[idx]];
-                cell.style.color = 'var(--primary)';
-                cell.style.fontSize = '20px';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-            }
-
-            cell.onclick = () => {
-                // Rotate pipe
-                if (pipes[idx]) {
-                    pipes[idx] = (pipes[idx] + 1) % 4;
-                } else {
-                    pipes[idx] = 0; // Start with up
+            cell.setAttribute('role', 'button');
+            cell.setAttribute('tabindex', '0');
+            cell.setAttribute('aria-label', `Empty pattern cell row ${r + 1}, column ${c + 1}`);
+            cell.onclick = () => togglePatternCell(idx, r, c);
+            cell.onkeydown = event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    togglePatternCell(idx, r, c);
                 }
-                cell.innerText = pipeChars[pipes[idx]];
-                checkPatternWin();
             };
-
             board.appendChild(cell);
         }
     }
+
+    status.innerText = 'Fill cells so every row and column matches its run-length clues.';
+    status.style.color = '';
+}
+
+function patternClue(line) {
+    const runs = [];
+    let run = 0;
+
+    line.forEach(value => {
+        if (value) {
+            run++;
+        } else if (run) {
+            runs.push(run);
+            run = 0;
+        }
+    });
+    if (run) runs.push(run);
+
+    return runs.length ? runs.join(' ') : '0';
+}
+
+function togglePatternCell(index, row, col) {
+    patternState[index] = patternState[index] ? 0 : 1;
+    const cell = document.getElementById(`pattern-${row}-${col}`);
+
+    cell.innerText = patternState[index] ? '■' : '';
+    cell.classList.toggle('empty', !patternState[index]);
+    cell.setAttribute(
+        'aria-label',
+        `${patternState[index] ? 'Filled' : 'Empty'} pattern cell row ${row + 1}, column ${col + 1}`
+    );
 
     checkPatternWin();
 }
 
 function checkPatternWin() {
+    const solved = patternState.every((value, index) => {
+        const row = Math.floor(index / BOARD_SIZE);
+        const col = index % BOARD_SIZE;
+        return value === PATTERN_TARGET[row][col];
+    });
+
     const status = document.getElementById('arrow-status');
-    let segments = pipes.filter(p => p >= 0).length;
-    if (segments > 0) {
-        status.innerText = 'Configuring pipes...';
-        status.style.color = 'var(--accent-warning)';
+    if (solved) {
+        status.innerText = 'Pattern reconstructed. Puzzle solved!';
+        status.style.color = 'var(--accent-success)';
+    } else {
+        status.innerText = 'Match every row and column clue.';
+        status.style.color = '';
     }
 }

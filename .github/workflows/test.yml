@@ -11,109 +11,63 @@ permissions:
   contents: read
   pull-requests: read
 
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  validate:
-    name: Validate
+  validate-javascript:
+    name: Validate JavaScript
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
-      - name: Check if Node project exists
-        id: node_project
-        shell: bash
-        run: |
-          if [ -f package.json ]; then
-            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Set up Node.js
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         uses: actions/setup-node@v5
         with:
           node-version: "20"
+      - name: Syntax-check all JavaScript
+        run: |
+          find js assets tests e2e -type f \( -name "*.js" -o -name "*.mjs" \) -print0 | xargs -0 -n1 node --check
+          node --check sw.js
+          node -e "for (const f of require('fs').readdirSync('i18n')) JSON.parse(require('fs').readFileSync('i18n/'+f,'utf8'))"
 
-      - name: Install dependencies
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        run: npm ci
-
-      - name: TypeScript type check
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        run: npx tsc --noEmit
-
-      - name: Lint check
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        run: npm run lint
-
-      - name: Skip JS validation
-        if: ${{ steps.node_project.outputs.has_package_json != 'true' }}
-        run: echo "No package.json found; skipping JavaScript validation."
-
-  test:
-    name: Run Tests
+  repository-tests:
+    name: Repository Contract Tests
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
-      - name: Check if Node project exists
-        id: node_project
-        shell: bash
-        run: |
-          if [ -f package.json ]; then
-            echo "has_package_json=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_package_json=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Set up Node.js
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-
-      - name: Install dependencies
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        run: npm ci
-
-      - name: Run tests
-        if: ${{ steps.node_project.outputs.has_package_json == 'true' }}
-        run: npm test
-
-      - name: Skip test execution
-        if: ${{ steps.node_project.outputs.has_package_json != 'true' }}
-        run: echo "No package.json found; skipping test execution."
+      - name: Run contract tests
+        run: node --test tests/*.test.mjs
 
   lint:
     name: Lint Documentation
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
       - name: Install markdownlint
-        run: npm install -g markdownlint-cli2
-
-      - name: Lint all markdown files
-        run: |
-          find . -name "*.md" -type f -not -path "./.git/*" -exec markdownlint-cli2 --config .markdownlint.json {} \;
+        run: npm install --global markdownlint-cli2
+      - name: Lint Markdown
+        run: markdownlint-cli2 --config .markdownlint.json "**/*.md" "#node_modules"
 
   spellcheck:
     name: Spell Check
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
-
       - name: Install codespell
-        run: pip install codespell
-
+        run: python -m pip install codespell
       - name: Check spelling
         run: |
           codespell --skip ".git,*.json,*.yml,*.yaml,CHANGELOG.md,node_modules" \
@@ -124,13 +78,12 @@ jobs:
   security-check:
     name: Security Scan
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-
       - name: TruffleHog scan on push or PR
         if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
         uses: trufflesecurity/trufflehog@v3.82.7
@@ -138,57 +91,57 @@ jobs:
           path: ./
           base: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
           head: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
-          extra_args: --debug --only-verified
-
+          extra_args: --only-verified
       - name: Skip secret scan for manual runs
         if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
-        run: echo "Manual workflow run; skipping TruffleHog secret scan."
+        run: echo "Manual workflow run; no comparison base is available."
 
   pre-commit:
     name: Pre-commit Hooks
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check if pre-commit config exists
-        id: precommit
-        shell: bash
-        run: |
-          if [ -f .pre-commit-config.yaml ]; then
-            echo "has_precommit=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_precommit=false" >> "$GITHUB_OUTPUT"
-          fi
-
+        uses: actions/checkout@v5
       - name: Set up Python
-        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         uses: actions/setup-python@v6
         with:
           python-version: "3.11"
-
       - name: Set up Node.js
-        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-
-      - name: Install pre-commit and Python compatibility deps
-        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
+      - name: Install tooling
         run: |
-          python -m pip install --upgrade pip
           python -m pip install --upgrade "pre-commit>=3.8.0" "identify>=2.6.0"
-          npm install -g markdownlint-cli2
-
-      - name: Install pre-commit hooks
-        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
-        run: pre-commit install
-
+          npm install --global markdownlint-cli2
       - name: Run pre-commit on all files
-        if: ${{ steps.precommit.outputs.has_precommit == 'true' }}
         run: pre-commit run --all-files --show-diff-on-failure
 
-      - name: Skip pre-commit
-        if: ${{ steps.precommit.outputs.has_precommit != 'true' }}
-        run: echo "No pre-commit config found; skipping pre-commit checks."
+  browser-e2e:
+    name: Browser E2E + Accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+      - name: Install browser test dependencies
+        run: npm install --ignore-scripts
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Run browser tests
+        run: npm run test:e2e
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

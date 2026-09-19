@@ -1,74 +1,105 @@
-// Sequencing / Strands Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Sequencing Puzzle Logic
+// Original Puzzle Paradise ordering puzzle.
 
-const BOARD_SIZE = 6;
-let strands = [];
+const SEQUENCE_SIZE = 5;
+let sequenceValues = [];
+let sequenceSelected = null;
 
 function initSequence() {
     const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
+    board.style.gridTemplateColumns = `repeat(${SEQUENCE_SIZE}, 1fr)`;
     board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    strands = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
 
-    // Create strands of connected cells
-    // Each strand has a sequence number
+    sequenceValues = Array.from(
+        { length: SEQUENCE_SIZE * SEQUENCE_SIZE },
+        (_, index) => index + 1
+    );
 
-    // Simplified: place sequence numbers 1-6
-    const seqNumbers = [1, 2, 3, 4, 5, 6];
-    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
-        strands[i] = seqNumbers[i % seqNumbers.length];
-    }
+    do {
+        for (let i = sequenceValues.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [sequenceValues[i], sequenceValues[j]] = [sequenceValues[j], sequenceValues[i]];
+        }
+    } while (sequenceSolved());
 
-    // Create cells
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
+    sequenceSelected = null;
+
+    for (let r = 0; r < SEQUENCE_SIZE; r++) {
+        for (let c = 0; c < SEQUENCE_SIZE; c++) {
+            const idx = r * SEQUENCE_SIZE + c;
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
             cell.id = `sequence-${r}-${c}`;
-
-            if (strands[idx] > 0) {
-                cell.innerText = strands[idx];
-                cell.style.color = getSequenceColor(strands[idx]);
-                cell.style.fontWeight = 'bold';
-                cell.style.fontSize = '16px';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-            }
-
-            cell.onclick = () => {
-                // Toggle sequence number
-                if (strands[idx]) {
-                    strands[idx] = 0;
-                    cell.innerText = '';
-                } else {
-                    strands[idx] = 1;
-                    cell.innerText = '1';
-                    cell.style.color = '#2563eb';
-                    cell.style.fontWeight = 'bold';
+            cell.setAttribute('role', 'button');
+            cell.setAttribute('tabindex', '0');
+            cell.onclick = () => selectSequenceCell(idx);
+            cell.onkeydown = event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    selectSequenceCell(idx);
                 }
-                checkSequenceWin();
             };
-
             board.appendChild(cell);
         }
     }
 
+    renderSequence();
+    const status = document.getElementById('arrow-status');
+    status.innerText = 'Select two tiles to swap them. Arrange 1–25 in reading order from top-left to bottom-right.';
+    status.style.color = '';
+}
+
+function selectSequenceCell(index) {
+    if (sequenceSelected === null) {
+        sequenceSelected = index;
+        renderSequence();
+        return;
+    }
+
+    if (sequenceSelected === index) {
+        sequenceSelected = null;
+        renderSequence();
+        return;
+    }
+
+    [sequenceValues[sequenceSelected], sequenceValues[index]] =
+        [sequenceValues[index], sequenceValues[sequenceSelected]];
+    sequenceSelected = null;
+    renderSequence();
     checkSequenceWin();
 }
 
-function getSequenceColor(num) {
-    const colors = ['#2563eb', '#1e40af', '#3b82f6', '#6366f1', '#8b5cf6'];
-    return colors[num - 1] || '#6366f1';
+function sequenceSolved() {
+    return sequenceValues.every((value, index) => value === index + 1);
+}
+
+function renderSequence() {
+    sequenceValues.forEach((value, index) => {
+        const row = Math.floor(index / SEQUENCE_SIZE);
+        const col = index % SEQUENCE_SIZE;
+        const cell = document.getElementById(`sequence-${row}-${col}`);
+        if (!cell) return;
+
+        cell.innerText = value;
+        cell.style.background = index === sequenceSelected
+            ? 'rgba(34,197,94,.24)'
+            : 'rgba(8,10,24,.35)';
+        cell.style.color = value === index + 1 ? 'var(--accent-success)' : 'var(--primary)';
+        cell.setAttribute(
+            'aria-label',
+            `Tile ${value} at position ${index + 1}${index === sequenceSelected ? ', selected' : ''}`
+        );
+    });
 }
 
 function checkSequenceWin() {
     const status = document.getElementById('arrow-status');
-    let filled = strands.filter(s => s > 0).length;
-    if (filled > 0) {
-        status.innerText = 'Sequencing...';
-        status.style.color = 'var(--accent-warning)';
+    if (sequenceSolved()) {
+        status.innerText = 'All 25 tiles are in sequence. Puzzle solved!';
+        status.style.color = 'var(--accent-success)';
+    } else {
+        const correct = sequenceValues.filter((value, index) => value === index + 1).length;
+        status.innerText = `${correct}/${sequenceValues.length} tiles are in their correct positions.`;
+        status.style.color = '';
     }
 }
