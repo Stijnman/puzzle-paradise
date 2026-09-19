@@ -42,7 +42,20 @@
     "continue": "Continuar",
     "noResults": "No hay puzles que coincidan.",
     "collapse": "Contraer cabecera",
-    "expand": "Expandir cabecera"
+    "expand": "Expandir cabecera",
+    "tagline": "43 puzles · cero anuncios",
+    "hero": "Una sala de puzles a pantalla completa con progreso guardado, reto diario, varios idiomas y controles de teclado.",
+    "puzzles": "Puzles",
+    "categories": "Categorías",
+    "dark": "Oscuro",
+    "light": "Claro",
+    "oled": "Negro OLED",
+    "statusProgress": "Sigue resolviendo: el puzle aún está en curso.",
+    "statusInvalid": "Ese movimiento entra en conflicto con las reglas actuales.",
+    "statusSolved": "¡Puzle resuelto!",
+    "seeded": "Semilla",
+    "on": "Activado",
+    "off": "Desactivado"
   },
   "categories": {
     "Logic": "Lógica",
