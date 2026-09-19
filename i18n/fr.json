@@ -42,7 +42,20 @@
     "continue": "Continuer",
     "noResults": "Aucun puzzle ne correspond.",
     "collapse": "Réduire l’en-tête",
-    "expand": "Déployer l’en-tête"
+    "expand": "Déployer l’en-tête",
+    "tagline": "43 puzzles · zéro pub",
+    "hero": "Une arcade de puzzles plein écran avec progression sauvegardée, défi quotidien, plusieurs langues et commandes clavier.",
+    "puzzles": "Puzzles",
+    "categories": "Catégories",
+    "dark": "Sombre",
+    "light": "Clair",
+    "oled": "Noir OLED",
+    "statusProgress": "Continuez — le puzzle est encore en cours.",
+    "statusInvalid": "Ce coup contredit les contraintes actuelles.",
+    "statusSolved": "Puzzle résolu !",
+    "seeded": "Graine",
+    "on": "Activé",
+    "off": "Désactivé"
   },
   "categories": {
     "Logic": "Logique",
