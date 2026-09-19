@@ -822,22 +822,22 @@
     },
     "undead": {
       "title": "Undead",
-      "summary": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
-      "objective": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "summary": "Coloca fantasmas, vampiros y zombis según las pistas de visión reflejada.",
+      "objective": "Rellena cada casilla sin espejo con fantasma, vampiro o zombi para cumplir los totales y todas las pistas del borde.",
+      "hint": "El vampiro cuenta en visión directa, el fantasma tras un reflejo y el zombi siempre.",
       "rules": [
-        "Respeta todas las pistas y restricciones visibles.",
-        "Un movimiento solo es válido si mantiene una solución posible.",
-        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+        "Cada casilla sin espejo contiene exactamente un monstruo.",
+        "Los vampiros se ven directamente, los fantasmas en espejos y los zombis siempre.",
+        "Cumple los totales de monstruos y cada pista del borde."
       ],
       "tutorial": [
-        "Lee el objetivo y revisa las pistas fijas.",
-        "Empieza por el movimiento más restringido.",
-        "Usa Pista para una ayuda sutil sin revelar la solución."
+        "Empieza por las líneas de visión más cortas.",
+        "Sigue cada línea a través de los espejos / y \\\\.",
+        "Usa los totales G/V/Z para resolver las últimas casillas."
       ],
       "tips": [
-        "Prioriza deducciones forzadas frente a adivinar.",
-        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+        "Antes del primer espejo cuentan vampiros y zombis.",
+        "Después de reflejarse cuentan fantasmas y zombis, no vampiros."
       ]
     },
     "unequal": {
