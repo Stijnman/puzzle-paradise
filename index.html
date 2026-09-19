@@ -18,7 +18,7 @@
         <option value="en">EN</option><option value="nl">NL</option><option value="fr">FR</option><option value="de">DE</option><option value="es">ES</option>
       </select>
       <select class="compact-select" id="theme" aria-label="Theme">
-        <option value="dark">Dark</option><option value="light">Light</option><option value="oled">OLED</option>
+        <option value="dark" data-i18n="ui.dark">Dark</option><option value="light" data-i18n="ui.light">Light</option><option value="oled" data-i18n="ui.oled">OLED Black</option>
       </select>
       <a class="top-button" href="https://github.com/Stijnman/puzzle-paradise" target="_blank" rel="noreferrer">GitHub</a>
     </header>
@@ -26,12 +26,12 @@
     <main class="shell" id="top">
       <aside class="discovery" aria-label="Puzzle discovery">
         <div class="discovery-scroll">
-          <div class="hero-kicker">43 puzzles · zero ads</div>
+          <div class="hero-kicker" data-i18n="ui.tagline">43 puzzles · zero ads</div>
           <h1 class="hero-title">Puzzle Paradise</h1>
-          <p class="hero-copy">A dense, full-screen puzzle arcade with saved progress, daily challenges, multilingual play and keyboard-first controls.</p>
+          <p class="hero-copy" data-i18n="ui.hero">A dense, full-screen puzzle arcade with saved progress, daily challenges, multilingual play and keyboard-first controls.</p>
 
           <div class="metrics">
-            <div class="metric"><strong>43</strong><span>Puzzles</span></div>
+            <div class="metric"><strong>43</strong><span data-i18n="ui.puzzles">Puzzles</span></div>
             <div class="metric"><strong id="metric-played">0</strong><span data-i18n="ui.completed">Completed</span></div>
             <div class="metric"><strong id="metric-active">0</strong><span data-i18n="ui.progress">Progress</span></div>
           </div>
@@ -45,7 +45,7 @@
             <button class="primary-action" id="daily-play" type="button" data-i18n="ui.play">Play</button>
           </section>
 
-          <div class="filters-title">Categories</div>
+          <div class="filters-title" data-i18n="ui.categories">Categories</div>
           <div class="filters" id="filters" aria-label="Puzzle categories"></div>
 
           <div class="quick-settings">
