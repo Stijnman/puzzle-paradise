@@ -4,6 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import { loadRegistry } from './helpers/registry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -12,12 +13,10 @@ const player = read('player.html');
 const arcadeCss = read('assets/arcade.css');
 const playerCss = read('assets/player.css');
 
-const catalogueMatch = index.match(/const games=\[(.*?)\]\.map/s);
-assert.ok(catalogueMatch, 'catalogue literal missing');
-const puzzleIds = [...catalogueMatch[1].matchAll(/\['([^']+)'/g)].map(match => match[1]);
+const puzzleIds = loadRegistry().map(puzzle => puzzle.id);
 
 test('shared browser JavaScript parses', () => {
-  for (const file of ['assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
+  for (const file of ['assets/puzzle-registry.js','assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
     assert.doesNotThrow(() => new vm.Script(read(file), { filename: file }), `${file} must parse`);
   }
 });
