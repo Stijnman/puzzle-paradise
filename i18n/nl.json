@@ -1,0 +1,329 @@
+{
+  "locale": "nl",
+  "name": "Nederlands",
+  "ui": {
+    "brand": "Puzzle Paradise",
+    "search": "Puzzels zoeken",
+    "sort": "Sorteren",
+    "featured": "Uitgelicht",
+    "az": "A–Z",
+    "difficulty": "Moeilijkheid",
+    "all": "Alles",
+    "play": "Spelen",
+    "daily": "Dagpuzzel",
+    "progress": "Voortgang",
+    "completed": "Voltooid",
+    "settings": "Instellingen",
+    "language": "Taal",
+    "theme": "Thema",
+    "sound": "Geluid",
+    "haptics": "Trilling",
+    "rules": "Hoe speel je?",
+    "objective": "Doel",
+    "constraints": "Regels & beperkingen",
+    "tutorial": "Stap voor stap",
+    "tips": "Pro-tips",
+    "hint": "Hint",
+    "undo": "Ongedaan",
+    "redo": "Opnieuw",
+    "reset": "Reset",
+    "newPuzzle": "Nieuwe puzzel",
+    "moves": "Zetten",
+    "time": "Tijd",
+    "accuracy": "Nauwkeurigheid",
+    "best": "Persoonlijk record",
+    "stars": "Sterren",
+    "easy": "Makkelijk",
+    "medium": "Gemiddeld",
+    "hard": "Moeilijk",
+    "expert": "Expert",
+    "close": "Sluiten",
+    "victory": "Puzzel opgelost!",
+    "continue": "Verder",
+    "noResults": "Geen puzzels gevonden.",
+    "collapse": "Kop inklappen",
+    "expand": "Kop uitklappen"
+  },
+  "categories": {
+    "Logic": "Logica",
+    "Number": "Getallen",
+    "Spatial": "Ruimtelijk",
+    "Strategy": "Strategie"
+  },
+  "guide": {
+    "rules": [
+      "Volg elke zichtbare aanwijzing en beperking.",
+      "Een zet is alleen geldig als de puzzel oplosbaar kan blijven.",
+      "De puzzel is pas klaar wanneer de exacte winvoorwaarde bereikt is."
+    ],
+    "tutorial": [
+      "Lees eerst het doel en de vaste aanwijzingen.",
+      "Begin met de meest beperkte of gedwongen zet.",
+      "Gebruik Hint voor een subtiele aanwijzing, niet voor de volledige oplossing."
+    ],
+    "tips": [
+      "Kies gedwongen deducties vóór gokken.",
+      "Reset herstart dezelfde seed; Nieuwe puzzel maakt een nieuwe seed."
+    ]
+  },
+  "puzzles": {
+    "sudoku": {
+      "title": "Classic Sudoku",
+      "summary": "Vul elke rij, kolom en elk 3×3-vak met 1–9.",
+      "objective": "Vul elke rij, kolom en elk 3×3-vak met 1–9.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "arrow-escape": {
+      "title": "Arrow Escape",
+      "summary": "Stuur elke pijl via een vrije baan van het bord.",
+      "objective": "Stuur elke pijl via een vrije baan van het bord.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "net": {
+      "title": "Pipe Routing",
+      "summary": "Draai alle tegels tot één verbonden buizennetwerk.",
+      "objective": "Draai alle tegels tot één verbonden buizennetwerk.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "mines": {
+      "title": "Mines",
+      "summary": "Onthul alle veilige vakjes zonder een mijn te raken.",
+      "objective": "Onthul alle veilige vakjes zonder een mijn te raken.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "fifteen": {
+      "title": "Fifteen",
+      "summary": "Schuif de genummerde tegels in oplopende volgorde.",
+      "objective": "Schuif de genummerde tegels in oplopende volgorde.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "keen": {
+      "title": "Keen",
+      "summary": "Vul het Latijnse vierkant en voldoe aan alle rekengroepen.",
+      "objective": "Vul het Latijnse vierkant en voldoe aan alle rekengroepen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "hitori": {
+      "title": "Hitori",
+      "summary": "Maak dubbele waarden zwart terwijl witte vakjes verbonden blijven.",
+      "objective": "Maak dubbele waarden zwart terwijl witte vakjes verbonden blijven.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "lightup": {
+      "title": "Light Up",
+      "summary": "Verlicht elk open vak zonder dat lampen elkaar zien.",
+      "objective": "Verlicht elk open vak zonder dat lampen elkaar zien.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "loopy": {
+      "title": "Loopy",
+      "summary": "Teken één gesloten lus die alle cijfers respecteert.",
+      "objective": "Teken één gesloten lus die alle cijfers respecteert.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "bridges": {
+      "title": "Bridges",
+      "summary": "Verbind alle eilanden en laat elk eilandcijfer exact kloppen.",
+      "objective": "Verbind alle eilanden en laat elk eilandcijfer exact kloppen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "samegame": {
+      "title": "Same Game",
+      "summary": "Verwijder kleurengroepen en maak zoveel mogelijk leeg.",
+      "objective": "Verwijder kleurengroepen en maak zoveel mogelijk leeg.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "untangle": {
+      "title": "Untangle",
+      "summary": "Verplaats punten tot geen enkele lijn nog kruist.",
+      "objective": "Verplaats punten tot geen enkele lijn nog kruist.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "blackbox": {
+      "title": "Black Box",
+      "summary": "Vind verborgen ballen via de resultaten van randstralen.",
+      "objective": "Vind verborgen ballen via de resultaten van randstralen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "dominosa": {
+      "title": "Dominosa",
+      "summary": "Verdeel aangrenzende cijfers in elke dominosteen exact één keer.",
+      "objective": "Verdeel aangrenzende cijfers in elke dominosteen exact één keer.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "galaxies": {
+      "title": "Galaxies",
+      "summary": "Maak verbonden gebieden die draaisymmetrisch rond hun centrum zijn.",
+      "objective": "Maak verbonden gebieden die draaisymmetrisch rond hun centrum zijn.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "guess": {
+      "title": "Guess",
+      "summary": "Leid de verborgen reeks af uit de feedback.",
+      "objective": "Leid de verborgen reeks af uit de feedback.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "inertia": {
+      "title": "Inertia",
+      "summary": "Verzamel alle edelstenen zonder mijnen te raken.",
+      "objective": "Verzamel alle edelstenen zonder mijnen te raken.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "ink": {
+      "title": "Ink",
+      "summary": "Verbind gelijke aanwijzingen zonder kruisingen.",
+      "objective": "Verbind gelijke aanwijzingen zonder kruisingen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "magnets": {
+      "title": "Magnets",
+      "summary": "Plaats magnetische polen en voldoe aan alle tellingen.",
+      "objective": "Plaats magnetische polen en voldoe aan alle tellingen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "maps": {
+      "title": "Map Colouring",
+      "summary": "Kleur gebieden zodat buren met een gedeelde zijde verschillen.",
+      "objective": "Kleur gebieden zodat buren met een gedeelde zijde verschillen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "net2": {
+      "title": "Network",
+      "summary": "Draai stukken tot het hele netwerk verbonden is.",
+      "objective": "Draai stukken tot het hele netwerk verbonden is.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "netslide": {
+      "title": "Net Slide",
+      "summary": "Schuif rijen en kolommen cyclisch tot alles verbonden is.",
+      "objective": "Schuif rijen en kolommen cyclisch tot alles verbonden is.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "nullgame": {
+      "title": "Null Game",
+      "summary": "Draai kruisvormige groepen om tot elk vak nul is.",
+      "objective": "Draai kruisvormige groepen om tot elk vak nul is.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "pattern": {
+      "title": "Pattern",
+      "summary": "Vul vakken zodat rij- en kolomaanwijzingen kloppen.",
+      "objective": "Vul vakken zodat rij- en kolomaanwijzingen kloppen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "pearl": {
+      "title": "Pearl Loop",
+      "summary": "Teken één lus die alle zwarte en witte parels respecteert.",
+      "objective": "Teken één lus die alle zwarte en witte parels respecteert.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "pegs": {
+      "title": "Pegs",
+      "summary": "Spring met pionnen en eindig met zo weinig mogelijk.",
+      "objective": "Spring met pionnen en eindig met zo weinig mogelijk.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "range": {
+      "title": "Range",
+      "summary": "Maak vakken zwart zodat elk getal de zichtbare witte lengte aangeeft.",
+      "objective": "Maak vakken zwart zodat elk getal de zichtbare witte lengte aangeeft.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "rect": {
+      "title": "Rectangles",
+      "summary": "Verdeel het bord in rechthoeken met exact één oppervlakte-aanwijzing.",
+      "objective": "Verdeel het bord in rechthoeken met exact één oppervlakte-aanwijzing.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "sequencing": {
+      "title": "Sequencing",
+      "summary": "Zet alle genummerde tegels in de juiste volgorde.",
+      "objective": "Zet alle genummerde tegels in de juiste volgorde.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "signpost": {
+      "title": "Signpost",
+      "summary": "Verbind alle vakken tot één genummerde keten volgens de pijlen.",
+      "objective": "Verbind alle vakken tot één genummerde keten volgens de pijlen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "singles": {
+      "title": "Singles",
+      "summary": "Vul het kleine Latijnse vierkant zonder herhalingen.",
+      "objective": "Vul het kleine Latijnse vierkant zonder herhalingen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "sixteen": {
+      "title": "Sixteen",
+      "summary": "Vul het 4×4-raster met 1–4 volgens de beperkingen.",
+      "objective": "Vul het 4×4-raster met 1–4 volgens de beperkingen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "slant": {
+      "title": "Slant",
+      "summary": "Plaats diagonalen zodat hoekcijfers kloppen en er geen lus ontstaat.",
+      "objective": "Plaats diagonalen zodat hoekcijfers kloppen en er geen lus ontstaat.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "solo": {
+      "title": "Solo",
+      "summary": "Vul het 6×6 Latijnse vierkant.",
+      "objective": "Vul het 6×6 Latijnse vierkant.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "tents": {
+      "title": "Tents",
+      "summary": "Koppel één tent aan elke boom, haal rij/kolomtellingen en laat tenten niet raken.",
+      "objective": "Koppel één tent aan elke boom, haal rij/kolomtellingen en laat tenten niet raken.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "towers": {
+      "title": "Towers",
+      "summary": "Vul 1–4 één keer per rij en kolom en voldoe aan zichtcijfers.",
+      "objective": "Vul 1–4 één keer per rij en kolom en voldoe aan zichtcijfers.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "twiddle": {
+      "title": "Twiddle",
+      "summary": "Draai tegelgroepen tot alle nummers juist staan.",
+      "objective": "Draai tegelgroepen tot alle nummers juist staan.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "undead": {
+      "title": "Undead",
+      "summary": "Herstel het spooknetwerk zodat alle vereiste verbindingen kloppen.",
+      "objective": "Herstel het spooknetwerk zodat alle vereiste verbindingen kloppen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "unequal": {
+      "title": "Unequal",
+      "summary": "Vul het raster met Latijnse en ongelijkheidsregels.",
+      "objective": "Vul het raster met Latijnse en ongelijkheidsregels.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "unruly": {
+      "title": "Unruly",
+      "summary": "Balanceer X en O zonder verboden herhalingen.",
+      "objective": "Balanceer X en O zonder verboden herhalingen.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "cube": {
+      "title": "Cube",
+      "summary": "Breng het kubusachtige bord naar de doeltoestand.",
+      "objective": "Breng het kubusachtige bord naar de doeltoestand.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "filling": {
+      "title": "Filling",
+      "summary": "Vul verbonden gebieden zodat elk getal exact de gebiedsgrootte is.",
+      "objective": "Vul verbonden gebieden zodat elk getal exact de gebiedsgrootte is.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    },
+    "flip": {
+      "title": "Flip",
+      "summary": "Draai vakken of groepen om tot het doelpatroon ontstaat.",
+      "objective": "Draai vakken of groepen om tot het doelpatroon ontstaat.",
+      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken."
+    }
+  }
+}
