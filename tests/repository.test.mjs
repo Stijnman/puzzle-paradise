@@ -58,9 +58,9 @@ test('no orphan JavaScript puzzle engines exist', () => {
 });
 
 test('home page keeps essential discoverability and accessibility hooks', () => {
-  assert.match(index, /<html lang="en">/);
+  assert.match(index, /<html[^>]*lang="en"/);
   assert.match(index, /<meta name="description"/);
-  assert.match(index, /<main id="top">/);
+  assert.match(index, /<main[^>]*id="top"/);
   assert.match(index, /role="dialog"/);
   assert.match(index, /aria-modal="true"/);
   assert.match(index, /aria-label="Close puzzle"/);
