@@ -97,5 +97,19 @@
   <script src="assets/storage.js"></script>
   <script src="assets/i18n.js"></script>
   <script src="assets/arcade.js"></script>
+  <script>
+    // Keep the daily challenge reachable when the discovery rail collapses on compact layouts.
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      const dailyPlay = document.getElementById('daily-play');
+      const spacer = document.querySelector('.topbar-spacer');
+      if (dailyPlay && spacer) {
+        dailyPlay.classList.add('top-button');
+        dailyPlay.style.width = 'auto';
+        dailyPlay.style.minHeight = '40px';
+        dailyPlay.setAttribute('aria-label', 'Play daily challenge');
+        spacer.after(dailyPlay);
+      }
+    }
+  </script>
 </body>
 </html>
