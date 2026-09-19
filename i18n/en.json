@@ -822,22 +822,22 @@
     },
     "undead": {
       "title": "Undead",
-      "summary": "Restore the haunted network so every required connection is valid.",
-      "objective": "Restore the haunted network so every required connection is valid.",
-      "hint": "Start with cells that have the fewest legal connection patterns.",
+      "summary": "Place ghosts, vampires and zombies to satisfy reflected sight-line clues.",
+      "objective": "Fill every non-mirror square with a ghost, vampire, or zombie so the global totals and every edge sight-line clue match.",
+      "hint": "A vampire counts only before the first reflection, a ghost only after reflection, and a zombie always counts.",
       "rules": [
-        "Toggle or restore connections according to the board.",
-        "Required network pieces must connect consistently.",
-        "Complete the haunted network's target state."
+        "Every non-mirror square contains exactly one ghost, vampire, or zombie.",
+        "Vampires are visible directly but not in mirrors; ghosts are visible in mirrors but not directly; zombies are always visible.",
+        "Match both the total monster counts and every number around the grid edge."
       ],
       "tutorial": [
-        "Read the objective and identify the strongest clue in Undead.",
-        "Make one forced move and re-scan the board for consequences.",
-        "Use Undo for experiments and Hint when no forced move is visible."
+        "Start with edge clues whose paths contain few open cells.",
+        "Trace each line through / and \\\\ mirrors and note whether a monster is viewed directly or through reflection.",
+        "Use the G/V/Z totals to resolve the final ambiguous cells."
       ],
       "tips": [
-        "Start with constrained boundary pieces.",
-        "Propagate forced connections before experimenting."
+        "A sight line before its first mirror can only count vampires and zombies.",
+        "After a reflection, ghosts and zombies contribute while vampires disappear from that view."
       ]
     },
     "unequal": {
