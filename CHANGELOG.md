@@ -31,7 +31,7 @@ All notable changes to Puzzle Paradise are documented here.
 
 ### Fixed
 
-- Mines, Sudoku, Pipe Routing, Null Game, Pattern, Untangle, Map, Towers, Keen, Light Up, Tents, Black Box, Hitori, Range, Slant, Inertia, Magnets, Net Slide, Rectangles, Pearl, Sequencing, Bridges, Dominosa, Filling, and Loopy received substantial correctness fixes.
+- Mines, Sudoku, Pipe Routing, Null Game, Pattern, Untangle, Map, Towers, Keen, Light Up, Tents, Black Box, Hitori, Range, Slant, Inertia, Magnets, Net Slide, Rectangles, Pearl, Sequencing, Bridges, Dominosa, Filling, Loopy, Galaxies, Signpost, Unequal, Unruly, and Undead received substantial correctness fixes.
 - Pattern and Untangle first-interaction runtime crashes were removed.
 
 ---
