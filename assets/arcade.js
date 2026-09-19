@@ -10,16 +10,12 @@
   const difficulty = document.getElementById('default-difficulty');
   const state = { category: 'All', query: '', sort: 'featured', dictionary: null };
 
-  function readJSON(key, fallback) {
-    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
-  }
-
   function stats() {
-    return readJSON('pp.stats', {});
+    return window.PPStorage.getStats();
   }
 
   function sessions() {
-    return readJSON('pp.sessions', {});
+    return window.PPStorage.getSessions();
   }
 
   function setTheme(value) {
@@ -90,30 +86,52 @@
     document.getElementById('metric-active').textContent = Object.values(activeSessions).filter(item => item?.actions?.length).length;
   }
 
-  function dailyGame() {
-    const dateKey = new Date().toISOString().slice(0,10);
+  function hashText(value) {
     let hash = 2166136261;
-    for (const char of dateKey) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-    return window.PP_GAMES[Math.abs(hash) % window.PP_GAMES.length];
+    for (const char of String(value)) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+    return hash >>> 0;
+  }
+
+  function dailyChallenge() {
+    const date = window.PPStorage.localDateKey();
+    const game = window.PP_GAMES[hashText(date) % window.PP_GAMES.length];
+    return {
+      date,
+      game,
+      difficulty: 'medium',
+      seed: `daily:${date}:${game.id}`
+    };
   }
 
   function renderDaily() {
-    const game = dailyGame();
-    const text = gameText(game);
+    const challenge = dailyChallenge();
+    const text = gameText(challenge.game);
+    const persistent = window.PPStorage.read();
+    const completed = persistent.daily.completions[challenge.date];
+    const streak = persistent.daily.streak || 0;
     document.getElementById('daily-title').textContent = text.title;
-    document.getElementById('daily-copy').textContent = text.summary;
-    document.getElementById('daily-play').dataset.game = game.id;
+    document.getElementById('daily-copy').textContent =
+      `${text.summary}${completed ? ' · ✓' : ''}${streak ? ` · 🔥 ${streak}` : ''}`;
+    const button = document.getElementById('daily-play');
+    button.dataset.game = challenge.game.id;
+    button.dataset.seed = challenge.seed;
+    button.dataset.difficulty = challenge.difficulty;
+    button.dataset.daily = challenge.date;
   }
 
-  function openGame(id) {
+  function openGame(id, options = {}) {
     const game = window.PP_GAMES.find(item => item.id === id);
     if (!game) return;
     const text = gameText(game);
     const lang = language.value || window.PPI18N.detect();
-    const level = difficulty.value || 'medium';
+    const level = options.difficulty || difficulty.value || 'medium';
+    const params = new URLSearchParams({ game:id, lang, difficulty:level });
+    if (options.seed) params.set('seed', options.seed);
+    if (options.daily) params.set('daily', options.daily);
     document.getElementById('modal-title').textContent = text.title;
     document.getElementById('modal-category').textContent = t(`categories.${game.category}`, game.category);
-    frame.src = `player.html?game=${encodeURIComponent(id)}&lang=${encodeURIComponent(lang)}&difficulty=${encodeURIComponent(level)}`;
+    frame.src = `player.html?${params.toString()}`;
+    window.PPStorage.recordRecent(id);
     modal.classList.add('open');
     document.getElementById('close-modal').focus();
   }
@@ -150,7 +168,14 @@
     const card = event.target.closest('[data-game]');
     if (card) openGame(card.dataset.game);
   });
-  document.getElementById('daily-play').addEventListener('click', event => openGame(event.currentTarget.dataset.game));
+  document.getElementById('daily-play').addEventListener('click', event => {
+    const button = event.currentTarget;
+    openGame(button.dataset.game, {
+      seed: button.dataset.seed,
+      difficulty: button.dataset.difficulty,
+      daily: button.dataset.daily
+    });
+  });
   document.getElementById('close-modal').addEventListener('click', closeGame);
   document.getElementById('toggle-rail').addEventListener('click', () => {
     app.classList.toggle('rail-collapsed');
@@ -170,5 +195,15 @@
   app.classList.toggle('rail-collapsed', localStorage.getItem('pp.railCollapsed') === '1');
   setTheme(localStorage.getItem('pp.theme') || 'dark');
   difficulty.value = localStorage.getItem('pp.defaultDifficulty') || 'medium';
-  setLanguage(window.PPI18N.detect());
+  setLanguage(window.PPI18N.detect()).then(() => {
+    const params = new URLSearchParams(location.search);
+    const game = params.get('game');
+    if (game && window.PP_GAMES.some(item => item.id === game)) {
+      openGame(game, {
+        seed: params.get('seed') || undefined,
+        difficulty: params.get('difficulty') || undefined,
+        daily: params.get('daily') || undefined
+      });
+    }
+  });
 })();
