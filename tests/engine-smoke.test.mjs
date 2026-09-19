@@ -198,6 +198,10 @@ class FakeDocument {
     return [...this.elements].find(element => element.id === id) ?? null;
   }
 
+  querySelector(selector, rootElement = null) {
+    return this.querySelectorAll(selector, rootElement)[0] ?? null;
+  }
+
   querySelectorAll(selector, rootElement = null) {
     let elements = [...this.elements];
 
