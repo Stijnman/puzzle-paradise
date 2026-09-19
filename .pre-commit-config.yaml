@@ -49,7 +49,7 @@ repos:
         files: \.(js|mjs)$
       - id: repository-contract-tests
         name: Repository contract tests
-        entry: node --test tests/repository.test.mjs
+        entry: node --test tests/*.test.mjs
         language: system
         pass_filenames: false
         always_run: true
