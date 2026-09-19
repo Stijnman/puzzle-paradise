@@ -4,27 +4,20 @@ import path from 'node:path';
 import test from 'node:test';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
+import { loadRegistry } from './helpers/registry.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const registry = loadRegistry();
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const index = read('index.html');
 const player = read('player.html');
 
 function catalogueIds() {
-  const match = index.match(/const games=\[(.*?)\]\.map/s);
-  assert.ok(match, 'index.html must expose the games catalogue');
-  return [...match[1].matchAll(/\['([^']+)'/g)].map(item => item[1]);
+  return registry.map(puzzle => puzzle.id);
 }
 
 function playerMappings() {
-  const match = player.match(/const puzzles=\{(.*?)\};/s);
-  assert.ok(match, 'player.html must expose the puzzle loader map');
-  const mappings = new Map();
-  const pattern = /(?:'([^']+)'|([a-z0-9-]+)):\['([^']+)'/g;
-  for (const item of match[1].matchAll(pattern)) {
-    mappings.set(item[1] || item[2], item[3]);
-  }
-  return mappings;
+  return new Map(registry.map(puzzle => [puzzle.id, puzzle.init]));
 }
 
 test('catalogue contains exactly 43 unique puzzle IDs', () => {
@@ -33,10 +26,14 @@ test('catalogue contains exactly 43 unique puzzle IDs', () => {
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('catalogue and player mappings are one-to-one', () => {
+test('registry is the single catalogue/player source of truth', () => {
   const ids = new Set(catalogueIds());
   const mappings = playerMappings();
   assert.deepEqual([...mappings.keys()].sort(), [...ids].sort());
+  assert.match(index, /assets\/puzzle-registry\.js/);
+  assert.match(player, /assets\/puzzle-registry\.js/);
+  assert.doesNotMatch(index, /const games=\[/);
+  assert.doesNotMatch(player, /const puzzles=\{/);
 });
 
 test('every advertised puzzle has a parseable engine and expected init function', () => {
