@@ -822,22 +822,22 @@
     },
     "undead": {
       "title": "Undead",
-      "summary": "Herstel het spooknetwerk zodat alle vereiste verbindingen kloppen.",
-      "objective": "Herstel het spooknetwerk zodat alle vereiste verbindingen kloppen.",
-      "hint": "Begin met de meest beperkte aanwijzingen en gebruik uitsluiting vóór gokken.",
+      "summary": "Plaats geesten, vampiers en zombies zodat alle zichtlijnen met spiegels kloppen.",
+      "objective": "Vul elk vak zonder spiegel met een geest, vampier of zombie en laat zowel de totalen als alle randcijfers kloppen.",
+      "hint": "Een vampier telt alleen rechtstreeks, een geest alleen via een spiegel en een zombie altijd.",
       "rules": [
-        "Volg elke zichtbare aanwijzing en beperking.",
-        "Een zet is alleen geldig als de puzzel oplosbaar kan blijven.",
-        "De puzzel is pas klaar wanneer de exacte winvoorwaarde bereikt is."
+        "Elk vak zonder spiegel bevat precies één geest, vampier of zombie.",
+        "Vampiers zijn rechtstreeks zichtbaar maar niet in spiegels; geesten net omgekeerd; zombies zijn altijd zichtbaar.",
+        "Laat de monstertotalen en elk randcijfer exact kloppen."
       ],
       "tutorial": [
-        "Lees eerst het doel en de vaste aanwijzingen.",
-        "Begin met de meest beperkte of gedwongen zet.",
-        "Gebruik Hint voor een subtiele aanwijzing, niet voor de volledige oplossing."
+        "Begin met zichtlijnen met weinig open vakken.",
+        "Volg elke lijn door /- en \\\\-spiegels en noteer of je rechtstreeks of via reflectie kijkt.",
+        "Gebruik de totalen G/V/Z om de laatste twijfelgevallen op te lossen."
       ],
       "tips": [
-        "Kies gedwongen deducties vóór gokken.",
-        "Reset herstart dezelfde seed; Nieuwe puzzel maakt een nieuwe seed."
+        "Voor de eerste spiegel tellen alleen vampiers en zombies.",
+        "Na een reflectie tellen geesten en zombies, maar vampiers niet."
       ]
     },
     "unequal": {
