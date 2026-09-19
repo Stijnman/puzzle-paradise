@@ -1,0 +1,329 @@
+{
+  "locale": "de",
+  "name": "Deutsch",
+  "ui": {
+    "brand": "Puzzle Paradise",
+    "search": "Puzzles suchen",
+    "sort": "Sortieren",
+    "featured": "Empfohlen",
+    "az": "A–Z",
+    "difficulty": "Schwierigkeit",
+    "all": "Alle",
+    "play": "Spielen",
+    "daily": "Tagesrätsel",
+    "progress": "Fortschritt",
+    "completed": "Gelöst",
+    "settings": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "sound": "Ton",
+    "haptics": "Haptik",
+    "rules": "Spielanleitung",
+    "objective": "Ziel",
+    "constraints": "Regeln & Einschränkungen",
+    "tutorial": "Schritt für Schritt",
+    "tips": "Profi-Tipps",
+    "hint": "Hinweis",
+    "undo": "Rückgängig",
+    "redo": "Wiederholen",
+    "reset": "Zurücksetzen",
+    "newPuzzle": "Neues Puzzle",
+    "moves": "Züge",
+    "time": "Zeit",
+    "accuracy": "Genauigkeit",
+    "best": "Bestzeit",
+    "stars": "Sterne",
+    "easy": "Leicht",
+    "medium": "Mittel",
+    "hard": "Schwer",
+    "expert": "Experte",
+    "close": "Schließen",
+    "victory": "Puzzle gelöst!",
+    "continue": "Weiter",
+    "noResults": "Keine passenden Puzzles.",
+    "collapse": "Kopfzeile einklappen",
+    "expand": "Kopfzeile ausklappen"
+  },
+  "categories": {
+    "Logic": "Logik",
+    "Number": "Zahlen",
+    "Spatial": "Räumlich",
+    "Strategy": "Strategie"
+  },
+  "guide": {
+    "rules": [
+      "Beachte alle sichtbaren Hinweise und Einschränkungen.",
+      "Ein Zug ist nur gültig, wenn eine Lösung weiterhin möglich bleibt.",
+      "Fertig ist das Puzzle erst bei erfüllter exakter Siegbedingung."
+    ],
+    "tutorial": [
+      "Lies Ziel und feste Hinweise.",
+      "Beginne mit dem am stärksten eingeschränkten Zug.",
+      "Nutze Hinweis für einen kleinen Anstoß statt der kompletten Lösung."
+    ],
+    "tips": [
+      "Erzwungene Schlüsse sind besser als Raten.",
+      "Zurücksetzen behält denselben Seed; Neues Puzzle erzeugt einen neuen."
+    ]
+  },
+  "puzzles": {
+    "sudoku": {
+      "title": "Classic Sudoku",
+      "summary": "Löse Classic Sudoku, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Classic Sudoku, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "arrow-escape": {
+      "title": "Arrow Escape",
+      "summary": "Löse Arrow Escape, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Arrow Escape, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "net": {
+      "title": "Pipe Routing",
+      "summary": "Löse Pipe Routing, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Pipe Routing, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "mines": {
+      "title": "Mines",
+      "summary": "Löse Mines, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Mines, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "fifteen": {
+      "title": "Fifteen",
+      "summary": "Löse Fifteen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Fifteen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "keen": {
+      "title": "Keen",
+      "summary": "Löse Keen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Keen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "hitori": {
+      "title": "Hitori",
+      "summary": "Löse Hitori, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Hitori, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "lightup": {
+      "title": "Light Up",
+      "summary": "Löse Light Up, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Light Up, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "loopy": {
+      "title": "Loopy",
+      "summary": "Löse Loopy, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Loopy, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "bridges": {
+      "title": "Bridges",
+      "summary": "Löse Bridges, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Bridges, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "samegame": {
+      "title": "Same Game",
+      "summary": "Löse Same Game, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Same Game, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "untangle": {
+      "title": "Untangle",
+      "summary": "Löse Untangle, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Untangle, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "blackbox": {
+      "title": "Black Box",
+      "summary": "Löse Black Box, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Black Box, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "dominosa": {
+      "title": "Dominosa",
+      "summary": "Löse Dominosa, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Dominosa, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "galaxies": {
+      "title": "Galaxies",
+      "summary": "Löse Galaxies, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Galaxies, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "guess": {
+      "title": "Guess",
+      "summary": "Löse Guess, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Guess, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "inertia": {
+      "title": "Inertia",
+      "summary": "Löse Inertia, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Inertia, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "ink": {
+      "title": "Ink",
+      "summary": "Löse Ink, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Ink, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "magnets": {
+      "title": "Magnets",
+      "summary": "Löse Magnets, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Magnets, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "maps": {
+      "title": "Map Colouring",
+      "summary": "Löse Map Colouring, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Map Colouring, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "net2": {
+      "title": "Network",
+      "summary": "Löse Network, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Network, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "netslide": {
+      "title": "Net Slide",
+      "summary": "Löse Net Slide, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Net Slide, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "nullgame": {
+      "title": "Null Game",
+      "summary": "Löse Null Game, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Null Game, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "pattern": {
+      "title": "Pattern",
+      "summary": "Löse Pattern, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Pattern, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "pearl": {
+      "title": "Pearl Loop",
+      "summary": "Löse Pearl Loop, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Pearl Loop, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "pegs": {
+      "title": "Pegs",
+      "summary": "Löse Pegs, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Pegs, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "range": {
+      "title": "Range",
+      "summary": "Löse Range, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Range, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "rect": {
+      "title": "Rectangles",
+      "summary": "Löse Rectangles, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Rectangles, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "sequencing": {
+      "title": "Sequencing",
+      "summary": "Löse Sequencing, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Sequencing, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "signpost": {
+      "title": "Signpost",
+      "summary": "Löse Signpost, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Signpost, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "singles": {
+      "title": "Singles",
+      "summary": "Löse Singles, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Singles, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "sixteen": {
+      "title": "Sixteen",
+      "summary": "Löse Sixteen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Sixteen, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "slant": {
+      "title": "Slant",
+      "summary": "Löse Slant, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Slant, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "solo": {
+      "title": "Solo",
+      "summary": "Löse Solo, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Solo, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "tents": {
+      "title": "Tents",
+      "summary": "Löse Tents, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Tents, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "towers": {
+      "title": "Towers",
+      "summary": "Löse Towers, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Towers, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "twiddle": {
+      "title": "Twiddle",
+      "summary": "Löse Twiddle, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Twiddle, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "undead": {
+      "title": "Undead",
+      "summary": "Löse Undead, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Undead, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "unequal": {
+      "title": "Unequal",
+      "summary": "Löse Unequal, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Unequal, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "unruly": {
+      "title": "Unruly",
+      "summary": "Löse Unruly, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Unruly, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "cube": {
+      "title": "Cube",
+      "summary": "Löse Cube, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Cube, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "filling": {
+      "title": "Filling",
+      "summary": "Löse Filling, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Filling, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    },
+    "flip": {
+      "title": "Flip",
+      "summary": "Löse Flip, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "objective": "Löse Flip, indem du alle rätselspezifischen Bedingungen erfüllst.",
+      "hint": "Beginne mit den stärksten Einschränkungen und schließe Unmöglichkeiten aus."
+    }
+  }
+}
