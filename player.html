@@ -17,6 +17,7 @@
       <button class="cmd optional" id="hint" type="button">💡 <span data-i18n="ui.hint">Hint</span></button>
       <button class="cmd" id="rules" type="button">? <span class="label" data-i18n="ui.rules">How to Play</span></button>
       <button class="cmd" id="collapse-ui" type="button" aria-label="Collapse controls">⌃</button>
+      <button class="cmd" id="share-game" type="button" aria-label="Share puzzle">↗</button>
       <button class="cmd" id="settings" type="button" data-i18n-label="ui.settings" aria-label="Settings">⚙</button>
       <select class="select optional" id="difficulty-select" data-i18n-label="ui.difficulty" aria-label="Difficulty"><option value="easy" data-i18n="ui.easy">Easy</option><option value="medium" data-i18n="ui.medium">Medium</option><option value="hard" data-i18n="ui.hard">Hard</option><option value="expert" data-i18n="ui.expert">Expert</option></select>
       <button class="cmd primary" id="new-game" type="button"><span class="label" data-i18n="ui.newPuzzle">New Puzzle</span><span aria-hidden="true">＋</span></button>
@@ -81,6 +82,7 @@
   </div>
 
   <script src="assets/puzzle-registry.js"></script>
+  <script src="assets/storage.js"></script>
   <script>
     const game=new URLSearchParams(location.search).get('game');
     const config=window.PP_REGISTRY.find(puzzle => puzzle.id === game);
