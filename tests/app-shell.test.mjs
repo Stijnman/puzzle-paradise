@@ -16,7 +16,7 @@ const playerCss = read('assets/player.css');
 const puzzleIds = loadRegistry().map(puzzle => puzzle.id);
 
 test('shared browser JavaScript parses', () => {
-  for (const file of ['assets/puzzle-registry.js','assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
+  for (const file of ['assets/puzzle-registry.js','assets/storage.js','assets/i18n.js','assets/arcade.js','assets/player-runtime.js']) {
     assert.doesNotThrow(() => new vm.Script(read(file), { filename: file }), `${file} must parse`);
   }
 });
@@ -75,8 +75,10 @@ test('player exposes advanced gameplay controls', () => {
 
 test('player runtime contains persistence, deterministic seed, history, audio and haptic hooks', () => {
   const runtime = read('assets/player-runtime.js');
-  assert.match(runtime, /pp\.sessions/);
-  assert.match(runtime, /pp\.stats/);
+  assert.match(runtime, /PPStorage\.getSession/);
+  assert.match(runtime, /PPStorage\.setSession/);
+  assert.match(runtime, /recordDailyCompletion/);
+  assert.match(runtime, /sharePuzzle/);
   assert.match(runtime, /mulberry32/);
   assert.match(runtime, /function undo\(/);
   assert.match(runtime, /function redo\(/);
@@ -84,5 +86,6 @@ test('player runtime contains persistence, deterministic seed, history, audio an
   assert.match(runtime, /navigator\.vibrate/);
   assert.match(runtime, /MutationObserver/);
   assert.match(runtime, /PP_DIFFICULTY/);
+  assert.match(runtime, /sessionKeyFor/);
   assert.match(runtime, /Ctrl|ctrlKey/);
 });
