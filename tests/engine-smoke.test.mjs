@@ -301,6 +301,19 @@ for (const { id, initFunction } of puzzleMappings()) {
     ].reduce((total, board) => total + board.children.length, 0);
 
     assert.ok(boardCellCount > 0, `${id} did not render any board cells`);
+
+    const interactiveCells = [
+      document.getElementById('arrow-board'),
+      document.getElementById('sudoku-board'),
+      document.getElementById('net-board')
+    ].flatMap(board => board.children).filter(cell => typeof cell.onclick === 'function');
+
+    assert.ok(interactiveCells.length > 0, `${id} did not expose an interactive board cell`);
+    assert.doesNotThrow(
+      () => interactiveCells[0].onclick({ target: interactiveCells[0] }),
+      `${id} failed on its first legal board interaction`
+    );
+
     assert.doesNotThrow(() => context.__puzzleInit(), `${id} failed while resetting`);
   });
 }
