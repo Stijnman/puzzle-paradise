@@ -1,0 +1,21 @@
+{
+  "name": "Puzzle Paradise",
+  "short_name": "Puzzles",
+  "description": "A full-screen, ad-free arcade of 43 logic, number, spatial and strategy puzzles.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070914",
+  "theme_color": "#070914",
+  "categories": ["games", "entertainment", "education"],
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
