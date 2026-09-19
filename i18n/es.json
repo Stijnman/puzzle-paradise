@@ -71,259 +71,861 @@
       "title": "Classic Sudoku",
       "summary": "Resuelve Classic Sudoku cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Classic Sudoku cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "arrow-escape": {
       "title": "Arrow Escape",
       "summary": "Resuelve Arrow Escape cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Arrow Escape cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "net": {
       "title": "Pipe Routing",
       "summary": "Resuelve Pipe Routing cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Pipe Routing cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "mines": {
       "title": "Mines",
       "summary": "Resuelve Mines cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Mines cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "fifteen": {
       "title": "Fifteen",
       "summary": "Resuelve Fifteen cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Fifteen cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "keen": {
       "title": "Keen",
       "summary": "Resuelve Keen cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Keen cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "hitori": {
       "title": "Hitori",
       "summary": "Resuelve Hitori cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Hitori cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "lightup": {
       "title": "Light Up",
       "summary": "Resuelve Light Up cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Light Up cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "loopy": {
       "title": "Loopy",
       "summary": "Resuelve Loopy cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Loopy cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "bridges": {
       "title": "Bridges",
       "summary": "Resuelve Bridges cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Bridges cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "samegame": {
       "title": "Same Game",
       "summary": "Resuelve Same Game cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Same Game cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "untangle": {
       "title": "Untangle",
       "summary": "Resuelve Untangle cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Untangle cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "blackbox": {
       "title": "Black Box",
       "summary": "Resuelve Black Box cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Black Box cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "dominosa": {
       "title": "Dominosa",
       "summary": "Resuelve Dominosa cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Dominosa cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "galaxies": {
       "title": "Galaxies",
       "summary": "Resuelve Galaxies cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Galaxies cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "guess": {
       "title": "Guess",
       "summary": "Resuelve Guess cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Guess cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "inertia": {
       "title": "Inertia",
       "summary": "Resuelve Inertia cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Inertia cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "ink": {
       "title": "Ink",
       "summary": "Resuelve Ink cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Ink cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "magnets": {
       "title": "Magnets",
       "summary": "Resuelve Magnets cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Magnets cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "maps": {
       "title": "Map Colouring",
       "summary": "Resuelve Map Colouring cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Map Colouring cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "net2": {
       "title": "Network",
       "summary": "Resuelve Network cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Network cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "netslide": {
       "title": "Net Slide",
       "summary": "Resuelve Net Slide cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Net Slide cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "nullgame": {
       "title": "Null Game",
       "summary": "Resuelve Null Game cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Null Game cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "pattern": {
       "title": "Pattern",
       "summary": "Resuelve Pattern cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Pattern cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "pearl": {
       "title": "Pearl Loop",
       "summary": "Resuelve Pearl Loop cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Pearl Loop cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "pegs": {
       "title": "Pegs",
       "summary": "Resuelve Pegs cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Pegs cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "range": {
       "title": "Range",
       "summary": "Resuelve Range cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Range cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "rect": {
       "title": "Rectangles",
       "summary": "Resuelve Rectangles cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Rectangles cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "sequencing": {
       "title": "Sequencing",
       "summary": "Resuelve Sequencing cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Sequencing cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "signpost": {
       "title": "Signpost",
       "summary": "Resuelve Signpost cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Signpost cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "singles": {
       "title": "Singles",
       "summary": "Resuelve Singles cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Singles cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "sixteen": {
       "title": "Sixteen",
       "summary": "Resuelve Sixteen cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Sixteen cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "slant": {
       "title": "Slant",
       "summary": "Resuelve Slant cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Slant cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "solo": {
       "title": "Solo",
       "summary": "Resuelve Solo cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Solo cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "tents": {
       "title": "Tents",
       "summary": "Resuelve Tents cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Tents cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "towers": {
       "title": "Towers",
       "summary": "Resuelve Towers cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Towers cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "twiddle": {
       "title": "Twiddle",
       "summary": "Resuelve Twiddle cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Twiddle cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "undead": {
       "title": "Undead",
       "summary": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Undead cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "unequal": {
       "title": "Unequal",
       "summary": "Resuelve Unequal cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Unequal cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "unruly": {
       "title": "Unruly",
       "summary": "Resuelve Unruly cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Unruly cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "cube": {
       "title": "Cube",
       "summary": "Resuelve Cube cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Cube cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "filling": {
       "title": "Filling",
       "summary": "Resuelve Filling cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Filling cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     },
     "flip": {
       "title": "Flip",
       "summary": "Resuelve Flip cumpliendo todas las restricciones específicas del puzle.",
       "objective": "Resuelve Flip cumpliendo todas las restricciones específicas del puzle.",
-      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible."
+      "hint": "Empieza por las pistas más restrictivas y descarta primero lo imposible.",
+      "rules": [
+        "Respeta todas las pistas y restricciones visibles.",
+        "Un movimiento solo es válido si mantiene una solución posible.",
+        "El puzle termina únicamente al cumplir su condición de victoria exacta."
+      ],
+      "tutorial": [
+        "Lee el objetivo y revisa las pistas fijas.",
+        "Empieza por el movimiento más restringido.",
+        "Usa Pista para una ayuda sutil sin revelar la solución."
+      ],
+      "tips": [
+        "Prioriza deducciones forzadas frente a adivinar.",
+        "Reiniciar conserva la misma semilla; Nuevo puzle crea otra."
+      ]
     }
   }
 }
