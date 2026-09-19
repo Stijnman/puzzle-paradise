@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stijnman.github.io/puzzle-paradise/sitemap.xml
