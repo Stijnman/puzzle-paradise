@@ -1,82 +1,73 @@
 # Testing Guide
 
-Puzzle Paradise uses layered tests so a green CI run means more than "the workflow started successfully."
+Puzzle Paradise uses layered checks so a green workflow represents actual application behavior rather than skipped scripts.
 
 ## Automated checks
 
-### JavaScript syntax
-
-Every puzzle engine must parse successfully:
+### JavaScript and translation syntax
 
 ```bash
-find js -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+find js assets -name "*.js" -type f -print0 | xargs -0 -n1 node --check
+node -e "for (const f of require('fs').readdirSync('i18n')) JSON.parse(require('fs').readFileSync('i18n/'+f,'utf8'))"
 ```
 
-### Repository contract tests
-
-Run:
+### Full test suite
 
 ```bash
 node --test tests/*.test.mjs
 ```
 
-The contract suite verifies that:
+The suite verifies:
 
-- the catalogue contains unique puzzle IDs
-- every catalogue puzzle exists in the player mapping
-- the player mapping does not contain orphan puzzles
-- every mapped puzzle has a matching `js/<id>.js` engine
-- every engine defines the initialization function expected by the player
-- every engine parses as JavaScript
-- required accessibility and metadata hooks remain present
-- the repository does not silently drift away from the expected puzzle count
-
-These tests are dependency-free and use the Node.js built-in test runner.
-
-## CI checks
-
-Pull requests and pushes are checked by `.github/workflows/test.yml` for:
-
-- engine syntax
-- repository contract tests
-- Markdown lint
-- spelling
-- pre-commit hooks
-- verified-secret scanning where supported by the event
-
-A skipped code test is not considered equivalent to a passing code test.
+- exactly 43 unique catalogue IDs
+- one-to-one catalogue/player mappings
+- matching parseable engine/init function for every puzzle
+- no orphan engines
+- startup, reset, and first legal interaction for every engine
+- full-screen arcade/player shell hooks
+- all five translation dictionaries
+- title, objective, hint, rules, tutorial, and tips for every puzzle
+- persistence/history/seed/audio/haptic runtime hooks
+- required accessibility and live-status elements
 
 ## Browser smoke test
 
-Before merging a change that affects gameplay or the player shell:
+Before merging shell or player changes:
 
-1. Open the home page at desktop width.
-2. Search for a puzzle and clear the search.
-3. Test every category filter.
-4. Test A-Z and difficulty sorting.
-5. Open a puzzle card.
-6. Start a new puzzle.
-7. Close the modal with the close button.
-8. Close the modal with Escape.
-9. Repeat at a narrow mobile width.
-10. Confirm no browser-console errors appear.
+1. Confirm the desktop page itself does not scroll.
+2. Collapse and expand the discovery rail.
+3. Test search, category filters, and all sort modes.
+4. Switch EN/NL/FR/DE/ES, reload, and confirm persistence.
+5. Test Dark, Light, and OLED Black, then reload.
+6. Open a puzzle and confirm the player fills the remaining viewport.
+7. Open and close How to Play and Settings drawers.
+8. Try every difficulty.
+9. Make moves, reload, and confirm seed/progress restoration.
+10. Exercise Undo, Redo, Reset, and New Puzzle.
+11. Test Tab, arrows/WASD, Enter/Space, Escape, and Ctrl/Cmd+Z.
+12. Trigger Hint and an invalid move.
+13. Toggle sound and haptics where supported.
+14. Solve a puzzle and verify moves, time, accuracy, stars, best time, and victory UI.
+15. Repeat at phone portrait and phone landscape widths.
+16. Confirm no console errors or clipped controls.
 
 ## Puzzle gameplay checklist
 
-For every puzzle changed in a pull request, verify:
+For every changed puzzle verify:
 
-- the board initializes without an exception
-- a new puzzle resets the state
-- legal input changes the board
-- illegal input is ignored or clearly rejected
-- the documented goal matches the implementation
-- a solvable state can reach its success condition
-- the success message appears exactly once
-- losing games expose a clear restart path
-- the board remains usable on a small screen
+- initialization is deterministic for the same seed
+- procedural engines can produce a different position from a new seed
+- legal input changes state
+- invalid input is rejected or visibly identified
+- Reset restores the same seed
+- Undo/Redo reproduce expected state
+- the documented objective matches the implementation
+- the success condition is reachable
+- success is emitted once
+- losing games expose a restart path
+- keyboard and touch both work
+- the board remains usable on narrow screens
 
 ## Regression policy
 
-A puzzle should not be advertised in `index.html` unless its engine exists and loads through `player.html`. The contract suite enforces that rule automatically.
-
-When a gameplay bug is fixed, add an automated invariant when practical and document the manual reproduction in the pull request.
+A puzzle must not be advertised unless its catalogue metadata, player mapping, engine, and five localization entries all exist. Automated contracts enforce those relationships.
