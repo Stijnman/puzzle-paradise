@@ -195,6 +195,10 @@
   app.classList.toggle('rail-collapsed', localStorage.getItem('pp.railCollapsed') === '1');
   setTheme(localStorage.getItem('pp.theme') || 'dark');
   difficulty.value = localStorage.getItem('pp.defaultDifficulty') || 'medium';
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}), { once:true });
+  }
+
   setLanguage(window.PPI18N.detect()).then(() => {
     const params = new URLSearchParams(location.search);
     const game = params.get('game');
