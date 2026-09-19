@@ -70,6 +70,7 @@
     runtime.session.redo = runtime.redo;
     runtime.session.elapsed = Math.max(0, Date.now() - runtime.startedAt);
     runtime.session.invalidMoves = runtime.invalidMoves;
+    runtime.session.completed = runtime.completed;
     all[runtime.game] = runtime.session;
     writeJSON('pp.sessions', all);
   }
@@ -81,6 +82,7 @@
       runtime.history = Array.isArray(current.actions) ? current.actions : [];
       runtime.redo = Array.isArray(current.redo) ? current.redo : [];
       runtime.invalidMoves = current.invalidMoves || 0;
+      runtime.completed = Boolean(current.completed);
       runtime.startedAt = Date.now() - (current.elapsed || 0);
       return;
     }
@@ -88,6 +90,7 @@
     runtime.history = [];
     runtime.redo = [];
     runtime.invalidMoves = 0;
+    runtime.completed = false;
     runtime.startedAt = Date.now();
   }
 
@@ -220,14 +223,16 @@
   }
 
   function completePuzzle() {
+    const alreadyCounted = Boolean(runtime.session.completed);
     runtime.completed = true;
+    runtime.session.completed = true;
     saveSession();
     const elapsed = Date.now() - runtime.startedAt;
     const moves = runtime.history.length;
     const accuracy = moves ? Math.max(0, Math.round((moves - runtime.invalidMoves) / moves * 100)) : 100;
     const par = ({ easy: 80, medium: 120, hard: 180, expert: 260 })[runtime.session.difficulty] || 120;
     const score = Math.max(1, 3 - (runtime.invalidMoves > 2 ? 1 : 0) - (moves > par ? 1 : 0));
-    saveStats({ completed:true, time:elapsed, moves, accuracy, stars:score });
+    if (!alreadyCounted) saveStats({ completed:true, time:elapsed, moves, accuracy, stars:score });
     playSound('victory');
     vibrate('victory');
     document.getElementById('victory-stars').textContent = '★'.repeat(score) + '☆'.repeat(3-score);
@@ -268,6 +273,9 @@
   function initEngine() {
     const start = getStartFunction();
     if (typeof start !== 'function') throw new Error('Puzzle init function unavailable');
+    window.PP_DIFFICULTY = runtime.session.difficulty;
+    window.PP_SEED = runtime.session.seed;
+    document.getElementById('seed-label').textContent = `${runtime.session.difficulty.toUpperCase()} · ${runtime.session.seed.slice(0,10)}`;
     resetRandom();
     start();
     decorateActions();
@@ -305,6 +313,7 @@
     runtime.invalidMoves = 0;
     runtime.startedAt = Date.now();
     runtime.completed = false;
+    runtime.session.completed = false;
     document.getElementById('victory').classList.remove('open');
     replayHistory();
   }
@@ -418,6 +427,10 @@
     document.getElementById('hint').onclick = hint;
     document.getElementById('rules').onclick = () => toggleDrawer('rules-drawer');
     document.getElementById('settings').onclick = () => toggleDrawer('settings-drawer');
+    document.getElementById('collapse-ui').onclick = () => {
+      document.getElementById('player-app').classList.toggle('compact');
+      localStorage.setItem('pp.playerCompact', document.getElementById('player-app').classList.contains('compact') ? '1' : '0');
+    };
     document.querySelectorAll('[data-close-drawer]').forEach(button => button.onclick = () => button.closest('.drawer').classList.remove('open'));
     document.getElementById('victory-continue').onclick = () => document.getElementById('victory').classList.remove('open');
     document.getElementById('victory-new').onclick = newPuzzle;
@@ -482,6 +495,7 @@
     document.getElementById('difficulty-select').value = runtime.session.difficulty;
     document.getElementById('language-select').value = runtime.dictionary.locale;
     applyTheme(localStorage.getItem('pp.theme') || 'dark');
+    document.getElementById('player-app').classList.toggle('compact', localStorage.getItem('pp.playerCompact') === '1');
     document.getElementById('sound-toggle').textContent = localStorage.getItem('pp.sound') === '0' ? 'OFF' : 'ON';
     document.getElementById('haptics-toggle').textContent = localStorage.getItem('pp.haptics') === '0' ? 'OFF' : 'ON';
 
