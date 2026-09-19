@@ -1,91 +1,249 @@
-// Net / Map Connection Puzzle Logic
-// Based on Simon Tatham's Portable Puzzle Collection
+// Network / NetWalk.
+// A random spanning tree is rotated into a puzzle; reconnect all tiles without loops.
 
-const BOARD_SIZE = 5;
-let connections = [];
+const NET2_N = 1;
+const NET2_E = 2;
+const NET2_S = 4;
+const NET2_W = 8;
+const NET2_DIRS = [
+    [-1,0,NET2_N,NET2_S],
+    [0,1,NET2_E,NET2_W],
+    [1,0,NET2_S,NET2_N],
+    [0,-1,NET2_W,NET2_E]
+];
 
-function initNet() {
-    const board = document.getElementById('arrow-board');
-    board.style.gridTemplateColumns = `repeat(${BOARD_SIZE}, 1fr)`;
-    board.innerHTML = '';
-    document.getElementById('arrow-status').innerText = '';
-    connections = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
+let net2Size = 5;
+let net2Tiles = [];
 
-    // Create pipe connections - each number connects to another same number
-    // The goal is to connect all pairs
+function net2Difficulty() {
+    return ['easy','medium','hard','expert'].includes(window.PP_DIFFICULTY)
+        ? window.PP_DIFFICULTY
+        : 'medium';
+}
 
-    // Create pairs: numbers 1-12 (24 cells for 12 pairs, but 5x5=25... use some as empty)
-    connections = new Array(BOARD_SIZE * BOARD_SIZE).fill(0);
+function net2BoardSize() {
+    return { easy:4, medium:5, hard:6, expert:7 }[net2Difficulty()];
+}
 
-    // Place 6 pairs (12 cells with numbers, rest empty)
-    const pairCount = 6;
-    let placedPairs = 0;
-    let usedNumbers = [];
+function generateNet2Tree() {
+    const total = net2Size * net2Size;
+    const masks = new Array(total).fill(0);
+    const visited = new Set([Math.floor(total / 2)]);
+    const frontier = [];
 
-    while (placedPairs < pairCount) {
-        const num = Math.floor(Math.random() * 9) + 1; // 1-9
-        if (!usedNumbers.includes(num)) {
-            usedNumbers.push(num);
-            // Place two cells with this number
-            let placedThisPair = 0;
-            while (placedThisPair < 2) {
-                const idx = Math.floor(Math.random() * (BOARD_SIZE * BOARD_SIZE));
-                if (connections[idx] === 0) {
-                    connections[idx] = num;
-                    placedThisPair++;
-                }
-            }
-            placedPairs++;
+    function addFrontier(index) {
+        const row = Math.floor(index / net2Size);
+        const col = index % net2Size;
+
+        for (const [dr,dc,bit,opposite] of NET2_DIRS) {
+            const r = row + dr;
+            const c = col + dc;
+            if (r < 0 || r >= net2Size || c < 0 || c >= net2Size) continue;
+            const next = r * net2Size + c;
+            if (!visited.has(next)) frontier.push({ from:index,to:next,bit,opposite });
         }
     }
 
-    // Create cells
-    for (let r = 0; r < BOARD_SIZE; r++) {
-        for (let c = 0; c < BOARD_SIZE; c++) {
-            const idx = r * BOARD_SIZE + c;
+    addFrontier([...visited][0]);
+
+    while (visited.size < total) {
+        const choice = Math.floor(Math.random() * frontier.length);
+        const edge = frontier.splice(choice,1)[0];
+        if (visited.has(edge.to)) continue;
+
+        masks[edge.from] |= edge.bit;
+        masks[edge.to] |= edge.opposite;
+        visited.add(edge.to);
+        addFrontier(edge.to);
+    }
+
+    return masks;
+}
+
+function rotateNet2Mask(mask,turns = 1) {
+    let result = mask;
+    for (let i = 0; i < turns; i++) {
+        result =
+            ((result & NET2_N) ? NET2_E : 0) |
+            ((result & NET2_E) ? NET2_S : 0) |
+            ((result & NET2_S) ? NET2_W : 0) |
+            ((result & NET2_W) ? NET2_N : 0);
+    }
+    return result;
+}
+
+function generateNet2() {
+    const solved = generateNet2Tree();
+    net2Tiles = solved.map(mask => rotateNet2Mask(mask,Math.floor(Math.random() * 4)));
+
+    if (net2IsSolved()) net2Tiles[0] = rotateNet2Mask(net2Tiles[0],1);
+}
+
+function initNet() {
+    const board = document.getElementById('arrow-board');
+    net2Size = net2BoardSize();
+    generateNet2();
+
+    board.style.gridTemplateColumns = 'repeat(' + net2Size + ',1fr)';
+    board.innerHTML = '';
+
+    for (let r = 0; r < net2Size; r++) {
+        for (let c = 0; c < net2Size; c++) {
+            const index = r * net2Size + c;
             const cell = document.createElement('div');
             cell.className = 'grid-cell';
-            cell.id = `net2-${r}-${c}`;
-
-            if (connections[idx]) {
-                cell.innerText = connections[idx];
-                cell.style.color = 'var(--primary)';
-                cell.style.fontWeight = 'bold';
-                cell.style.fontSize = '18px';
-            } else {
-                cell.innerText = '';
-                cell.classList.add('empty');
-            }
-
-            cell.onclick = () => {
-                // Toggle connection marker
-                if (connections[idx]) {
-                    connections[idx] = 0;
-                    cell.innerText = '';
-                } else {
-                    connections[idx] = connections[idx] || 1;
-                    cell.innerText = connections[idx];
-                    cell.style.color = 'var(--primary)';
-                    cell.style.fontWeight = 'bold';
+            cell.id = 'net2-' + r + '-' + c;
+            cell.setAttribute('role','button');
+            cell.setAttribute('tabindex','0');
+            cell.onclick = () => rotateNet2(index);
+            cell.onkeydown = event => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    rotateNet2(index);
                 }
-                checkNetWin();
             };
-
             board.appendChild(cell);
         }
     }
 
-    checkNetWin();
+    renderNet2();
+    checkNet2Win();
 }
 
-function checkNetWin() {
-    const status = document.getElementById('arrow-status');
-    let connected = connections.filter(c => c > 0).length;
-    if (connected > 0 && connected < 15) {
-        status.innerText = 'Connecting pairs...';
-        status.style.color = 'var(--accent-warning)';
-    } else if (connected >= 15) {
-        status.innerText = 'All pairs connected! Puzzle Solved.';
-        status.style.color = 'var(--accent-success)';
+function rotateNet2(index) {
+    net2Tiles[index] = rotateNet2Mask(net2Tiles[index],1);
+    renderNet2();
+    checkNet2Win();
+}
+
+function net2Char(mask) {
+    return ({
+        1:'╵',2:'╶',3:'└',4:'╷',5:'│',6:'┌',7:'├',
+        8:'╴',9:'┘',10:'─',11:'┴',12:'┐',13:'┤',14:'┬',15:'┼'
+    })[mask] || '·';
+}
+
+function net2ConnectedNeighbours(index) {
+    const row = Math.floor(index / net2Size);
+    const col = index % net2Size;
+    const mask = net2Tiles[index];
+    const result = [];
+
+    for (const [dr,dc,bit,opposite] of NET2_DIRS) {
+        if (!(mask & bit)) continue;
+        const r = row + dr;
+        const c = col + dc;
+        if (r < 0 || r >= net2Size || c < 0 || c >= net2Size) continue;
+        const next = r * net2Size + c;
+        if (net2Tiles[next] & opposite) result.push(next);
+    }
+    return result;
+}
+
+function net2HasBoundaryLeak(index) {
+    const row = Math.floor(index / net2Size);
+    const col = index % net2Size;
+    const mask = net2Tiles[index];
+    return (
+        (row === 0 && (mask & NET2_N)) ||
+        (row === net2Size - 1 && (mask & NET2_S)) ||
+        (col === 0 && (mask & NET2_W)) ||
+        (col === net2Size - 1 && (mask & NET2_E))
+    );
+}
+
+function net2IsSolved() {
+    if (!net2Tiles.length || net2Tiles.some((_,index) => net2HasBoundaryLeak(index))) return false;
+
+    const reached = new Set([0]);
+    const queue = [0];
+
+    while (queue.length) {
+        const current = queue.shift();
+        for (const next of net2ConnectedNeighbours(current)) {
+            if (!reached.has(next)) {
+                reached.add(next);
+                queue.push(next);
+            }
+        }
+    }
+
+    return reached.size === net2Tiles.length;
+}
+
+function renderNet2() {
+    for (let r = 0; r < net2Size; r++) {
+        for (let c = 0; c < net2Size; c++) {
+            const index = r * net2Size + c;
+            const cell = document.getElementById('net2-' + r + '-' + c);
+            cell.innerText = net2Char(net2Tiles[index]);
+            cell.style.color = net2HasBoundaryLeak(index) ? 'var(--accent-warning)' : 'var(--primary)';
+            cell.setAttribute(
+                'aria-label',
+                'Network tile row ' + (r + 1) + ', column ' + (c + 1)
+            );
+        }
     }
 }
+
+function checkNet2Win() {
+    const status = document.getElementById('arrow-status');
+    if (net2IsSolved()) {
+        status.innerText = 'Every tile belongs to one loop-free network. Puzzle solved!';
+        status.style.color = 'var(--accent-success)';
+    } else {
+        status.innerText =
+            net2Difficulty()[0].toUpperCase() + net2Difficulty().slice(1) +
+            ' · rotate every tile until the entire network is connected.';
+        status.style.color = '';
+    }
+}
+
+function net2Hint() {
+    for (let index = 0; index < net2Tiles.length; index++) {
+        if (net2HasBoundaryLeak(index)) {
+            const row = Math.floor(index / net2Size);
+            const col = index % net2Size;
+            return {
+                message:'This boundary tile points outside the board, so its orientation cannot be correct.',
+                selector:'#net2-' + row + '-' + col
+            };
+        }
+    }
+
+    for (let index = 0; index < net2Tiles.length; index++) {
+        const row = Math.floor(index / net2Size);
+        const col = index % net2Size;
+        const mask = net2Tiles[index];
+
+        for (const [dr,dc,bit,opposite] of NET2_DIRS) {
+            if (!(mask & bit)) continue;
+            const r = row + dr;
+            const c = col + dc;
+            if (r < 0 || r >= net2Size || c < 0 || c >= net2Size) continue;
+            if (!(net2Tiles[r * net2Size + c] & opposite)) {
+                return {
+                    message:'This pipe end is not matched by its neighbour.',
+                    selector:'#net2-' + row + '-' + col
+                };
+            }
+        }
+    }
+
+    return 'Trace connectivity outward from the centre and look for the disconnected component.';
+}
+
+window.PPEngine?.register('net2', {
+    version:1,
+    serialize:() => ({ version:1,size:net2Size,tiles:[...net2Tiles] }),
+    restore:snapshot => {
+        if (!snapshot || snapshot.version !== 1 || snapshot.size !== net2Size || !Array.isArray(snapshot.tiles)) return false;
+        net2Tiles = [...snapshot.tiles];
+        renderNet2();
+        checkNet2Win();
+        return true;
+    },
+    validate:() => net2Tiles.length === net2Size * net2Size,
+    isSolved:net2IsSolved,
+    getHint:net2Hint
+});
