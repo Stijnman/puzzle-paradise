@@ -1,40 +1,22 @@
 # Pre-commit hooks configuration for Puzzle Paradise
-# See https://pre-commit.com for more information
 # Install with: pip install pre-commit && pre-commit install
 
 repos:
-  # General hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      # Remove trailing whitespace
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-
-      # Ensure files end with a newline
       - id: end-of-file-fixer
-
-      # Check for added large files
       - id: check-added-large-files
         args: ['--maxkb=1024']
-
-      # Check YAML validity
       - id: check-yaml
-
-      # Check for merge conflict markers
       - id: check-merge-conflict
-
-      # Detect private keys
       - id: detect-private-key
-
-      # Check JSON validity
       - id: check-json
-
-      # Pretty format JSON
       - id: pretty-format-json
         args: ['--autofix', '--indent=2', '--no-ensure-ascii']
 
-  # Spell checking
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
     hooks:
@@ -45,7 +27,6 @@ repos:
           - --check-filenames
           - --check-hidden
 
-  # Security checks
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
     hooks:
@@ -53,7 +34,6 @@ repos:
         args: ['--baseline', '.secrets.baseline']
         exclude: .git/
 
-  # Syntax-check the generated JavaScript without requiring an ESLint project.
   - repo: local
     hooks:
       - id: markdownlint
@@ -62,9 +42,14 @@ repos:
         language: system
         types: [markdown]
         exclude: CHANGELOG.md
-
       - id: javascript-syntax-check
         name: JavaScript syntax check
         entry: bash -c 'for file in "$@"; do node --check "$file" || exit 1; done' --
         language: system
-        files: \.js$
+        files: \.(js|mjs)$
+      - id: repository-contract-tests
+        name: Repository contract tests
+        entry: node --test tests/repository.test.mjs
+        language: system
+        pass_filenames: false
+        always_run: true
