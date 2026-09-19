@@ -2,7 +2,7 @@
 
 Puzzle Paradise is a fast, free, ad-free puzzle arcade built with plain HTML, CSS, and JavaScript and deployed on GitHub Pages.
 
-**Play:** https://stijnman.github.io/puzzle-paradise/
+**Play:** [https://stijnman.github.io/puzzle-paradise/](https://stijnman.github.io/puzzle-paradise/)
 
 ## What is included
 
