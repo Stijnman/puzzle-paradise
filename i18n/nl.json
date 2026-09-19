@@ -42,7 +42,20 @@
     "continue": "Verder",
     "noResults": "Geen puzzels gevonden.",
     "collapse": "Kop inklappen",
-    "expand": "Kop uitklappen"
+    "expand": "Kop uitklappen",
+    "tagline": "43 puzzels · nul reclame",
+    "hero": "Een compacte schermvullende puzzelarcade met opgeslagen voortgang, dagpuzzels, meerdere talen en toetsenbordbediening.",
+    "puzzles": "Puzzels",
+    "categories": "Categorieën",
+    "dark": "Donker",
+    "light": "Licht",
+    "oled": "OLED-zwart",
+    "statusProgress": "Ga door — de puzzel is nog bezig.",
+    "statusInvalid": "Die zet botst met de huidige puzzelregels.",
+    "statusSolved": "Puzzel opgelost!",
+    "seeded": "Seed",
+    "on": "Aan",
+    "off": "Uit"
   },
   "categories": {
     "Logic": "Logica",
