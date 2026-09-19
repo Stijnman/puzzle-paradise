@@ -283,7 +283,7 @@
   }
 
   function getStartFunction() {
-    return window[runtime.config[0]];
+    return window[runtime.config.init];
   }
 
   function initEngine() {
@@ -355,7 +355,7 @@
     document.getElementById('game-name').textContent =
       runtime.dictionary.puzzles?.[runtime.game]?.title || runtime.game;
     document.getElementById('instructions').textContent =
-      runtime.dictionary.puzzles?.[runtime.game]?.objective || runtime.config[1];
+      runtime.dictionary.puzzles?.[runtime.game]?.objective || runtime.config.description;
     const status = currentStatus();
     if (status) {
       if (runtime.dictionary.locale === 'en' && status.dataset.ppRawText) {
@@ -369,7 +369,7 @@
 
   function populateGuide() {
     const puzzle = runtime.dictionary?.puzzles?.[runtime.game] || {};
-    document.getElementById('guide-objective').textContent = puzzle.objective || runtime.config[1];
+    document.getElementById('guide-objective').textContent = puzzle.objective || runtime.config.description;
     document.getElementById('guide-rules').innerHTML = (puzzle.rules || runtime.dictionary?.guide?.rules || []).map(item => `<li>${item}</li>`).join('');
     document.getElementById('guide-tutorial').innerHTML = (puzzle.tutorial || runtime.dictionary?.guide?.tutorial || []).map((item,index) => `<button class="demo-step" type="button"><strong>${index+1}</strong><br>${item}</button>`).join('');
     document.querySelectorAll('#guide-tutorial .demo-step').forEach(step => step.onclick = () => step.classList.toggle('active'));
@@ -537,7 +537,7 @@
     populateGuide();
     window.PPI18N.apply(document,runtime.dictionary);
 
-    const type = config[2] || 'arrow';
+    const type = config.boardType || 'arrow';
     ['arrow','sudoku','net'].forEach(name => {
       document.getElementById(`${name}-board`).style.display = name === type ? 'grid' : 'none';
       document.getElementById(`${name}-status`).style.display = name === type ? 'block' : 'none';
