@@ -118,7 +118,6 @@ jobs:
       - name: Run pre-commit on all files
         run: pre-commit run --all-files --show-diff-on-failure
 
-
   browser-e2e:
     name: Browser E2E + Accessibility
     runs-on: ubuntu-latest
@@ -130,7 +129,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: "20"
-          cache: npm
       - name: Install browser test dependencies
         run: npm install --ignore-scripts
       - name: Install Playwright browsers
