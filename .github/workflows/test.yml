@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: "20"
       - name: Syntax-check all JavaScript
@@ -41,7 +41,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: "20"
       - name: Run contract tests
@@ -108,7 +108,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: "20"
       - name: Install tooling
@@ -126,7 +126,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v7
         with:
           node-version: "20"
       - name: Install browser test dependencies
