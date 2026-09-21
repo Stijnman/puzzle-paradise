@@ -1,49 +1,43 @@
 # Code of Conduct
 
-## Our Commitment
+## Our commitment
 
-We are committed to making participation in this project a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+We want Puzzle Paradise project spaces to be constructive and welcoming. Participation should remain focused on the software, puzzles, documentation, testing, and related project work.
 
-The project maintainers pledge to foster an open and welcoming environment. We promise to address any instances of harassing, discriminatory, or disrespectful behavior.
+## Expected behavior
 
-## Expected Behavior
+Contributors should:
 
-Contributors are expected to:
+- communicate respectfully
+- critique ideas and code rather than people
+- give reproducible technical feedback where possible
+- respect privacy and confidentiality
+- accept reasonable review feedback
+- help keep issues and pull requests on topic
 
-- Be respectful and inclusive
-- Focus on constructive criticism of ideas, not people
-- Accept responsibility and apologize to those affected by our mistakes
-- Avoid offensive, derogatory, or discriminatory language
-- Respect privacy and confidentiality
+## Unacceptable behavior
 
-## Unacceptable Behavior
+Unacceptable conduct includes:
 
-Examples of unacceptable behavior include:
-
-- Harassment in any form
-- Personal attacks or insults
-- Public or private intimidation
-- Distribution of private information without consent
-- Any conduct which could reasonably be considered inappropriate in a professional setting
-- Violating API terms of service (Gemini, etc.)
+- harassment, threats, or personal attacks
+- discriminatory or demeaning language
+- deliberate disruption of project spaces
+- publishing another person's private information without permission
+- knowingly submitting malicious code or credentials
+- repeated bad-faith behavior after maintainer warnings
 
 ## Enforcement
 
-Project maintainers may edit, delete, or reject comments, commits, code, wiki edits, issues, and other contributions that do not align with this Code of Conduct. Violations may result in a temporary or permanent ban from the project.
+Maintainers may edit, hide, reject, or remove contributions that violate this code and may restrict participation when necessary to protect the project community.
 
 ## Scope
 
-This Code of Conduct applies to all project spaces, including issues, pull requests, discussions, and other channels used to represent the project.
+This code applies in repository spaces such as issues, pull requests, reviews, and discussions associated with Puzzle Paradise.
 
 ## Reporting
 
-To report a violation, please contact the project maintainer privately via GitHub profile.
+Report conduct concerns privately to the maintainer through the [Stijnman GitHub profile](https://github.com/Stijnman).
 
 ## Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant](https://www.contributor-covenant.org/version/2/0/code_of_conduct.html).
-
----
-
-*Last updated: September 11, 2026*
-*Maintainer: Stijnman*
+This policy is informed by the [Contributor Covenant](https://www.contributor-covenant.org/).

@@ -1,0 +1,944 @@
+{
+  "locale": "en",
+  "name": "English",
+  "ui": {
+    "brand": "Puzzle Paradise",
+    "search": "Search puzzles",
+    "sort": "Sort",
+    "featured": "Featured",
+    "az": "A–Z",
+    "difficulty": "Difficulty",
+    "all": "All",
+    "play": "Play",
+    "daily": "Daily Challenge",
+    "progress": "Progress",
+    "completed": "Completed",
+    "settings": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "sound": "Sound",
+    "haptics": "Haptics",
+    "rules": "How to Play",
+    "objective": "Objective",
+    "constraints": "Rules & Constraints",
+    "tutorial": "Step-by-Step",
+    "tips": "Pro Tips",
+    "hint": "Hint",
+    "undo": "Undo",
+    "redo": "Redo",
+    "reset": "Reset",
+    "newPuzzle": "New Puzzle",
+    "moves": "Moves",
+    "time": "Time",
+    "accuracy": "Accuracy",
+    "best": "Personal Best",
+    "stars": "Stars",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "expert": "Expert",
+    "close": "Close",
+    "victory": "Puzzle solved!",
+    "continue": "Continue",
+    "noResults": "No puzzles match your search.",
+    "collapse": "Collapse header",
+    "expand": "Expand header",
+    "tagline": "43 puzzles · zero ads",
+    "hero": "A dense, full-screen puzzle arcade with saved progress, daily challenges, multilingual play and keyboard-first controls.",
+    "puzzles": "Puzzles",
+    "categories": "Categories",
+    "dark": "Dark",
+    "light": "Light",
+    "oled": "OLED Black",
+    "statusProgress": "Keep solving — the puzzle is still in progress.",
+    "statusInvalid": "That move conflicts with the current puzzle constraints.",
+    "statusSolved": "Puzzle solved!",
+    "seeded": "Seed",
+    "on": "On",
+    "off": "Off"
+  },
+  "categories": {
+    "Logic": "Logic",
+    "Number": "Number",
+    "Spatial": "Spatial",
+    "Strategy": "Strategy"
+  },
+  "guide": {
+    "rules": [
+      "Follow every visible clue and constraint.",
+      "A move is only valid when it keeps the puzzle in a potentially solvable state.",
+      "The puzzle is complete only when the engine's exact win condition is satisfied."
+    ],
+    "tutorial": [
+      "Read the objective and inspect fixed clues.",
+      "Make the most constrained move first; use Undo if needed.",
+      "Use Hint for a subtle nudge rather than a full solution."
+    ],
+    "tips": [
+      "Prefer forced deductions over guesses.",
+      "Use Reset to restart the same seed; New Puzzle generates a different seed."
+    ]
+  },
+  "puzzles": {
+    "sudoku": {
+      "title": "Classic Sudoku",
+      "summary": "Complete every row, column and 3×3 box with 1–9.",
+      "objective": "Complete every row, column and 3×3 box with 1–9.",
+      "hint": "Focus on rows, columns, or boxes with only one candidate left.",
+      "rules": [
+        "Use digits 1–9 exactly once in each row.",
+        "Use digits 1–9 exactly once in each column.",
+        "Each 3×3 box must also contain 1–9 exactly once."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Classic Sudoku.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Scan for rows, columns and boxes with a single missing digit.",
+        "When a digit has only one legal cell in a unit, place it immediately."
+      ]
+    },
+    "arrow-escape": {
+      "title": "Arrow Escape",
+      "summary": "Clear every arrow by sending it along a clear path off the board.",
+      "objective": "Clear every arrow by sending it along a clear path off the board.",
+      "hint": "Work from exposed edge arrows inward.",
+      "rules": [
+        "An arrow can leave only when every cell in its pointing direction is empty.",
+        "Cleared arrows disappear and may open routes for blocked arrows.",
+        "Clear every arrow to win."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Arrow Escape.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Check outward-facing edge arrows first.",
+        "After each clear, rescan the same row and column for newly opened routes."
+      ]
+    },
+    "net": {
+      "title": "Pipe Routing",
+      "summary": "Rotate every tile until all pipes form one connected network.",
+      "objective": "Rotate every tile until all pipes form one connected network.",
+      "hint": "Start with edge and corner tiles; their possible orientations are limited.",
+      "rules": [
+        "Adjacent pipe ends must meet reciprocally.",
+        "No pipe may point outside the board.",
+        "Every tile must belong to one connected network."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Pipe Routing.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Edges eliminate impossible rotations immediately.",
+        "Build outward from forced corners and endpoints."
+      ]
+    },
+    "mines": {
+      "title": "Mines",
+      "summary": "Reveal every safe cell without opening a mine.",
+      "objective": "Reveal every safe cell without opening a mine.",
+      "hint": "Use numbered cells to count adjacent mines before guessing.",
+      "rules": [
+        "A number counts mines in the eight neighbouring cells.",
+        "Opening a mine ends the run.",
+        "Reveal every non-mine cell to win."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Mines.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "If a clue already touches its full mine count, its other neighbours are safe.",
+        "If the number of hidden neighbours equals the remaining mine count, they are all mines."
+      ]
+    },
+    "fifteen": {
+      "title": "Fifteen",
+      "summary": "Slide the numbered tiles into ascending order.",
+      "objective": "Slide the numbered tiles into ascending order.",
+      "hint": "Solve the top rows first and preserve finished sections.",
+      "rules": [
+        "Only a tile adjacent to the empty space can move.",
+        "Tiles slide into the empty space; they do not swap directly.",
+        "Arrange all numbered tiles in ascending order."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Fifteen.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Solve rows from the top down.",
+        "Preserve completed rows while arranging the next pair."
+      ]
+    },
+    "keen": {
+      "title": "Keen",
+      "summary": "Fill the Latin square while satisfying every arithmetic cage.",
+      "objective": "Fill the Latin square while satisfying every arithmetic cage.",
+      "hint": "Use row/column exclusions before testing cage combinations.",
+      "rules": [
+        "Each row contains every allowed digit exactly once.",
+        "Each column contains every allowed digit exactly once.",
+        "Numbers inside a cage must produce its target using the shown operation."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Keen.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Eliminate row and column candidates before testing arithmetic combinations.",
+        "Small cages and extreme targets are usually the most constrained."
+      ]
+    },
+    "hitori": {
+      "title": "Hitori",
+      "summary": "Shade duplicates so visible numbers are unique and the white cells stay connected.",
+      "objective": "Shade duplicates so visible numbers are unique and the white cells stay connected.",
+      "hint": "Mark forced duplicate removals, then protect connectivity.",
+      "rules": [
+        "Unshaded numbers may not repeat in a row or column.",
+        "Shaded cells may not share an edge.",
+        "All unshaded cells must stay orthogonally connected."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Hitori.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Duplicate pairs often force which copy must be shaded.",
+        "Before shading, check that the white region will not split."
+      ]
+    },
+    "lightup": {
+      "title": "Light Up",
+      "summary": "Illuminate every open square without bulbs seeing each other and satisfy wall clues.",
+      "objective": "Illuminate every open square without bulbs seeing each other and satisfy wall clues.",
+      "hint": "Numbered walls create strong local deductions.",
+      "rules": [
+        "Every open cell must be lit by a bulb in its row or column.",
+        "Bulbs may not see another bulb without a wall between them.",
+        "A numbered wall requires exactly that many adjacent bulbs."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Light Up.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Clue 0 forbids bulbs on all adjacent cells.",
+        "Use completed numbered walls to exclude more bulb positions."
+      ]
+    },
+    "loopy": {
+      "title": "Loopy",
+      "summary": "Draw one non-branching closed loop satisfying every numbered clue.",
+      "objective": "Draw one non-branching closed loop satisfying every numbered clue.",
+      "hint": "Clues 0 and 3 often force several edges immediately.",
+      "rules": [
+        "Selected edges must form exactly one closed loop.",
+        "The loop may not branch or split into multiple loops.",
+        "Each numbered cell must have exactly that many selected surrounding edges."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Loopy.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "0 and 3 clues create immediate forced edges.",
+        "Avoid closing a small loop before the rest of the board is connected."
+      ]
+    },
+    "bridges": {
+      "title": "Bridges",
+      "summary": "Connect all islands into one network while matching each island number.",
+      "objective": "Connect all islands into one network while matching each island number.",
+      "hint": "Prioritize islands whose remaining degree can only be satisfied one way.",
+      "rules": [
+        "Bridges connect islands only horizontally or vertically to the next visible island.",
+        "At most two bridges may join the same pair.",
+        "Each island must have exactly its printed number of bridges and all islands must be connected."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Bridges.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "High clues near the edge are highly constrained.",
+        "Check connectivity before completing isolated island groups."
+      ]
+    },
+    "samegame": {
+      "title": "Same Game",
+      "summary": "Remove connected colour groups and clear as much of the board as possible.",
+      "objective": "Remove connected colour groups and clear as much of the board as possible.",
+      "hint": "Prefer moves that merge larger groups before clearing them.",
+      "rules": [
+        "Remove groups of at least two orthogonally connected matching colours.",
+        "Remaining pieces collapse according to the engine rules.",
+        "Clear as much of the board as possible."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Same Game.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Avoid removing small groups that would prevent larger merges.",
+        "Plan several collapses ahead."
+      ]
+    },
+    "untangle": {
+      "title": "Untangle",
+      "summary": "Reposition points until no connecting lines cross.",
+      "objective": "Reposition points until no connecting lines cross.",
+      "hint": "Resolve the densest crossing cluster first.",
+      "rules": [
+        "Lines remain attached to their numbered endpoints.",
+        "Swap point positions to change the geometry.",
+        "No two non-adjacent edges may cross in the solved state."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Untangle.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Resolve dense crossing clusters before isolated crossings.",
+        "Moving one high-degree point can remove several crossings at once."
+      ]
+    },
+    "blackbox": {
+      "title": "Black Box",
+      "summary": "Locate hidden balls by interpreting edge-fired beam results.",
+      "objective": "Locate hidden balls by interpreting edge-fired beam results.",
+      "hint": "Combine hits, reflections, and paired exits before placing a ball.",
+      "rules": [
+        "Fire beams from edge positions into the hidden arena.",
+        "H means a direct hit; R means a reflection; matching labels identify entry and exit.",
+        "Place the required hidden balls so all possible beam results match."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Black Box.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Use direct hits to constrain cells on the beam line.",
+        "Reflections strongly constrain cells diagonally adjacent to the beam path."
+      ]
+    },
+    "dominosa": {
+      "title": "Dominosa",
+      "summary": "Partition adjacent numbers into the complete domino set exactly once.",
+      "objective": "Partition adjacent numbers into the complete domino set exactly once.",
+      "hint": "Track pairs that have only one possible placement.",
+      "rules": [
+        "Every cell belongs to exactly one orthogonally adjacent domino.",
+        "Each unordered number pair in the set must appear exactly once.",
+        "Pairs may not overlap."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Dominosa.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Mark number pairs that have only one possible adjacency.",
+        "Duplicated candidate pairs can eliminate each other."
+      ]
+    },
+    "galaxies": {
+      "title": "Galaxies",
+      "summary": "Partition the board into connected regions rotationally symmetric around their centres.",
+      "objective": "Partition the board into connected regions rotationally symmetric around their centres.",
+      "hint": "Mirror every claimed square through its galaxy centre.",
+      "rules": [
+        "Every cell belongs to exactly one galaxy.",
+        "Each galaxy contains one centre.",
+        "A galaxy must be rotationally symmetric around its centre."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Galaxies.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Mirror every assigned cell through its centre.",
+        "Cells whose mirror falls outside a candidate region cannot belong there."
+      ]
+    },
+    "guess": {
+      "title": "Guess",
+      "summary": "Deduce the hidden sequence from the feedback clues.",
+      "objective": "Deduce the hidden sequence from the feedback clues.",
+      "hint": "Use each clue to eliminate impossible positions and values.",
+      "rules": [
+        "The hidden sequence remains fixed for the run.",
+        "Each submitted guess returns clue feedback.",
+        "Use the feedback to identify the complete sequence."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Guess.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Change one position at a time when testing hypotheses.",
+        "Track eliminated values explicitly."
+      ]
+    },
+    "inertia": {
+      "title": "Inertia",
+      "summary": "Collect every gem while sliding until stopped, avoiding mines.",
+      "objective": "Collect every gem while sliding until stopped, avoiding mines.",
+      "hint": "Plan stopping squares before committing to a direction.",
+      "rules": [
+        "The ball continues moving in the chosen direction until stopped.",
+        "Collect every gem.",
+        "Touching a mine loses the run."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Inertia.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Choose moves by their stopping square, not only their direction.",
+        "Collect safe stopping-point gems before risky routes."
+      ]
+    },
+    "ink": {
+      "title": "Ink",
+      "summary": "Connect matching clues without crossing paths.",
+      "objective": "Connect matching clues without crossing paths.",
+      "hint": "Reserve narrow corridors for pairs with fewer routes.",
+      "rules": [
+        "Connect each matching clue pair.",
+        "Paths may not cross.",
+        "All required pairs must be connected."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Ink.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Solve pairs with narrow corridors first.",
+        "Reserve central space for pairs with many possible routes."
+      ]
+    },
+    "magnets": {
+      "title": "Magnets",
+      "summary": "Fill domino slots with magnetic poles while matching row and column counts.",
+      "objective": "Fill domino slots with magnetic poles while matching row and column counts.",
+      "hint": "Use completed count lines to eliminate remaining pole options.",
+      "rules": [
+        "Each domino slot is +−, −+, or neutral.",
+        "Row and column +/− counts must match the clues.",
+        "Equal poles may not touch horizontally or vertically."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Magnets.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Completed counts force remaining cells neutral or opposite.",
+        "Use the no-equal-neighbours rule to propagate poles."
+      ]
+    },
+    "maps": {
+      "title": "Map Colouring",
+      "summary": "Colour every region so edge-sharing neighbours have different colours.",
+      "objective": "Colour every region so edge-sharing neighbours have different colours.",
+      "hint": "Colour high-degree regions first.",
+      "rules": [
+        "Each region receives one colour.",
+        "Regions sharing an edge must use different colours.",
+        "Corner-only contact does not create a conflict."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Map Colouring.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Colour regions with many neighbours first.",
+        "When three neighbouring colours are already present, the fourth is forced."
+      ]
+    },
+    "net2": {
+      "title": "Network",
+      "summary": "Rotate pieces until the whole network is connected.",
+      "objective": "Rotate pieces until the whole network is connected.",
+      "hint": "Use boundary constraints to fix impossible outward connections.",
+      "rules": [
+        "Rotate every network tile into an allowed orientation.",
+        "Connections between adjacent tiles must be reciprocal.",
+        "The entire network must be connected."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Network.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Boundary tiles cannot connect outward.",
+        "Lock forced endpoints before working inward."
+      ]
+    },
+    "netslide": {
+      "title": "Net Slide",
+      "summary": "Cyclically slide rows and columns until all network tiles connect.",
+      "objective": "Cyclically slide rows and columns until all network tiles connect.",
+      "hint": "Look for near-complete rows/columns before shifting.",
+      "rules": [
+        "Moves shift an entire row or column cyclically.",
+        "Tile orientations remain attached to their tiles while sliding.",
+        "All tiles must form one connected network."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Net Slide.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Look for rows or columns one shift from alignment.",
+        "Avoid breaking multiple correct joins to fix a single connection."
+      ]
+    },
+    "nullgame": {
+      "title": "Null Game",
+      "summary": "Flip cross-shaped groups until every cell is zero.",
+      "objective": "Flip cross-shaped groups until every cell is zero.",
+      "hint": "Work backward from isolated active cells.",
+      "rules": [
+        "A move toggles the selected cell and its orthogonal neighbours.",
+        "Active becomes null and null becomes active.",
+        "Make all cells null."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Null Game.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Work from corners and edges where fewer cells are affected.",
+        "Repeatedly pressing the same cell twice cancels out."
+      ]
+    },
+    "pattern": {
+      "title": "Pattern",
+      "summary": "Fill cells so every row and column matches its run-length clues.",
+      "objective": "Fill cells so every row and column matches its run-length clues.",
+      "hint": "Start with lines whose clues nearly fill the available space.",
+      "rules": [
+        "Fill or leave cells according to row and column run clues.",
+        "Each clue number is a consecutive filled run.",
+        "Separate consecutive runs by at least one empty cell."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Pattern.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Use overlap on long runs.",
+        "A completed line lets you mark every remaining cell empty."
+      ]
+    },
+    "pearl": {
+      "title": "Pearl Loop",
+      "summary": "Draw one loop satisfying every black and white pearl.",
+      "objective": "Draw one loop satisfying every black and white pearl.",
+      "hint": "Black pearls force turns; white pearls force straight passage.",
+      "rules": [
+        "Draw exactly one closed, non-branching loop.",
+        "Black pearls must be turns with straight segments immediately on both sides.",
+        "White pearls must be traversed straight and have a turn immediately before or after."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Pearl Loop.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Black pearls strongly constrain neighbouring cells.",
+        "Use pearl rules before generic loop deductions."
+      ]
+    },
+    "pegs": {
+      "title": "Pegs",
+      "summary": "Jump pegs over adjacent pegs into empty holes and finish with as few as possible.",
+      "objective": "Jump pegs over adjacent pegs into empty holes and finish with as few as possible.",
+      "hint": "Avoid isolating pegs near corners.",
+      "rules": [
+        "A legal move jumps one peg over an adjacent peg into an empty hole.",
+        "The jumped peg is removed.",
+        "Finish with as few pegs as possible."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Pegs.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Avoid stranding pegs with no possible jump.",
+        "Preserve access to central landing holes."
+      ]
+    },
+    "range": {
+      "title": "Range",
+      "summary": "Shade cells so every clue equals the visible white range and white cells remain connected.",
+      "objective": "Shade cells so every clue equals the visible white range and white cells remain connected.",
+      "hint": "Large clues strongly constrain nearby black cells.",
+      "rules": [
+        "Black cells may not share an edge.",
+        "All white cells must remain connected.",
+        "A clue equals the number of visible white cells in its row and column directions including itself."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Range.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Large clues force long white corridors.",
+        "Before shading a cell, ensure it does not disconnect white space."
+      ]
+    },
+    "rect": {
+      "title": "Rectangles",
+      "summary": "Partition the board into rectangles containing exactly one clue whose value equals the rectangle area.",
+      "objective": "Partition the board into rectangles containing exactly one clue whose value equals the rectangle area.",
+      "hint": "List factor pairs for each clue before drawing rectangles.",
+      "rules": [
+        "Rectangles may not overlap and together must cover the board.",
+        "Each rectangle contains exactly one clue.",
+        "A rectangle's area must equal its clue."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Rectangles.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "List factor pairs for each clue value.",
+        "Use board edges to eliminate impossible rectangle shapes."
+      ]
+    },
+    "sequencing": {
+      "title": "Sequencing",
+      "summary": "Arrange all numbered tiles into the correct progression.",
+      "objective": "Arrange all numbered tiles into the correct progression.",
+      "hint": "Place the most displaced values first to reduce later swaps.",
+      "rules": [
+        "Select two tiles to swap their positions.",
+        "Every number must appear exactly once.",
+        "Arrange the complete sequence in reading order."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Sequencing.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Move values directly to their target positions.",
+        "Solve from one end to reduce accidental disruption."
+      ]
+    },
+    "signpost": {
+      "title": "Signpost",
+      "summary": "Link all cells into one ordered chain following each arrow direction.",
+      "objective": "Link all cells into one ordered chain following each arrow direction.",
+      "hint": "Build chains outward from fixed endpoints and forced links.",
+      "rules": [
+        "Every cell belongs to one ordered chain.",
+        "A cell's arrow determines the direction of its successor.",
+        "Use every number or position exactly once."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Signpost.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Fixed endpoints constrain long chains.",
+        "Merge forced chains before choosing ambiguous links."
+      ]
+    },
+    "singles": {
+      "title": "Singles",
+      "summary": "Complete the compact Latin square without repeats.",
+      "objective": "Complete the compact Latin square without repeats.",
+      "hint": "Use row and column exclusions to find forced values.",
+      "rules": [
+        "Each allowed number appears once per row.",
+        "Each allowed number appears once per column.",
+        "Respect any fixed clues."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Singles.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Use row/column candidate intersections.",
+        "A missing number with one legal position is forced."
+      ]
+    },
+    "sixteen": {
+      "title": "Sixteen",
+      "summary": "Fill the 4×4 grid with 1–4 under the displayed constraints.",
+      "objective": "Fill the 4×4 grid with 1–4 under the displayed constraints.",
+      "hint": "Use the small grid to scan candidates systematically.",
+      "rules": [
+        "Use 1–4 according to the grid's row and column constraints.",
+        "Respect all fixed cells.",
+        "Complete all 16 cells without violations."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Sixteen.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Small grids reward complete candidate scanning.",
+        "Use pairs of missing values to restrict neighbouring cells."
+      ]
+    },
+    "slant": {
+      "title": "Slant",
+      "summary": "Place diagonals so vertex clues match and no loop is formed.",
+      "objective": "Place diagonals so vertex clues match and no loop is formed.",
+      "hint": "A clue equal to its remaining empty incident cells forces them all.",
+      "rules": [
+        "Put one slash or backslash in every square.",
+        "A vertex clue counts incident diagonal endpoints.",
+        "The diagonals must not form a closed loop."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Slant.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "A satisfied vertex forbids further incident endpoints.",
+        "A clue equal to its remaining undecided neighbours forces all of them."
+      ]
+    },
+    "solo": {
+      "title": "Solo",
+      "summary": "Complete the 6×6 Latin square.",
+      "objective": "Complete the 6×6 Latin square.",
+      "hint": "Scan rows and columns for missing values before guessing.",
+      "rules": [
+        "Each row uses every allowed digit once.",
+        "Each column uses every allowed digit once.",
+        "Respect fixed clues."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Solo.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Scan missing values per row and column.",
+        "Use candidate intersections before guessing."
+      ]
+    },
+    "tents": {
+      "title": "Tents",
+      "summary": "Match one tent to each tree, satisfy row/column totals, and keep tents separated.",
+      "objective": "Match one tent to each tree, satisfy row/column totals, and keep tents separated.",
+      "hint": "Completed row and column totals immediately rule out cells.",
+      "rules": [
+        "Each tree matches exactly one orthogonally adjacent tent.",
+        "Tents may not touch, even diagonally.",
+        "Row and column tent totals must match the clues."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Tents.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "A completed row or column forbids all other tents there.",
+        "Trees with only one legal adjacent square force a tent."
+      ]
+    },
+    "towers": {
+      "title": "Towers",
+      "summary": "Fill 1–4 once per row and column while satisfying visibility clues.",
+      "objective": "Fill 1–4 once per row and column while satisfying visibility clues.",
+      "hint": "A clue of 1 forces the tallest tower at the near edge.",
+      "rules": [
+        "Each row and column contains each height once.",
+        "A taller tower hides shorter towers behind it.",
+        "Each edge clue equals the number of towers visible from that side."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Towers.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Clue 1 puts the tallest tower nearest that edge.",
+        "Maximum visibility forces strictly increasing heights."
+      ]
+    },
+    "twiddle": {
+      "title": "Twiddle",
+      "summary": "Rotate groups of tiles until every number is in order.",
+      "objective": "Rotate groups of tiles until every number is in order.",
+      "hint": "Solve stable regions and avoid disturbing them.",
+      "rules": [
+        "A move rotates a permitted group of tiles.",
+        "All tiles remain on the board.",
+        "Reach the target ordering."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Twiddle.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Preserve solved regions whenever possible.",
+        "Think in rotation cycles rather than single tiles."
+      ]
+    },
+    "undead": {
+      "title": "Undead",
+      "summary": "Place ghosts, vampires and zombies to satisfy reflected sight-line clues.",
+      "objective": "Fill every non-mirror square with a ghost, vampire, or zombie so the global totals and every edge sight-line clue match.",
+      "hint": "A vampire counts only before the first reflection, a ghost only after reflection, and a zombie always counts.",
+      "rules": [
+        "Every non-mirror square contains exactly one ghost, vampire, or zombie.",
+        "Vampires are visible directly but not in mirrors; ghosts are visible in mirrors but not directly; zombies are always visible.",
+        "Match both the total monster counts and every number around the grid edge."
+      ],
+      "tutorial": [
+        "Start with edge clues whose paths contain few open cells.",
+        "Trace each line through / and \\\\ mirrors and note whether a monster is viewed directly or through reflection.",
+        "Use the G/V/Z totals to resolve the final ambiguous cells."
+      ],
+      "tips": [
+        "A sight line before its first mirror can only count vampires and zombies.",
+        "After a reflection, ghosts and zombies contribute while vampires disappear from that view."
+      ]
+    },
+    "unequal": {
+      "title": "Unequal",
+      "summary": "Fill the grid while obeying Latin-square and inequality constraints.",
+      "objective": "Fill the grid while obeying Latin-square and inequality constraints.",
+      "hint": "Use inequality chains to bound candidates.",
+      "rules": [
+        "Rows and columns follow Latin-square uniqueness.",
+        "Displayed inequality signs must be true.",
+        "Respect fixed digits."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Unequal.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Inequality chains create upper and lower bounds.",
+        "Combine bounds with row/column exclusions."
+      ]
+    },
+    "unruly": {
+      "title": "Unruly",
+      "summary": "Balance X and O with no forbidden repetitions.",
+      "objective": "Balance X and O with no forbidden repetitions.",
+      "hint": "Two equal symbols often force the neighbouring symbol to be opposite.",
+      "rules": [
+        "Each row and column contains equal counts of both symbols.",
+        "No run of three identical symbols is allowed.",
+        "Completed lines must satisfy all balance constraints."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Unruly.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Two identical symbols together force opposites at both ends.",
+        "A line with its quota of one symbol filled forces all remaining cells to the other."
+      ]
+    },
+    "cube": {
+      "title": "Cube",
+      "summary": "Manipulate the cube-inspired board into its target state.",
+      "objective": "Manipulate the cube-inspired board into its target state.",
+      "hint": "Track one face or region at a time.",
+      "rules": [
+        "Use only the permitted cube-board transformations.",
+        "Preserve fixed constraints.",
+        "Reach the displayed target state."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Cube.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Track one region through each transformation.",
+        "Reverse a short sequence mentally before committing."
+      ]
+    },
+    "filling": {
+      "title": "Filling",
+      "summary": "Fill connected regions so each number equals its region size.",
+      "objective": "Fill connected regions so each number equals its region size.",
+      "hint": "Expand fixed clues only as far as their required size permits.",
+      "rules": [
+        "Every cell belongs to a connected same-number region.",
+        "A region labelled N contains exactly N cells.",
+        "Separate distinct regions with the same number."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Filling.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "A region at full size cannot expand further.",
+        "Fixed clues close together sharply restrict region shapes."
+      ]
+    },
+    "flip": {
+      "title": "Flip",
+      "summary": "Toggle cells or groups until the board matches the target pattern.",
+      "objective": "Toggle cells or groups until the board matches the target pattern.",
+      "hint": "Work from constrained edges where fewer moves affect each cell.",
+      "rules": [
+        "Each move toggles the cells defined by that position.",
+        "Moves are reversible.",
+        "Match the full target pattern."
+      ],
+      "tutorial": [
+        "Read the objective and identify the strongest clue in Flip.",
+        "Make one forced move and re-scan the board for consequences.",
+        "Use Undo for experiments and Hint when no forced move is visible."
+      ],
+      "tips": [
+        "Edges are usually affected by fewer moves.",
+        "Compare current and target states to focus only on mismatches."
+      ]
+    }
+  }
+}
