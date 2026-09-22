@@ -1,4 +1,5 @@
 name: RAPTOR Security
+# Reusable workflow is centrally maintained in Stijnman/Stijnman.
 
 on:
   workflow_dispatch:
