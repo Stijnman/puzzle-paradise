@@ -1,5 +1,6 @@
 name: RAPTOR Security
 # Reusable workflow is centrally maintained in Stijnman/Stijnman.
+# A new PR run picks up the centrally corrected separate SARIF upload categories.
 
 on:
   workflow_dispatch:
@@ -16,6 +17,6 @@ permissions:
 jobs:
   raptor:
     if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.private }}
-    uses: Stijnman/Stijnman/.github/workflows/raptor-reusable.yml@45265ff81e3ee05a6f7be85ebd3ed45ab1e0d1bc
+    uses: Stijnman/Stijnman/.github/workflows/raptor-reusable.yml@main
     with:
       run_sca: true
