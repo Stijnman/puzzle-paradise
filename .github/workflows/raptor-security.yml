@@ -16,6 +16,6 @@ permissions:
 jobs:
   raptor:
     if: ${{ github.event_name == 'workflow_dispatch' || !github.event.repository.private }}
-    uses: Stijnman/Stijnman/.github/workflows/raptor-reusable.yml@main
+    uses: Stijnman/Stijnman/.github/workflows/raptor-reusable.yml@45265ff81e3ee05a6f7be85ebd3ed45ab1e0d1bc
     with:
       run_sca: true
